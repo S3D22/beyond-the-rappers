@@ -170,15 +170,27 @@ a{color:inherit}
 .hero{
   padding:56px 0 26px;
 }
-.hero {
+.hero{
   position: relative;
-  padding: 120px 0 100px;
-  background: 
-    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)),
+
+  /* menos aire arriba/abajo (y responsive) */
+  padding: clamp(64px, 10vh, 120px) 0 clamp(40px, 8vh, 100px);
+
+  /* fondo */
+  background:
+    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.65)),
     url("assets/hero.jpg");
-  background-size: cover;
+
+  background-repeat: no-repeat;
   background-position: center;
+
+  /* CLAVE: tamaño controlado (no gigante) */
+  background-size: clamp(320px, 90vw, 900px) auto;
+
+  /* altura del hero más razonable */
+  min-height: 70vh;
 }
+
 
 .hero-inner {
   position: relative;
@@ -661,5 +673,11 @@ window.addEventListener("load", () => {
     width: 100%;
     max-width: 100%;
     height: auto;
+  }
+}
+@media (max-width: 768px){
+  .hero{
+    min-height: 60vh;
+    background-size: clamp(260px, 92vw, 520px) auto;
   }
 }
