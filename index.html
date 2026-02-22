@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BEYOND THE RAPPER’S</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+
+<body>
+  <!-- HEADER -->
+  <header class="header" id="top">
+    <div class="header-inner">
+      <!-- Logo / título (clic = home) -->
+      <a class="brand" href="#home" aria-label="Ir al inicio">
+        <span class="brand-title">BEYOND THE RAPPER’S</span>
+      </a>
+
+      <!-- Menú -->
+      <nav class="nav" aria-label="Navegación principal">
+        <a class="nav-link" href="#musica">Música</a>
+        <a class="nav-link" href="#noticias">Noticias</a>
+        <a class="nav-link" href="#eventos">Eventos</a>
+        <a class="nav-link" href="#descubrir">Descubrir</a>
+        <a class="nav-link" href="#contacto">Contacto</a>
+      </nav>
+
+      <!-- Buscador -->
+      <div class="search">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input
+          id="siteSearch"
+          class="search-input"
+          type="search"
+          placeholder="Buscar: música, noticias, eventos…"
+          aria-label="Buscar secciones"
+        />
+        <button class="search-btn" id="searchBtn" aria-label="Buscar">Ir</button>
+      </div>
+
+      <!-- Botón menú móvil -->
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuPanel">
+        ☰
+      </button>
+    </div>
+
+    <!-- Menú móvil desplegable -->
+    <div class="menu-panel" id="menuPanel" aria-hidden="true">
+      <div class="menu-panel-head">
+        <strong>Menú</strong>
+        <button class="menu-close" id="menuClose" aria-label="Cerrar menú">✕</button>
+      </div>
+
+      <div class="menu-panel-body">
+        <a class="menu-link" href="#musica">Música</a>
+        <a class="menu-link" href="#noticias">Noticias</a>
+        <a class="menu-link" href="#eventos">Eventos</a>
+        <a class="menu-link" href="#descubrir">Descubrir</a>
+        <a class="menu-link" href="#contacto">Contacto</a>
+
+        <div class="menu-search">
+          <label class="menu-search-label" for="siteSearchMobile">Buscar</label>
+          <div class="menu-search-row">
+            <input id="siteSearchMobile" class="search-input" type="search" placeholder="Escribe y pulsa Enter…" />
+            <button class="search-btn" id="searchBtnMobile">Ir</button>
+          </div>
+          <p class="tiny muted">Atajos: música, noticias, eventos, descubrir, contacto.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HOME (canal) -->
+<section id="home" class="hero">
+  <div class="container hero-inner">
+    <p class="kicker">Cultura • escena • comunidad</p>
+
+    <h1 class="hero-title">BEYOND THE RAPPER’S</h1>
+
+    <p class="hero-sub">
+      Más allá del rap. Plataforma cultural que conecta artistas,
+      comunidad y escena.
+    </p>
+  </div>
+</section>
+
+        <div class="logonegro">
+          <a class="btn" href="#noticias">Ver noticias</a>
+          <a class="btn btn-ghost" href="#eventos">Próximo evento</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÚSICA -->
+    <section id="musica" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Música</h2>
+          <p class="muted">Información de artistas y biografías. (Aquí irás añadiendo fichas.)</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <span class="tag">Artista</span>
+            <h3>Nombre del artista</h3>
+            <p class="muted">Bio corta (2–4 líneas). Estilo, ciudad, trayectoria.</p>
+            <p class="meta">Links: Spotify • YouTube • IG</p>
+          </article>
+
+          <article class="card">
+            <span class="tag">Artista</span>
+            <h3>Nombre del artista</h3>
+            <p class="muted">Bio corta (2–4 líneas). Referencias, proyectos.</p>
+            <p class="meta">Links: Spotify • YouTube • IG</p>
+          </article>
+
+          <article class="card">
+            <span class="tag">Artista</span>
+            <h3>Nombre del artista</h3>
+            <p class="muted">Bio corta (2–4 líneas). Sonido, estética.</p>
+            <p class="meta">Links: Spotify • YouTube • IG</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTICIAS -->
+    <section id="noticias" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Noticias</h2>
+          <p class="muted">Nuevos lanzamientos y fechas próximas.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Próximos</h3>
+
+            <div class="news-item">
+              <div class="news-top">
+                <span class="pill">Evento</span>
+                <span class="muted">29 Mar</span>
+              </div>
+              <h4>Edición 6 · Sala Alboroto (Las Palmas)</h4>
+              <p class="muted">Entradas + cartel + info.</p>
+            </div>
+
+            <div class="news-item">
+              <div class="news-top">
+                <span class="pill">Fecha</span>
+                <span class="muted">Próx.</span>
+              </div>
+              <h4>Nuevo anuncio</h4>
+              <p class="muted">Escribe aquí actualizaciones rápidas.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Lanzamientos</h3>
+
+            <div class="news-item">
+              <div class="news-top">
+                <span class="pill">Single</span>
+                <span class="muted">Fecha</span>
+              </div>
+              <h4>Artista · “Tema”</h4>
+              <p class="muted">Link Spotify/YouTube + mini texto.</p>
+            </div>
+
+            <div class="news-item">
+              <div class="news-top">
+                <span class="pill">EP</span>
+                <span class="muted">Fecha</span>
+              </div>
+              <h4>Artista · “Proyecto”</h4>
+              <p class="muted">Highlights + links.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTOS -->
+  
+
+    <!-- ANUNCIO ED5 (VIDEO) -->
+    <div class="ed5-announcement">
+      <div class="ed5-video">
+        <video id="ed5Video" autoplay muted loop playsinline preload="auto">
+          <!-- IMPORTANTE: este nombre debe coincidir con tu archivo real -->
+          <source src="assets/ed5-trailer.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="ed5-info">
+        <span class="tag">NEXT SHOW</span>
+        <h3>EDITION 5 · 29 MAR 2025</h3>
+        <p class="muted">Sala Alboroto — Las Palmas de Gran Canaria, Spain</p>
+        <div class="row" style="margin-top:14px;">
+          <a class="btn btn-sm" href="#contacto">Tickets (añadir link)</a>
+          <a class="btn btn-ghost btn-sm" href="#contacto">Info / Line-up</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALERÍA 5 EDICIONES -->
+    <div class="posters-grid" style="margin-top:22px;">
+
+      <article class="poster-card">
+        <div class="poster-thumb">
+          <img src="assets/ed1.jpg" alt="Cartel Edición 1">
+        </div>
+        <div class="poster-info">
+          <strong>EDITION 1</strong><br>
+          <span class="muted">17 DEC 2022 · Secret Point — Las Palmas de Gran Canaria, Spain</span>
+        </div>
+      </article>
+
+      <article class="poster-card">
+        <div class="poster-thumb">
+          <img src="assets/ed2.jpg" alt="Cartel Edición 2">
+        </div>
+        <div class="poster-info">
+          <strong>EDITION 2</strong><br>
+          <span class="muted">17 FEB 2023 · Distrito Rock — Madrid, Spain</span>
+        </div>
+      </article>
+
+      <article class="poster-card">
+        <div class="poster-thumb">
+          <img src="assets/ed3.jpg" alt="Cartel Edición 3">
+        </div>
+        <div class="poster-info">
+          <strong>EDITION 3</strong><br>
+          <span class="muted">9 DEC 2023 · Le Gambetta Club — Paris, France</span>
+        </div>
+      </article>
+
+      <article class="poster-card">
+        <div class="poster-thumb">
+          <img src="assets/ed4.jpg" alt="Cartel Edición 4">
+        </div>
+        <div class="poster-info">
+          <strong>EDITION 4</strong><br>
+          <span class="muted">18 DEC 2024 · Canarias en Vivo — Las Palmas de Gran Canaria, Spain</span>
+        </div>
+      </article>
+
+      <article class="poster-card">
+        <div class="poster-thumb">
+          <img src="assets/ed5.jpg" alt="Cartel Edición 5">
+        </div>
+        <div class="poster-info">
+          <strong>EDITION 5 · NEXT SHOW</strong><br>
+          <span class="muted">29 MAR 2025 · Sala Alboroto — Las Palmas de Gran Canaria, Spain</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- DESTACADO: PRÓXIMA EDICIÓN -->
+    <div class="event-feature">
+      <div>
+        <span class="tag">Próximo</span>
+        <h3>Edición 5 · 29 de marzo</h3>
+        <p class="muted"><strong>Sala:</strong> Alboroto · <strong>Ciudad:</strong> Las Palmas</p>
+        <p class="muted">Cartel oficial y detalles del evento.</p>
+
+        <div class="row">
+          <!-- Cuando tengas el link de Shopify para entradas, lo pegamos aquí -->
+          <a class="btn btn-sm" href="#contacto">Entradas (poner link)</a>
+          <a class="btn btn-ghost btn-sm" href="#ed5">Ver cartel</a>
+        </div>
+      </div>
+
+      <div class="poster" id="ed5">
+        <img src="assets/ed5.jpg" alt="Cartel Edición 5 - 29 de marzo, Sala Alboroto, Las Palmas">
+      </div>
+    </div>
+
+    <!-- DESCUBRIR -->
+    <section id="descubrir" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Descubrir</h2>
+          <p class="muted">Sobre BEYOND: visión, misión, comunidad.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3>Qué es BEYOND</h3>
+            <p class="muted">
+              Plataforma cultural para impulsar escena, artistas y experiencias en directo.
+              Archivo + futuro. Más allá del formato.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Cómo participar</h3>
+            <p class="muted">
+              Envíanos lanzamientos, propuestas, prensa, colaboraciones o artistas.
+              También puedes unirte al boletín.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contacto</h2>
+          <p class="muted">Email para artistas, prensa, colaboraciones y tickets.</p>
+        </div>
+
+        <div class="card">
+          <p><strong>Email:</strong> <a class="link" href="mailto:tuemail@dominio.com">tuemail@dominio.com</a></p>
+          <p class="muted tiny">Cuando tengas tu email real lo cambiamos aquí.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER con “marca de agua” + suscripción -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="watermark" aria-hidden="true">BEYOND THE RAPPER’S</div>
+
+        <div class="footer-card">
+          <h3>Únase a nosotros</h3>
+          <p class="muted">Suscríbete al boletín de BEYOND. Recibe actualizaciones de artistas, eventos y más.</p>
+
+          <form class="subscribe" id="subscribeForm">
+            <input id="subscribeEmail" type="email" placeholder="Introduce tu dirección" required />
+            <button class="btn btn-sm" type="submit">Suscribirme</button>
+          </form>
+
+          <p class="tiny muted" id="subscribeMsg">
+            (De momento es demo. Luego lo conectamos a MailerLite/Brevo o Shopify Email.)
+          </p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
