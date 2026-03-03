@@ -59,7 +59,7 @@
       </div>
 
       <div class="menu-panel-body">
-        <a class="menu-link" href="#musica">Música</a>
+        <a class="menu-link" href="#podcast">Podcast</a>
         <a class="menu-link" href="#noticias">Noticias</a>
         <a class="menu-link" href="#eventos">Eventos</a>
         <a class="menu-link" href="#descubrir">Descubrir</a>
@@ -306,14 +306,54 @@
         </div>
         <div class="poster-info">
           <strong>EDITION 4</strong><br>
-          <span class="muted">18 DEC 2024 · Canarias en Vivo — Las Palmas, Spain</span>
+          <span class="muted">18 DEC 2025 · Canarias en Vivo — Las Palmas, Spain</span>
         </div>
       </article>
     </div>
   </div>
 </section>
 
- 
+ <section id="discover" class="section alt">
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Discover</h2>
+      <p class="muted">Perfiles de artistas · ciudad · estilo · estado · música/podcast embebida.</p>
+    </div>
+
+    <!-- filtros + grid van aquí -->
+    <div class="discover-controls">
+      <input id="discoverSearch" class="input" type="search" placeholder="Buscar artista, estilo o ciudad..." />
+      <select id="cityFilter" class="select">
+        <option value="all">Todas las ciudades</option>
+        <option value="Las Palmas">Las Palmas</option>
+        <option value="Madrid">Madrid</option>
+        <option value="Paris">Paris</option>
+        <option value="London">London</option>
+      </select>
+      <select id="statusFilter" class="select">
+        <option value="all">Todos los estados</option>
+        <option value="Core">Core</option>
+        <option value="Emerging">Emerging</option>
+      </select>
+    </div>
+
+    <div class="artist-grid" id="artistGrid">
+      <!-- cards aquí -->
+    </div>
+
+  </div>
+</section>
+<section id="discover" class="section alt">
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Discover</h2>
+      <p class="muted">Perfiles de artistas · ciudad · estilo · estado · música/podcast embebida.</p>
+    </div>
+
+    
+
     <!-- Herramientas: buscador + filtros -->
     <div class="discover-tools">
       <div class="left">
@@ -505,6 +545,34 @@
   </main>
 
   <script src="script.js"></script>
+  <footer class="footer">
+  <div class="container footer-inner">
+
+    <div class="footer-brand">
+      <strong>BEYOND THE RAPPERS</strong>
+      <p>Movimiento cultural independiente · Internacional</p>
+    </div>
+
+    <div class="footer-links">
+      <a href="#">Aviso legal</a>
+      <a href="#">Privacidad</a>
+      <a href="#">Cookies</a>
+      <a href="#">Condiciones</a>
+    </div>
+
+    <div class="footer-contact">
+      <p>Contacto:</p>
+      <a href="mailto:beyondtherappers@gmail.com">
+        beyondtherappers@gmail.com
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer-copy">
+    © 2026 Beyond The Rappers. All rights reserved.
+  </div>
+</footer>
 </body>
 </html>
 
