@@ -150,4 +150,46 @@ if (subscribeForm && subscribeEmail && subscribeMsg) {
     el.classList.toggle("hidden");
   });
 })();
+// Toggle embeds en Discover
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".js-toggle-embed");
+  if (!btn) return;
+
+  const card = btn.closest(".artist-card");
+  const isOpen = card.classList.toggle("is-open");
+
+  btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+});
+// Filtro Discover (simple)
+(function(){
+  const search = document.getElementById("discoverSearch");
+  const city = document.getElementById("cityFilter");
+  const status = document.getElementById("statusFilter");
+  const cards = Array.from(document.querySelectorAll(".artist-card"));
+
+  if (!search || !city || !status || !cards.length) return;
+
+  function apply(){
+    const q = (search.value || "").toLowerCase().trim();
+    const c = city.value;
+    const s = status.value;
+
+    cards.forEach(card => {
+      const name = (card.dataset.name || "").toLowerCase();
+      const cityVal = (card.dataset.city || "");
+      const style = (card.dataset.style || "").toLowerCase();
+      const statusVal = (card.dataset.status || "");
+
+      const matchText = !q || name.includes(q) || style.includes(q) || cityVal.toLowerCase().includes(q);
+      const matchCity = (c === "all") || (cityVal === c);
+      const matchStatus = (s === "all") || (statusVal === s);
+
+      card.style.display = (matchText && matchCity && matchStatus) ? "" : "none";
+    });
+  }
+
+  search.addEventListener("input", apply);
+  city.addEventListener("change", apply);
+  status.addEventListener("change", apply);
+})();
  
