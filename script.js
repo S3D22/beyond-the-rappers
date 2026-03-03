@@ -105,5 +105,49 @@ if (subscribeForm && subscribeEmail && subscribeMsg) {
     subscribeEmail.value = "";
   });
 }
+// =========================
+// DISCOVER: filtros + buscador + toggle embeds
+// =========================
+(function () {
+  const search = document.getElementById("discoverSearch");
+  const filterCity = document.getElementById("filterCity");
+  const filterStatus = document.getElementById("filterStatus");
+  const grid = document.getElementById("artistsGrid");
+  if (!grid) return;
 
+  const cards = Array.from(grid.querySelectorAll(".artist-card"));
+
+  function applyFilters() {
+    const q = (search?.value || "").trim().toLowerCase();
+    const city = filterCity?.value || "all";
+    const status = filterStatus?.value || "all";
+
+    cards.forEach(card => {
+      const cCity = card.getAttribute("data-city") || "";
+      const cStatus = card.getAttribute("data-status") || "";
+      const cSearch = (card.getAttribute("data-search") || "").toLowerCase() + " " + (card.textContent || "").toLowerCase();
+
+      const okQ = !q || cSearch.includes(q);
+      const okCity = (city === "all") || (cCity === city);
+      const okStatus = (status === "all") || (cStatus === status);
+
+      card.classList.toggle("hidden", !(okQ && okCity && okStatus));
+    });
+  }
+
+  search?.addEventListener("input", applyFilters);
+  filterCity?.addEventListener("change", applyFilters);
+  filterStatus?.addEventListener("change", applyFilters);
+  applyFilters();
+
+  // Toggle embeds
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-toggle]");
+    if (!btn) return;
+    const id = btn.getAttribute("data-toggle");
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.toggle("hidden");
+  });
+})();
  
