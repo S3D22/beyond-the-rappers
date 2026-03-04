@@ -192,4 +192,224 @@ document.addEventListener("click", (e) => {
   city.addEventListener("change", apply);
   status.addEventListener("change", apply);
 })();
- 
+
+ // DISCOVER: toggle embeds en cards
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".toggle-embeds");
+  if (!btn) return;
+
+  const card = btn.closest(".artist-card");
+  if (!card) return;
+
+  card.classList.toggle("is-open");
+});
+// =========================
+// DISCOVER — PRO behavior (tu estructura actual)
+// =========================
+(function () {
+  // 1) Toggle embeds usando data-toggle y .hidden
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".toggle-embeds");
+    if (!btn) return;
+
+    const targetId = btn.getAttribute("data-toggle");
+    if (!targetId) return;
+
+    const panel = document.getElementById(targetId);
+    if (!panel) return;
+
+    const isHidden = panel.classList.contains("hidden");
+    panel.classList.toggle("hidden");
+
+    // Texto del botón pro
+    btn.textContent = isHidden ? "Ocultar embeds" : "Ver / ocultar embeds";
+    // Si quieres más pro todavía:
+    // btn.textContent = isHidden ? "Ocultar embeds" : "Mostrar embeds";
+  });
+
+  // 2) Monograma automático en .artist-top (sin tocar tu HTML)
+  const cards = document.querySelectorAll(".artist-card");
+  cards.forEach((card) => {
+    const nameEl = card.querySelector(".artist-name");
+    const top = card.querySelector(".artist-top");
+    if (!nameEl || !top) return;
+
+    const name = (nameEl.textContent || "").trim();
+    if (!name) return;
+
+    // Saca iniciales (Aka.Marroko => AM / El Asere => EA)
+    const cleaned = name.replace(/[^\p{L}\p{N}\s]/gu, " ").replace(/\s+/g, " ").trim();
+    const parts = cleaned.split(" ").filter(Boolean);
+
+    let mono = "";
+    if (parts.length === 1) {
+      mono = parts[0].slice(0, 2);
+    } else {
+      mono = (parts[0][0] || "") + (parts[1][0] || "");
+    }
+    mono = mono.toUpperCase();
+
+    // Inyecta en CSS via attr(data-mono)
+    top.setAttribute("data-mono", mono);
+  });
+})();
+// =========================
+// DISCOVER: Toggle embeds
+// =========================
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".toggle-embeds");
+  if (!btn) return;
+
+  const id = btn.dataset.toggle;
+  const panel = document.getElementById(id);
+  if (!panel) return;
+
+  const isHidden = panel.classList.contains("hidden");
+  panel.classList.toggle("hidden");
+
+  btn.textContent = isHidden ? "Ocultar embeds" : "Mostrar embeds";
+});
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".toggle-embeds");
+  if (!btn) return;
+  const id = btn.getAttribute("data-toggle");
+  const box = document.getElementById(id);
+  if (!box) return;
+  box.classList.toggle("hidden");
+});
+// =======================
+// DISCOVER: embeds + filtros
+// =======================
+
+function normalizeText(str) {
+  return (str || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
+
+// Toggle embeds (play button)
+document.addEventListener("click", (e) => {
+  const play = e.target.closest("[data-open]");
+  if (!play) return;
+
+  const id = play.getAttribute("data-open");
+  const box = document.getElementById(id);
+  if (!box) return;
+
+  box.classList.toggle("hidden");
+});
+
+// Filtros
+const searchEl = document.getElementById("discoverSearch");
+const cityEl = document.getElementById("cityFilter");
+const statusEl = document.getElementById("statusFilter");
+const gridEl = document.getElementById("discoverGrid");
+
+function applyDiscoverFilters() {
+  if (!gridEl) return;
+
+  const q = normalizeText(searchEl?.value);
+  const city = cityEl?.value || "all";
+  const status = statusEl?.value || "all";
+
+  const cards = gridEl.querySelectorAll(".artist-card");
+
+  cards.forEach((card) => {
+    const cardCity = card.getAttribute("data-city") || "";
+    const cardStatus = card.getAttribute("data-status") || "";
+    const cardSearch = normalizeText(card.getAttribute("data-search"));
+
+    const okQuery = !q || cardSearch.includes(q);
+    const okCity = city === "all" || cardCity === city;
+    const okStatus = status === "all" || cardStatus === status;
+
+    card.style.display = (okQuery && okCity && okStatus) ? "" : "none";
+  });
+}
+
+[searchEl, cityEl, statusEl].forEach((el) => {
+  if (!el) return;
+  el.addEventListener("input", applyDiscoverFilters);
+  el.addEventListener("change", applyDiscoverFilters);
+});
+
+applyDiscoverFilters();
+
+// =========================
+// COOKIES (RGPD) - simple
+// =========================
+(function(){
+  const KEY = "btr_cookie_consent"; // guarda {necessary:true, analytics:true/false, date:"..."}
+
+  const banner = document.getElementById("cookieBanner");
+  const modal  = document.getElementById("cookieModal");
+
+  if (!banner || !modal) return;
+
+  const btnAccept = document.getElementById("cookieAccept");
+  const btnReject = document.getElementById("cookieReject");
+  const btnPrefs  = document.getElementById("cookiePrefs");
+  const btnClose  = document.getElementById("cookieClose");
+  const btnSave   = document.getElementById("cookieSave");
+  const chkAnalytics = document.getElementById("cookieAnalytics");
+
+  const existing = localStorage.getItem(KEY);
+  if (!existing) banner.classList.add("show");
+
+  function saveConsent(analytics){
+    const consent = { necessary:true, analytics: !!analytics, date: new Date().toISOString() };
+    localStorage.setItem(KEY, JSON.stringify(consent));
+    banner.classList.remove("show");
+    modal.classList.remove("show");
+    modal.setAttribute("aria-hidden","true");
+
+    // Aquí, si algún día metes Google Analytics / Pixel,
+    // solo lo cargas si consent.analytics === true
+  }
+
+  btnAccept?.addEventListener("click", () => saveConsent(true));
+  btnReject?.addEventListener("click", () => saveConsent(false));
+
+  btnPrefs?.addEventListener("click", () => {
+    modal.classList.add("show");
+    modal.setAttribute("aria-hidden","false");
+  });
+
+  btnClose?.addEventListener("click", () => {
+    modal.classList.remove("show");
+    modal.setAttribute("aria-hidden","true");
+  });
+
+  btnSave?.addEventListener("click", () => {
+    saveConsent(!!chkAnalytics?.checked);
+  });
+})();
+// Toggle embeds dentro de Discover
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open]");
+  if (!btn) return;
+
+  const id = btn.getAttribute("data-open");
+  const panel = document.getElementById(id);
+  if (!panel) return;
+
+  panel.classList.toggle("hidden");
+});
+/* =================================
+   AUTO SPOTIFY PREVIEW ON HOVER
+   ================================= */
+
+document.querySelectorAll(".artist-card").forEach(card => {
+
+  card.addEventListener("mouseenter", () => {
+    const btn = card.querySelector(".icon-link--btn");
+    if(btn) btn.click();
+  });
+
+});
+card.addEventListener("mouseleave", () => {
+  const iframe = card.querySelector("iframe");
+  if(iframe) iframe.remove();
+});
