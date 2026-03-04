@@ -3,33 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>BEYOND THE RAPPER’S</title>
+
+  <!-- Google font (tu Rock Salt) -->
+  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+  <!-- Fuente moderna para nombres de artistas -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <!-- CSS principal -->
   <link rel="stylesheet" href="styles.css" />
 </head>
-<link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
 
 <body>
+
   <!-- HEADER -->
   <header class="header" id="top">
     <div class="header-inner">
-      <!-- Logo / título (clic = home) -->
+
       <a class="brand" href="#home" aria-label="Ir al inicio">
         <span class="brand-title">BEYOND THE RAPPER’S</span>
       </a>
 
-      <!-- Menú -->
       <nav class="nav" aria-label="Navegación principal">
         <a class="nav-link" href="#podcast">Podcast</a>
         <a class="nav-link" href="#noticias">Noticias</a>
         <a class="nav-link" href="#eventos">Eventos</a>
         <a class="nav-link" href="#descubrir">Descubrir</a>
-        <a class="nav-link" href="#contacto">Contacto</a>     
-<a class="nav-link" href="#discover">Discover</a>
-<a class="nav-link nav-cta"
-   href="https://vivetix.com/es/entradas-beyond-the-rappers-classic-shit-edicion-rmna?s=redes"
-   target="_blank" rel="noopener">
-  🎟 Entradas
-</a>
+        <a class="nav-link" href="#discover">Discover</a>
+        <a class="nav-link" href="#contacto">Contacto</a>
+
+        <a class="nav-link nav-cta"
+           href="https://vivetix.com/es/entradas-beyond-the-rappers-classic-shit-edicion-rmna?s=redes"
+           target="_blank" rel="noopener">
+          🎟 Entradas
+        </a>
       </nav>
 
       <!-- Buscador -->
@@ -51,7 +58,7 @@
       </button>
     </div>
 
-    <!-- Menú móvil desplegable -->
+    <!-- Menú móvil -->
     <div class="menu-panel" id="menuPanel" aria-hidden="true">
       <div class="menu-panel-head">
         <strong>Menú</strong>
@@ -63,7 +70,14 @@
         <a class="menu-link" href="#noticias">Noticias</a>
         <a class="menu-link" href="#eventos">Eventos</a>
         <a class="menu-link" href="#descubrir">Descubrir</a>
+        <a class="menu-link" href="#discover">Discover</a>
         <a class="menu-link" href="#contacto">Contacto</a>
+
+        <a class="menu-link nav-cta"
+           href="https://vivetix.com/es/entradas-beyond-the-rappers-classic-shit-edicion-rmna?s=redes"
+           target="_blank" rel="noopener">
+          🎟 Entradas
+        </a>
 
         <div class="menu-search">
           <label class="menu-search-label" for="siteSearchMobile">Buscar</label>
@@ -71,407 +85,578 @@
             <input id="siteSearchMobile" class="search-input" type="search" placeholder="Escribe y pulsa Enter…" />
             <button class="search-btn" id="searchBtnMobile">Ir</button>
           </div>
-          <p class="tiny muted">Atajos: música, noticias, eventos, descubrir, contacto.</p>
+          <p class="tiny muted">Atajos: podcast, noticias, eventos, discover, contacto.</p>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- HERO EVENTO (DESTACADO) -->
-<section id="evento" class="event-hero-section">
-  <div class="container">
-    <div class="event-hero-card">
+  <main class="main">
 
-      <div class="event-hero-info">
-        <div class="event-kicker">
-          <span class="pill">EDICIÓN 5</span>
-          <span class="pill">29 MAR</span>
-          <span class="pill">LAS PALMAS</span>
-        </div>
+    <!-- EVENTO DESTACADO (HERO) -->
+    <section id="evento" class="event-hero-section">
+      <div class="container">
+        <div class="event-hero-card">
 
-        <h2>Beyond The Rappers · Classic Shit</h2>
+          <div class="event-hero-info">
+            <div class="event-kicker">
+              <span class="pill">EDICIÓN 5</span>
+              <span class="pill">29 MAR</span>
+              <span class="pill">LAS PALMAS</span>
+            </div>
 
-        <p class="event-meta">
-          Sala Alboroto · 19:00–03:00 · Exhibición + Beatmaking + DJ Residente + Latin Party
-        </p>
+            <h2>Beyond The Rappers · Classic Shit</h2>
 
-        <div class="event-cta-row">
-          <a class="event-cta-primary"
-             href="https://vivetix.com/es/entradas-beyond-the-rappers-classic-shit-edicion-rmna?s=redes"
-             target="_blank" rel="noopener">
-            🎟 Comprar entradas
-          </a>
+            <p class="event-meta">
+              Sala Alboroto · 19:00–03:00 · Exhibición + Beatmaking + DJ Residente + Latin Party
+            </p>
 
-          <a class="event-cta-secondary"
+            <div class="event-cta-row">
+              <a class="event-cta-primary"
+                 href="https://vivetix.com/es/entradas-beyond-the-rappers-classic-shit-edicion-rmna?s=redes"
+                 target="_blank" rel="noopener">
+                🎟 Comprar entradas
+              </a>
+
+              <a class="event-cta-secondary"
+                 href="assets/ed5.jpg"
+                 target="_blank" rel="noopener">
+                Ver cartel
+              </a>
+            </div>
+
+            <p class="event-note muted">
+              Entradas online disponibles. Aforo limitado.
+            </p>
+          </div>
+
+          <a class="event-hero-poster"
              href="assets/ed5.jpg"
-             target="_blank" rel="noopener">
-            Ver cartel
+             target="_blank" rel="noopener"
+             aria-label="Abrir cartel en grande">
+            <img src="assets/ed5.jpg" alt="Cartel Beyond The Rappers Edición 5" loading="lazy">
+            <span class="poster-badge">Ver cartel</span>
           </a>
-        </div>
 
-        <p class="event-note muted">
-          Entradas online disponibles. Aforo limitado.
-        </p>
-      </div>
-
-      <a class="event-hero-poster"
-         href="assets/ed5.jpg"
-         target="_blank" rel="noopener"
-         aria-label="Abrir cartel en grande">
-        <img src="assets/ed5.jpg" alt="Cartel Beyond The Rappers Edición 5" loading="lazy">
-        <span class="poster-badge">Ver cartel</span>
-      </a>
-
-    </div>
-  </div>
-</section>
-  <!-- HOME (canal) -->
-<section id="home" class="hero">
-  <div class="container hero-inner">
-    <p class="kicker">Cultura • escena • comunidad</p>
-
-    <h1 class="hero-title">BEYOND THE RAPPER’S</h1>
-
-    <p class="hero-sub">
-      Más allá del rap. Plataforma cultural que conecta artistas,
-      comunidad y escena.
-    </p>
-  </div>
-</section>
-
-        <div class="logonegro">
-          <a class="btn" href="#noticias">Ver noticias</a>
-          <a class="btn btn-ghost" href="#eventos">Próximo evento</a>
         </div>
       </div>
     </section>
 
-<section id="podcast" class="section">
-  <div class="container">
-    <div class="section-head">
-      <h2>Podcast</h2>
-      <p class="muted">Próximamente · conversaciones y cultura BEYOND. Lanzamos los primeros 2 episodios muy pronto.</p>
-    </div>
+    <!-- HOME -->
+    <section id="home" class="hero">
+      <div class="container hero-inner">
+        <p class="kicker">Cultura • escena • comunidad</p>
+        <h1 class="hero-title">BEYOND THE RAPPER’S</h1>
 
-    <div class="artists-grid">
-      <article class="artist-card">
-        <header class="artist-top">
-          <h3 class="artist-name">Episodio 01 · Próximamente</h3>
-          <div class="artist-meta">
-            <span class="badge">BTR Podcast</span>
-            <span class="badge badge--status">Soon</span>
-          </div>
-        </header>
-        <p class="artist-bio">Primer episodio en producción. Fecha y plataformas en breve.</p>
-        <div class="artist-links">
-          <a class="btn btn-ghost btn-sm" href="#" onclick="return false;">Spotify</a>
-          <a class="btn btn-ghost btn-sm" href="#" onclick="return false;">YouTube</a>
-          <a class="btn btn-ghost btn-sm" href="#contacto">Contacto</a>
-        </div>
-      </article>
+        <p class="hero-sub muted">
+          Plataforma cultural independiente · Archivo + futuro · Música, escena y experiencia en directo.
+        </p>
 
-      <article class="artist-card">
-        <header class="artist-top">
-          <h3 class="artist-name">Episodio 02 · Próximamente</h3>
-          <div class="artist-meta">
-            <span class="badge">BTR Podcast</span>
-            <span class="badge badge--status">Soon</span>
-          </div>
-        </header>
-        <p class="artist-bio">Segundo episodio en preparación. Invitadxs y teaser próximamente.</p>
-        <div class="artist-links">
-          <a class="btn btn-ghost btn-sm" href="#" onclick="return false;">Spotify</a>
-          <a class="btn btn-ghost btn-sm" href="#" onclick="return false;">YouTube</a>
-          <a class="btn btn-ghost btn-sm" href="#contacto">Contacto</a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="noticias" class="section alt">
-  <div class="container">
-    <div class="section-head">
-      <h2>Noticias</h2>
-      <p class="muted">Próximos eventos y lanzamientos. Actualizado en un vistazo.</p>
-    </div>
-
-    <div class="news-grid">
-
-      
-
-      <!-- Lanzamientos (card lateral) -->
-      <div class="panel">
-        <div class="panel-head">
-          <h3 class="panel-title">Lanzamientos</h3>
-          <span class="pill">Highlights</span>
-        </div>
-
-        <div class="panel-body">
-          <div class="list">
-            <div class="item">
-              <strong>Single · 29 Mar</strong>
-              <p class="muted">Artista · “Tema” · link Spotify/YouTube + mini texto.</p>
-            </div>
-
-            <div class="item">
-              <strong>EP · Próx.</strong>
-              <p class="muted">Artista · “Proyecto” · highlights + links.</p>
-            </div>
-
-            <div class="item">
-              <strong>Actualización</strong>
-              <p class="muted">Escribe aquí noticias rápidas (anuncios, convocatoria, etc.).</p>
-            </div>
-          </div>
+        <div class="hero-cta">
+          <a class="btn" href="#noticias">Ver noticias</a>
+          <a class="btn btn-ghost" href="#eventos">Eventos</a>
         </div>
       </div>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <!-- PODCAST (YA CENTRADO COMO EL RESTO) -->
+    <section id="podcast" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Podcast</h2>
+          <div class="title-underline" aria-hidden="true"></div>
+          <p class="muted">
+            Próximamente · conversaciones y cultura BEYOND. Lanzamos los primeros episodios muy pronto.
+          </p>
+        </div>
 
-    <!-- EVENTOS -->
-  
+        <div class="podcast-grid">
+          <article class="artist-card">
+            <header class="artist-top">
+              <h3 class="artist-name">EP01 · PRÓXIMAMENTE</h3>
+              <div class="artist-meta">
+                <span class="badge">BTR Podcast</span>
+                <span class="badge badge--status">Soon</span>
+              </div>
+            </header>
+            <p class="artist-bio">Primer episodio en producción. Fecha y plataformas en breve.</p>
+          </article>
+
+          <article class="artist-card">
+            <header class="artist-top">
+              <h3 class="artist-name">EP02 · PRÓXIMAMENTE</h3>
+              <div class="artist-meta">
+                <span class="badge">BTR Podcast</span>
+                <span class="badge badge--status">Soon</span>
+              </div>
+            </header>
+            <p class="artist-bio">Segundo episodio en preparación. Invitadx y teaser pronto.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTICIAS -->
+    <section id="noticias" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Noticias</h2>
+          <div class="title-underline" aria-hidden="true"></div>
+          <p class="muted">Actualizaciones, lanzamientos y avisos.</p>
+        </div>
+
+        <div class="news-grid">
+          <div class="panel">
+            <div class="panel-head">
+              <h3 class="panel-title">Lanzamientos</h3>
+              <span class="pill">Highlights</span>
+            </div>
+
+            <div class="panel-body">
+              <div class="list">
+                <div class="item">
+                  <strong>Single · 29 Mar</strong>
+                  <p class="muted">Artista · “Tema” · link Spotify/YouTube + mini texto.</p>
+                </div>
+
+                <div class="item">
+                  <strong>EP · Próx.</strong>
+                  <p class="muted">Artista · “Proyecto” · highlights + links.</p>
+                </div>
+
+                <div class="item">
+                  <strong>Actualización</strong>
+                  <p class="muted">Escribe aquí noticias rápidas (anuncios, convocatoria, etc.).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Puedes añadir otra card/panel a la derecha si quieres -->
+        </div>
+      </div>
+    </section>
 
     <!-- ANUNCIO ED5 (VIDEO) -->
-    <div class="ed5-announcement">
-      <div class="ed5-video">
-        <video id="ed5Video" autoplay muted loop playsinline preload="auto">
-          <!-- IMPORTANTE: este nombre debe coincidir con tu archivo real -->
-          <source src="assets/ed5-trailer.mp4" type="video/mp4">
-        </video>
+    <section class="section">
+      <div class="container">
+        <div class="ed5-announcement">
+          <div class="ed5-video">
+            <video id="ed5Video" autoplay muted loop playsinline preload="auto">
+              <source src="assets/ed5-trailer.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <div class="ed5-info">
+            <span class="tag">NEXT SHOW</span>
+            <h3>EDITION 5 · 29 MAR 2025</h3>
+            <p class="muted">Sala Alboroto — Las Palmas de Gran Canaria, Spain</p>
+
+            <div class="row" style="margin-top:14px;">
+              <a class="btn btn-primary"
+                 href="https://vivetix.com/es/entradas-beyond-the-rappers-classic-shit-edicion-rmna?s=redes"
+                 target="_blank" rel="noopener">
+                🎟 Comprar entradas
+              </a>
+              <a class="btn btn-ghost btn-sm" href="#contacto">Info / Line-up</a>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="ed5-info">
-        <span class="tag">NEXT SHOW</span>
-        <h3>EDITION 5 · 29 MAR 2025</h3>
-        <p class="muted">Sala Alboroto — Las Palmas de Gran Canaria, Spain</p>
-        <div class="row" style="margin-top:14px;">
-          <a class="btn btn-primary"
-   href="https://vivetix.com/es/entradas-beyond-the-rappers-classic-shit-edicion-rmna?s=redes"
-   target="_blank" rel="noopener">
-   🎟 Comprar entradas
-</a>
-          <a class="btn btn-ghost btn-sm" href="#contacto">Info / Line-up</a>
+    <!-- EVENTOS (archivo ediciones anteriores) -->
+    <section id="eventos" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Eventos</h2>
+          <div class="title-underline" aria-hidden="true"></div>
+          <p class="muted">Archivo de ediciones anteriores.</p>
+        </div>
+
+        <div class="posters-grid">
+          <article class="poster-card">
+            <div class="poster-thumb">
+              <img src="assets/ed1.jpg" alt="EDITION 1 - Secret Point - Las Palmas" loading="lazy">
+            </div>
+            <div class="poster-info">
+              <strong>EDITION 1</strong><br>
+              <span class="muted">17 DEC 2022 · Secret Point — Las Palmas, Spain</span>
+            </div>
+          </article>
+
+          <article class="poster-card">
+            <div class="poster-thumb">
+              <img src="assets/ed2.jpg" alt="EDITION 2 - Distrito Rock - Madrid" loading="lazy">
+            </div>
+            <div class="poster-info">
+              <strong>EDITION 2</strong><br>
+              <span class="muted">17 FEB 2023 · Distrito Rock — Madrid, Spain</span>
+            </div>
+          </article>
+
+          <article class="poster-card">
+            <div class="poster-thumb">
+              <img src="assets/ed3.jpg" alt="EDITION 3 - Le Gambetta Club - Paris" loading="lazy">
+            </div>
+            <div class="poster-info">
+              <strong>EDITION 3</strong><br>
+              <span class="muted">9 DEC 2023 · Le Gambetta Club — Paris, France</span>
+            </div>
+          </article>
+
+          <article class="poster-card">
+            <div class="poster-thumb">
+              <img src="assets/ed4.jpg" alt="EDITION 4 - Canarias en Vivo - Las Palmas" loading="lazy">
+            </div>
+            <div class="poster-info">
+              <strong>EDITION 4</strong><br>
+              <span class="muted">18 DEC 2025 · Canarias en Vivo — Las Palmas, Spain</span>
+            </div>
+          </article>
         </div>
       </div>
-    </div>
+    </section>
 
-   <!-- =========================
-     ARCHIVO: EDICIONES ANTERIORES
-========================= -->
-<section id="eventos" class="section">
-  <div class="container">
-    <div class="section-head">
-      <h2>Eventos</h2>
-      <p class="muted">Archivo de ediciones anteriores + próxima edición.</p>
-    </div>
+    <!-- DISCOVER (tu versión PRO “gamecard”) -->
+    <section id="discover" class="section alt">
+      <div class="container">
 
-    <!-- GRID de carteles anteriores -->
-    <div class="posters-grid">
-      <article class="poster-card">
-        <div class="poster-thumb">
-          <img src="assets/ed1.jpg" alt="EDITION 1 - Secret Point - Las Palmas" loading="lazy">
+        <div class="section-head discover-head">
+          <h2 class="section-title">Discover</h2>
+          <div class="title-underline" aria-hidden="true"></div>
+          <p class="muted">Perfiles de artistas · ciudad · estilo · música/podcast.</p>
         </div>
-        <div class="poster-info">
-          <strong>EDITION 1</strong><br>
-          <span class="muted">17 DEC 2022 · Secret Point — Las Palmas, Spain</span>
+
+        <div class="discover-controls">
+          <input id="discoverSearch" class="input" type="search" placeholder="Buscar artista, estilo o ciudad..." autocomplete="off">
+
+          <select id="cityFilter" class="select">
+            <option value="all">Todas las ciudades</option>
+            <option value="Las Palmas">Las Palmas</option>
+            <option value="Madrid">Madrid</option>
+          </select>
+
+          <select id="statusFilter" class="select">
+            <option value="all">Todos los estatus</option>
+            <option value="Emerging">Emerging</option>
+          </select>
         </div>
-      </article>
 
-      <article class="poster-card">
-        <div class="poster-thumb">
-          <img src="assets/ed2.jpg" alt="EDITION 2 - Distrito Rock - Madrid" loading="lazy">
+        <div class="discover-grid" id="discoverGrid">
+
+          <!-- AKA.MARROKO -->
+          <article class="artist-card gamecard"
+            data-city="Las Palmas"
+            data-status="Emerging"
+            data-search="aka marroko las palmas canarias hiphop">
+
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="scanline" aria-hidden="true"></div>
+
+            <header class="artist-top">
+              <div class="artist-avatar">
+                <img src="assets/ARTIST/akaMarroko.jpeg" loading="lazy" alt="Aka.Marroko">
+              </div>
+
+              <div class="artist-head">
+                <h3 class="artist-name">Aka.Marroko</h3>
+                <div class="artist-meta">
+                  <span class="badge badge--city">Las Palmas</span>
+                  <span class="badge badge--status">Emerging</span>
+                </div>
+              </div>
+
+              <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
+            </header>
+
+            <div class="mini-preview">
+              <div class="cover">
+                <img src="assets/ARTIST/akaMarroko.jpeg" alt="Cover Aka.Marroko">
+                <button class="play-btn" type="button" data-open="embeds-mar" aria-label="Abrir preview">▶</button>
+              </div>
+
+              <div class="preview-info">
+                <div class="preview-title">Preview</div>
+                <div class="preview-sub muted">Spotify + YouTube</div>
+
+   <div class="artist-actions">
+
+  <a class="icon-link" href="https://open.spotify.com/artist/2Kq8reL54qJucfSl7eWiV8" target="_blank" rel="noopener" aria-label="Spotify">
+    <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
+  </a>
+
+  <a class="icon-link" href="https://www.youtube.com/@akamarroko" target="_blank" rel="noopener" aria-label="YouTube">
+    <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
+  </a>
+
+  <a class="icon-link" href="https://www.instagram.com/aka.marroko/" target="_blank" rel="noopener" aria-label="Instagram">
+    <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
+  </a>
+
+  <button class="icon-link icon-link--btn" type="button" data-open="embeds-mar" aria-label="Abrir Spotify aquí">
+    <span class="icon-circle">▶</span><span class="icon-text">Play</span>
+  </button>
+
+</div>
+              </div>
+            </div>
+
+            <div class="artist-embed hidden" id="embeds-mar">
+              <div class="embed">
+                <iframe
+                  src="https://open.spotify.com/embed/artist/2Kq8reL54qJucfSl7eWiV8?utm_source=generator"
+                  height="152"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"></iframe>
+              </div>
+              <div class="embed">
+                <iframe
+                  height="315"
+                  src="https://www.youtube.com/embed?listType=user_uploads&list=akamarroko"
+                  title="YouTube"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  loading="lazy"></iframe>
+              </div>
+            </div>
+          </article>
+
+          <!-- EL ASERE -->
+          <article class="artist-card gamecard"
+            data-city="Las Palmas"
+            data-status="Emerging"
+            data-search="el asere las palmas hardcore">
+
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="scanline" aria-hidden="true"></div>
+
+            <header class="artist-top">
+              <div class="artist-avatar artist-avatar--gamer" aria-hidden="true">
+                <span class="artist-initials">EA</span>
+              </div>
+
+              <div class="artist-head">
+                <h3 class="artist-name">El Asere</h3>
+                <div class="artist-meta">
+                  <span class="badge badge--city">Las Palmas</span>
+                  <span class="badge badge--status">Emerging</span>
+                </div>
+              </div>
+
+              <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
+            </header>
+
+            <div class="mini-preview">
+              <div class="cover cover--gamer">
+                <div class="cover-gamer"><span>EA</span></div>
+                <button class="play-btn" type="button" data-open="embeds-asere" aria-label="Abrir preview">▶</button>
+              </div>
+
+              <div class="preview-info">
+                <div class="preview-title">Preview</div>
+                <div class="preview-sub muted">Spotify + YouTube</div>
+<div class="artist-actions">
+
+  <a class="icon-link" href="https://open.spotify.com/artist/6P6J9yBzC5F4iAfDdcQa1Q" target="_blank" rel="noopener" aria-label="Spotify">
+    <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
+  </a>
+
+  <a class="icon-link" href="https://www.youtube.com/@elasere" target="_blank" rel="noopener" aria-label="YouTube">
+    <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
+  </a>
+
+  <a class="icon-link" href="https://www.instagram.com/elasere/" target="_blank" rel="noopener" aria-label="Instagram">
+    <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
+  </a>
+
+  <button class="icon-link icon-link--btn" type="button" data-open="embeds-ase" aria-label="Abrir Spotify aquí">
+    <span class="icon-circle">▶</span><span class="icon-text">Play</span>
+  </button>
+
+</div>
+              </div>
+            </div>
+
+            <div class="artist-embed hidden" id="embeds-asere">
+              <div class="embed">
+                <iframe
+                  src="https://open.spotify.com/embed/artist/7KQg9gDo5wbrlm29H24P6f?utm_source=generator"
+                  height="152"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"></iframe>
+              </div>
+              <div class="embed">
+                <iframe
+                  height="315"
+                  src="https://www.youtube.com/embed?listType=user_uploads&list=asereestaenlacasa"
+                  title="YouTube"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  loading="lazy"></iframe>
+              </div>
+            </div>
+          </article>
+
+          <!-- KALATRAVA -->
+          <article class="artist-card gamecard"
+            data-city="Madrid"
+            data-status="Emerging"
+            data-search="kalatrava madrid hiphop">
+
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="scanline" aria-hidden="true"></div>
+
+            <header class="artist-top">
+              <div class="artist-avatar">
+                <img src="assets/ARTIST/KALATRAVA.jpeg" alt="Kalatrava" loading="lazy">
+              </div>
+
+              <div class="artist-head">
+                <h3 class="artist-name">Kalatrava</h3>
+                <div class="artist-meta">
+                  <span class="badge badge--city">Madrid</span>
+                  <span class="badge badge--status">Emerging</span>
+                </div>
+              </div>
+
+              <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
+            </header>
+
+            <div class="mini-preview">
+              <div class="cover">
+                <img src="assets/ARTIST/KALATRAVA.jpeg" alt="Cover Kalatrava">
+                <button class="play-btn" type="button" data-open="embeds-kala" aria-label="Abrir preview">▶</button>
+              </div>
+
+              <div class="preview-info">
+                <div class="preview-title">Preview</div>
+                <div class="preview-sub muted">Spotify + YouTube</div>
+
+   <div class="artist-actions">
+
+  <a class="icon-link" href="https://open.spotify.com/artist/4aL8nGczLz7YT1Do1B4ezh" target="_blank" rel="noopener" aria-label="Spotify">
+    <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
+  </a>
+
+  <a class="icon-link" href="https://www.youtube.com/@kalatrava" target="_blank" rel="noopener" aria-label="YouTube">
+    <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
+  </a>
+
+  <a class="icon-link" href="https://www.instagram.com/kalatrava/" target="_blank" rel="noopener" aria-label="Instagram">
+    <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
+  </a>
+
+  <button class="icon-link icon-link--btn" type="button" data-open="embeds-kala" aria-label="Abrir Spotify aquí">
+    <span class="icon-circle">▶</span><span class="icon-text">Play</span>
+  </button>
+
+</div>
+              </div>
+            </div>
+
+            <div class="artist-embed hidden" id="embeds-kala">
+              <div class="embed">
+                <iframe
+                  src="https://open.spotify.com/embed/artist/6AnfmwUAyPF2nAhfQfhnD8?utm_source=generator"
+                  height="152"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"></iframe>
+              </div>
+              <div class="embed">
+                <iframe
+                  height="315"
+                  src="https://www.youtube.com/embed?listType=user_uploads&list=kalatravaoficial"
+                  title="YouTube"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  loading="lazy"></iframe>
+              </div>
+            </div>
+          </article>
+
+          <!-- BIG DE LITTO -->
+          <article class="artist-card gamecard"
+            data-city="Madrid"
+            data-status="Emerging"
+            data-search="big de litto madrid electronica hiphop">
+
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="scanline" aria-hidden="true"></div>
+
+            <header class="artist-top">
+              <div class="artist-avatar">
+                <img src="assets/ARTIST/BigDeLitto.jpeg" alt="Big De Litto" loading="lazy">
+              </div>
+
+              <div class="artist-head">
+                <h3 class="artist-name">Big De Litto</h3>
+                <div class="artist-meta">
+                  <span class="badge badge--city">Madrid</span>
+                  <span class="badge badge--status">Emerging</span>
+                </div>
+              </div>
+
+              <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
+            </header>
+
+            <div class="mini-preview">
+              <div class="cover">
+                <img src="assets/ARTIST/BigDeLitto.jpeg" alt="Cover Big De Litto">
+                <button class="play-btn" type="button" data-open="embeds-bdl" aria-label="Abrir preview">▶</button>
+              </div>
+
+              <div class="preview-info">
+                <div class="preview-title">Preview</div>
+                <div class="preview-sub muted">Spotify + YouTube</div>
+<div class="artist-actions">
+
+  <a class="icon-link" href="https://open.spotify.com/artist/4S6C6RkX6aJ2V8LJIYurx8" target="_blank" rel="noopener" aria-label="Spotify">
+    <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
+  </a>
+
+  <a class="icon-link" href="https://www.youtube.com/@bigdelitto" target="_blank" rel="noopener" aria-label="YouTube">
+    <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
+  </a>
+
+  <a class="icon-link" href="https://www.instagram.com/bigdelitto/" target="_blank" rel="noopener" aria-label="Instagram">
+    <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
+  </a>
+
+  <button class="icon-link icon-link--btn" type="button" data-open="embeds-litto" aria-label="Abrir Spotify aquí">
+    <span class="icon-circle">▶</span><span class="icon-text">Play</span>
+  </button>
+
+</div>
+              </div>
+            </div>
+
+            <div class="artist-embed hidden" id="embeds-bdl">
+              <div class="embed">
+                <iframe
+                  src="https://open.spotify.com/embed/artist/1VMUauDPFXyBM4VTmQZREA?utm_source=generator"
+                  height="152"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"></iframe>
+              </div>
+              <div class="embed">
+                <iframe
+                  height="315"
+                  src="https://www.youtube.com/embed?listType=user_uploads&list=bigdelitto"
+                  title="YouTube"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  loading="lazy"></iframe>
+              </div>
+            </div>
+          </article>
+
         </div>
-        <div class="poster-info">
-          <strong>EDITION 2</strong><br>
-          <span class="muted">17 FEB 2023 · Distrito Rock — Madrid, Spain</span>
-        </div>
-      </article>
-
-      <article class="poster-card">
-        <div class="poster-thumb">
-          <img src="assets/ed3.jpg" alt="EDITION 3 - Le Gambetta Club - Paris" loading="lazy">
-        </div>
-        <div class="poster-info">
-          <strong>EDITION 3</strong><br>
-          <span class="muted">9 DEC 2023 · Le Gambetta Club — Paris, France</span>
-        </div>
-      </article>
-
-      <article class="poster-card">
-        <div class="poster-thumb">
-          <img src="assets/ed4.jpg" alt="EDITION 4 - Canarias en Vivo - Las Palmas" loading="lazy">
-        </div>
-        <div class="poster-info">
-          <strong>EDITION 4</strong><br>
-          <span class="muted">18 DEC 2025 · Canarias en Vivo — Las Palmas, Spain</span>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
- <section id="discover" class="section alt">
-  <div class="container">
-
-    <div class="section-head">
-      <h2>Discover</h2>
-      <p class="muted">Perfiles de artistas · ciudad · estilo · estado · música/podcast embebida.</p>
-    </div>
-
-    <!-- filtros + grid van aquí -->
-    <div class="discover-controls">
-      <input id="discoverSearch" class="input" type="search" placeholder="Buscar artista, estilo o ciudad..." />
-      <select id="cityFilter" class="select">
-        <option value="all">Todas las ciudades</option>
-        <option value="Las Palmas">Las Palmas</option>
-        <option value="Madrid">Madrid</option>
-        <option value="Paris">Paris</option>
-        <option value="London">London</option>
-      </select>
-      <select id="statusFilter" class="select">
-        <option value="all">Todos los estados</option>
-        <option value="Core">Core</option>
-        <option value="Emerging">Emerging</option>
-      </select>
-    </div>
-
-    <div class="artist-grid" id="artistGrid">
-      <!-- cards aquí -->
-    </div>
-
-  </div>
-</section>
-<section id="discover" class="section alt">
-  <div class="container">
-
-    <div class="section-head">
-      <h2>Discover</h2>
-      <p class="muted">Perfiles de artistas · ciudad · estilo · estado · música/podcast embebida.</p>
-    </div>
-
-    
-
-    <!-- Herramientas: buscador + filtros -->
-    <div class="discover-tools">
-      <div class="left">
-        <input id="discoverSearch" class="discover-search" type="text" placeholder="Buscar artista, estilo o ciudad..." />
       </div>
+    </section>
 
-      <div class="right">
-        <select id="filterCity" class="discover-select">
-          <option value="all">Todas las ciudades</option>
-          <option value="Las Palmas">Las Palmas</option>
-          <option value="Madrid">Madrid</option>
-          <option value="Paris">Paris</option>
-          <option value="London">London</option>
-        </select>
-
-        <select id="filterStatus" class="discover-select">
-          <option value="all">Todos los estados</option>
-          <option value="Emerging">Emerging</option>
-          <option value="Core">Core</option>
-          <option value="International">International</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- GRID -->
-    <div class="artists-grid" id="artistsGrid">
-
-      <!-- AKA.MARROKO -->
-      <article class="artist-card" data-city="Las Palmas" data-status="Emerging" data-search="aka marroko canarias gran canaria propia metodica empodera">
-        <header class="artist-top">
-          <h3 class="artist-name">Aka.Marroko</h3>
-          <div class="artist-meta">
-            <span class="badge">Las Palmas</span>
-            <span class="badge badge--status">Emerging</span>
-          </div>
-        </header>
-
-        <p class="artist-bio">Propia, metódica y que empodera.</p>
-
-        <div class="artist-links">
-          <a class="btn btn-ghost btn-sm" href="https://open.spotify.com/artist/2Kq8reL54qJucfSl7eWiV8" target="_blank" rel="noopener">Spotify</a>
-          <a class="btn btn-ghost btn-sm" href="https://youtube.com/@akamarroko" target="_blank" rel="noopener">YouTube</a>
-          <a class="btn btn-ghost btn-sm" href="https://www.instagram.com/aka.maaaaaaaaaarroko" target="_blank" rel="noopener">Instagram</a>
-        </div>
-
-        <button class="toggle-embeds" type="button" data-toggle="embeds-mar">
-          Ver / ocultar embeds
-        </button>
-
-        <div class="artist-embed hidden" id="embeds-mar">
-          <div class="embed">
-            <iframe style="border-radius:14px" src="https://open.spotify.com/embed/artist/2Kq8reL54qJucfSl7eWiV8?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-          </div>
-          <div class="embed">
-            <iframe height="315" src="https://www.youtube.com/embed?listType=user_uploads&list=akamarroko" title="YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
-          </div>
-        </div>
-      </article>
-
-      <!-- EL ASERE -->
-      <article class="artist-card" data-city="Las Palmas" data-status="Core" data-search="el asere conciencia hardcore jazzy">
-        <header class="artist-top">
-          <h3 class="artist-name">El Asere</h3>
-          <div class="artist-meta">
-            <span class="badge">Las Palmas</span>
-            <span class="badge badge--status">Core</span>
-          </div>
-        </header>
-
-        <p class="artist-bio">Conciencia hardcore con esencia jazzy.</p>
-
-        <div class="artist-links">
-          <a class="btn btn-ghost btn-sm" href="https://open.spotify.com/artist/7KQg9gDo5wbrlm29H24P6f" target="_blank" rel="noopener">Spotify</a>
-          <a class="btn btn-ghost btn-sm" href="https://youtube.com/@asereestaenlacasa" target="_blank" rel="noopener">YouTube</a>
-          <a class="btn btn-ghost btn-sm" href="https://www.instagram.com/elasereofficial/" target="_blank" rel="noopener">Instagram</a>
-        </div>
-
-        <button class="toggle-embeds" type="button" data-toggle="embeds-asere">
-          Ver / ocultar embeds
-        </button>
-
-        <div class="artist-embed hidden" id="embeds-asere">
-          <div class="embed">
-            <iframe style="border-radius:14px" src="https://open.spotify.com/embed/artist/7KQg9gDo5wbrlm29H24P6f?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-          </div>
-          <div class="embed">
-            <iframe height="315" src="https://www.youtube.com/embed?listType=user_uploads&list=asereestaenlacasa" title="YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
-          </div>
-        </div>
-      </article>
-
-      <!-- ARTISTA 3 (placeholder) -->
-      <article class="artist-card" data-city="Madrid" data-status="Emerging" data-search="nuevo artista madrid">
-        <header class="artist-top">
-          <h3 class="artist-name">Próximo artista</h3>
-          <div class="artist-meta">
-            <span class="badge">Madrid</span>
-            <span class="badge badge--status">Emerging</span>
-          </div>
-        </header>
-
-        <p class="artist-bio">En breve añadimos la ficha completa.</p>
-
-        <div class="artist-links">
-          <a class="btn btn-ghost btn-sm" href="#" onclick="return false;">Spotify</a>
-          <a class="btn btn-ghost btn-sm" href="#" onclick="return false;">YouTube</a>
-          <a class="btn btn-ghost btn-sm" href="#" onclick="return false;">Instagram</a>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-    <!-- DESCUBRIR -->
+    <!-- DESCUBRIR (texto sobre la marca) -->
     <section id="descubrir" class="section alt">
       <div class="container">
         <div class="section-head">
-          <h2>Descubrir</h2>
+          <h2 class="section-title">Descubrir</h2>
+          <div class="title-underline" aria-hidden="true"></div>
           <p class="muted">Sobre BEYOND: visión, misión, comunidad.</p>
         </div>
 
@@ -495,86 +680,179 @@
       </div>
     </section>
 
+    <!-- CONTACTO -->
+    <section id="contacto" class="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <div class="contact-head">
+            <h2>Contacto</h2>
+            <p class="muted">Email para artistas, prensa, colaboraciones y tickets.</p>
+          </div>
 
-  
-<!-- CONTACTO -->
-<section id="contacto" class="contact">
-  <div class="container">
-    <div class="contact-panel">
+          <a class="contact-email" href="mailto:beyondtherappers@gmail.com">
+            <span class="contact-label">Email:</span>
+            <span class="contact-value">beyondtherappers@gmail.com</span>
+            <span class="contact-icon">✉</span>
+          </a>
 
-      <div class="contact-head">
-        <h2>Contacto</h2>
+          <a class="contact-close" href="#top">Cerrar</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER (LEGAL + COPY) -->
+    <footer class="footer" id="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <strong>BEYOND THE RAPPERS</strong>
+          <p class="muted">Movimiento cultural independiente · Internacional</p>
+        </div>
+
+        <div class="footer-links" aria-label="Enlaces legales">
+          <a href="legal.html">Aviso legal</a>
+          <a href="privacidad.html">Privacidad</a>
+          <a href="cookies.html">Cookies</a>
+          <a href="legal.html#condiciones">Condiciones</a>
+        </div>
+
+        <div class="footer-contact">
+          <p class="muted">Contacto:</p>
+          <a href="mailto:beyondtherappers@gmail.com">beyondtherappers@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="footer-copy">
+        © 2026 Beyond The Rappers. All rights reserved.
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- COOKIE BANNER RGPD (AUTO) -->
+  <div class="cookie-consent" id="cookieConsent" hidden>
+    <div class="cookie-card" role="dialog" aria-modal="true" aria-label="Preferencias de cookies">
+      <div class="cookie-text">
+        <strong>Cookies</strong>
         <p class="muted">
-          Email para artistas, prensa, colaboraciones y tickets.
+          Usamos cookies para que el sitio funcione y para mejorar la experiencia.
+          Puedes aceptar, rechazar o configurar tus preferencias.
+          Consulta nuestra <a href="cookies.html">Política de Cookies</a>.
         </p>
       </div>
 
-      <a class="contact-email" href="mailto:beyondtherappers@gmail.com">
-        <span class="contact-label">Email:</span>
-        <span class="contact-value">beyondtherappers@gmail.com</span>
-        <span class="contact-icon">✉</span>
-      </a>
+      <div class="cookie-actions">
+        <button class="btn btn-ghost btn-sm" id="cookieSettingsBtn" type="button">Configurar</button>
+        <button class="btn btn-ghost btn-sm" id="cookieRejectBtn" type="button">Rechazar</button>
+        <button class="btn btn-primary btn-sm" id="cookieAcceptBtn" type="button">Aceptar</button>
+      </div>
 
-      <a class="contact-close" href="#top">Cerrar</a>
+      <div class="cookie-settings" id="cookieSettings" hidden>
+        <label class="cookie-option">
+          <input type="checkbox" checked disabled>
+          <span>Necesarias (siempre activas)</span>
+        </label>
 
-    </div>
-  </div>
-</section>
+        <label class="cookie-option">
+          <input type="checkbox" id="cookieAnalytics">
+          <span>Analítica</span>
+        </label>
 
+        <label class="cookie-option">
+          <input type="checkbox" id="cookieMarketing">
+          <span>Marketing</span>
+        </label>
 
-    <!-- FOOTER con “marca de agua” + suscripción -->
-    <footer class="footer">
-      <div class="container footer-grid">
-        <div class="watermark" aria-hidden="true">BEYOND THE RAPPER’S</div>
-
-        <div class="footer-card">
-          <h3>Únase a nosotros</h3>
-          <p class="muted">Suscríbete al boletín de BEYOND. Recibe actualizaciones de artistas, eventos y más.</p>
-
-          <form class="subscribe" id="subscribeForm">
-            <input id="subscribeEmail" type="email" placeholder="Introduce tu dirección" required />
-            <button class="btn btn-sm" type="submit">Suscribirme</button>
-          </form>
-
-          <p class="tiny muted" id="subscribeMsg">
-            (De momento es demo. Luego lo conectamos a MailerLite/Brevo o Shopify Email.)
-          </p>
+        <div class="cookie-actions cookie-actions--save">
+          <button class="btn btn-primary btn-sm" id="cookieSaveBtn" type="button">Guardar preferencias</button>
         </div>
       </div>
-    </footer>
-  </main>
+    </div>
+  </div>
 
+  <!-- JS principal -->
   <script src="script.js"></script>
-  <footer class="footer">
-  <div class="container footer-inner">
 
-    <div class="footer-brand">
-      <strong>BEYOND THE RAPPERS</strong>
-      <p>Movimiento cultural independiente · Internacional</p>
-    </div>
+  <!-- JS COOKIES (auto) -->
+  <script>
+    (function () {
+      const KEY = "btr_cookie_consent_v1";
+      const el = document.getElementById("cookieConsent");
+      const settings = document.getElementById("cookieSettings");
+      const btnSettings = document.getElementById("cookieSettingsBtn");
+      const btnReject = document.getElementById("cookieRejectBtn");
+      const btnAccept = document.getElementById("cookieAcceptBtn");
+      const btnSave = document.getElementById("cookieSaveBtn");
+      const chkAnalytics = document.getElementById("cookieAnalytics");
+      const chkMarketing = document.getElementById("cookieMarketing");
 
-    <div class="footer-links">
-      <a href="#">Aviso legal</a>
-      <a href="#">Privacidad</a>
-      <a href="#">Cookies</a>
-      <a href="#">Condiciones</a>
-    </div>
+      function getConsent() {
+        try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; }
+      }
 
-    <div class="footer-contact">
-      <p>Contacto:</p>
-      <a href="mailto:beyondtherappers@gmail.com">
-        beyondtherappers@gmail.com
-      </a>
-    </div>
+      function setConsent(consent) {
+        localStorage.setItem(KEY, JSON.stringify({
+          ...consent,
+          ts: new Date().toISOString()
+        }));
+      }
 
-  </div>
+      function hideBanner() {
+        el.hidden = true;
+      }
 
-  <div class="footer-copy">
-    © 2026 Beyond The Rappers. All rights reserved.
-  </div>
-</footer>
+      function showBanner() {
+        el.hidden = false;
+      }
+
+      function applyConsent(consent) {
+        // Aquí “activarías” scripts reales si los añades en el futuro.
+        // Ejemplo:
+        // if (consent.analytics) cargarGA4();
+        // if (consent.marketing) cargarPixel();
+        document.documentElement.dataset.cookiesAnalytics = consent.analytics ? "1" : "0";
+        document.documentElement.dataset.cookiesMarketing = consent.marketing ? "1" : "0";
+      }
+
+      // Init
+      const existing = getConsent();
+      if (!existing) {
+        showBanner();
+      } else {
+        applyConsent(existing);
+        hideBanner();
+      }
+
+      // UI
+      btnSettings.addEventListener("click", () => {
+        settings.hidden = !settings.hidden;
+      });
+
+      btnReject.addEventListener("click", () => {
+        const consent = { necessary: true, analytics: false, marketing: false };
+        setConsent(consent);
+        applyConsent(consent);
+        hideBanner();
+      });
+
+      btnAccept.addEventListener("click", () => {
+        const consent = { necessary: true, analytics: true, marketing: true };
+        setConsent(consent);
+        applyConsent(consent);
+        hideBanner();
+      });
+
+      btnSave.addEventListener("click", () => {
+        const consent = {
+          necessary: true,
+          analytics: !!chkAnalytics.checked,
+          marketing: !!chkMarketing.checked
+        };
+        setConsent(consent);
+        applyConsent(consent);
+        hideBanner();
+      });
+    })();
+  </script>
+
 </body>
 </html>
-
-
-

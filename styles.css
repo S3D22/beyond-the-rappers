@@ -1,53 +1,114 @@
-html, body{
-  max-width: 100%;
-  overflow-x: hidden;
+/* =========================================
+   BEYOND THE RAPPERS — STYLES (CLEAN PRO)
+   ========================================= */
+
+/* ---------- FONTS ---------- */
+@font-face {
+  font-family: "BTR-Akira";
+  src: url("assets/fonts/AkiraExpanded.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "BTR-Chubby";
+  src: url("assets/fonts/ChubbyAndGroovy.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "BTR-Philly";
+  src: url("assets/fonts/PhillySans.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-img, video{
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+/* ---------- TOKENS ---------- */
 :root{
   --bg:#0b0b0c;
   --bg2:#101012;
   --text:#f2f2f2;
   --muted:rgba(242,242,242,.68);
-  --card:#141417;
   --line:rgba(255,255,255,.10);
-  --accent:#ffffff;
-  --accent2:#a7a7a7;
-  --shadow: 0 18px 50px rgba(0,0,0,.45);
+
+  --card:rgba(255,255,255,.04);
+  --card2:rgba(255,255,255,.06);
+  --stroke:rgba(255,255,255,.12);
+  --stroke2:rgba(255,255,255,.22);
+  --shadow: 0 18px 60px rgba(0,0,0,.45);
+
   --radius:16px;
   --max:1120px;
   --pad:22px;
-  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+
+  --title-line: linear-gradient(
+    90deg,
+    #00f0ff,
+    #00ffa6,
+    #b3ff00,
+    #ff8a00,
+    #ff0066
+  );
 }
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+/* ---------- BASE / RESET ---------- */
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+html, body{ max-width:100%; overflow-x:hidden; }
+
 body{
   margin:0;
-  font-family:var(--font);
-  background: radial-gradient(900px 500px at 12% 0%, rgba(255,255,255,.06), transparent 55%),
-              radial-gradient(700px 420px at 90% 10%, rgba(255,255,255,.05), transparent 55%),
-              var(--bg);
   color:var(--text);
+  background:
+    radial-gradient(900px 500px at 12% 0%, rgba(255,255,255,.06), transparent 55%),
+    radial-gradient(700px 420px at 90% 10%, rgba(255,255,255,.05), transparent 55%),
+    var(--bg);
+  font-family: "BTR-Philly", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
-.container{max-width:var(--max); margin:0 auto; padding:0 var(--pad)}
-.muted{color:var(--muted)}
-.tiny{font-size:.88rem; line-height:1.35}
-a{color:inherit}
+img, video{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
 
+a{ color:inherit; }
+.muted{ color:var(--muted); }
+
+/* ---------- TYPO SYSTEM ---------- */
+h1, h2, h3,
+.artist-name,
+.section-head h2{
+  font-family: "BTR-Akira", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.badge--status,
+.nav-cta{
+  font-family: "BTR-Chubby", sans-serif;
+}
+
+/* ---------- LAYOUT ---------- */
+.container{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:0 var(--pad);
+}
+.main{ min-height:100vh; }
+
+/* =========================================
+   HEADER / NAV
+   ========================================= */
 .header{
   position:sticky;
   top:0;
   z-index:50;
   background: rgba(0,0,0,.78);
   backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
 }
-
 .header-inner{
   max-width:var(--max);
   margin:0 auto;
@@ -56,7 +117,6 @@ a{color:inherit}
   align-items:center;
   gap:14px;
 }
-
 .brand{
   text-decoration:none;
   display:flex;
@@ -71,7 +131,6 @@ a{color:inherit}
   font-size:.95rem;
 }
 
-
 .nav{
   display:flex;
   gap:14px;
@@ -81,41 +140,69 @@ a{color:inherit}
 .nav-link{
   text-decoration:none;
   color:rgba(255,255,255,.82);
-  font-weight:400;           /* tipografía “más fina” */
+  font-weight:400;
   letter-spacing:.02em;
   font-size:.95rem;
   padding:8px 10px;
+  border-radius: 12px;
 }
-.nav-link:hover{background: rgba(255,255,255,.08); color:#fff}
+.nav-link:hover{
+  background: rgba(255,255,255,.08);
+  color:#fff;
+}
 
+/* CTA ENTRADAS */
+.nav-cta{
+  margin-left: 10px;
+  padding: 10px 12px !important;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 800;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.92);
+  color: #111 !important;
+  transition: transform .15s ease, filter .15s ease;
+}
+.nav-cta:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+/* SEARCH (si lo usas en header) */
 .search{
   display:flex;
   align-items:center;
   gap:8px;
   padding:8px 10px;
   background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
   min-width: 310px;
 }
-.search-icon{opacity:.75}
+.search-icon{ opacity:.75; }
 .search-input{
   background:transparent;
   outline:none;
+  border:0;
   color:#fff;
   width:100%;
   font:inherit;
 }
-.search-input::placeholder{color: rgba(255,255,255,.45)}
+.search-input::placeholder{ color: rgba(255,255,255,.45); }
 .search-btn{
+  border:0;
   background: rgba(255,255,255,.12);
   color:#fff;
   padding:8px 10px;
   border-radius:999px;
   cursor:pointer;
 }
-.search-btn:hover{background: rgba(255,255,255,.18)}
+.search-btn:hover{ background: rgba(255,255,255,.18); }
 
+/* MOBILE MENU */
 .menu-btn{
   display:none;
+  border:1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.06);
   color:#fff;
   border-radius:12px;
@@ -123,12 +210,12 @@ a{color:inherit}
   cursor:pointer;
   font-size:1.1rem;
 }
-
 .menu-panel{
   display:none;
   background: rgba(0,0,0,.92);
+  border-bottom: 1px solid rgba(255,255,255,.08);
 }
-.menu-panel.open{display:block}
+.menu-panel.open{ display:block; }
 .menu-panel-head{
   max-width:var(--max);
   margin:0 auto;
@@ -143,6 +230,7 @@ a{color:inherit}
   color:#fff;
   padding:8px 10px;
   cursor:pointer;
+  border-radius: 12px;
 }
 .menu-panel-body{
   max-width:var(--max);
@@ -156,46 +244,27 @@ a{color:inherit}
   padding:12px 10px;
   background: rgba(255,255,255,.03);
   margin-bottom:8px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.08);
 }
-.menu-link:hover{background: rgba(255,255,255,.08)}
+.menu-link:hover{ background: rgba(255,255,255,.08); }
 
-.menu-search{
-  margin-top:12px;
-  padding-top:12px;
-}
-.menu-search-label{display:block; margin-bottom:8px; color:rgba(255,255,255,.75)}
-.menu-search-row{display:flex; gap:10px}
-
-.main{min-height:100vh}
-.hero{
-  padding:56px 0 26px;
-}
+/* =========================================
+   HERO
+   ========================================= */
 .hero{
   position: relative;
-
-  /* menos aire arriba/abajo (y responsive) */
   padding: clamp(64px, 10vh, 120px) 0 clamp(40px, 8vh, 100px);
-
-  /* fondo */
   background:
     linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.65)),
     url("assets/hero.jpg");
-
-  background-repeat: no-repeat;
-  background-position: center;
-
-  /* CLAVE: tamaño controlado (no gigante) */
+  background-repeat:no-repeat;
+  background-position:center;
   background-size: clamp(320px, 90vw, 900px) auto;
-
-  /* altura del hero más razonable */
   min-height: 70vh;
 }
+.hero-inner{ position:relative; z-index:2; }
 
-
-.hero-inner {
-  position: relative;
-  z-index: 2;
-}
 .kicker{
   margin:0 0 10px;
   color: rgba(255,255,255,.65);
@@ -204,26 +273,117 @@ a{color:inherit}
   font-size:.78rem;
 }
 .hero-title{
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   font-weight: 700;
   letter-spacing: .06em;
-  text-transform: uppercase;
   line-height: 1.05;
   font-size: clamp(2.2rem, 4.8vw, 3.6rem);
   margin: 0 0 10px;
 }
+.hero-sub{
+  margin:0 0 16px;
+  color:rgba(255,255,255,.70);
+  max-width:70ch;
+}
+.hero-cta{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
 
-.hero-sub{margin:0 0 16px; color:rgba(255,255,255,.70); max-width:70ch}
-.hero-cta{display:flex; gap:12px; flex-wrap:wrap}
-
-.section{padding:54px 0}
+/* =========================================
+   SECTIONS + TITLES (LINEA ANIMADA GLOBAL)
+   ========================================= */
+.section{ padding:54px 0; }
 .section.alt{
   background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
 }
 
-.section-head h2{margin:0 0 6px}
-.section-head p{margin:0 0 16px}
+.section-head h2{
+  margin:0 0 6px;
+  display:inline-block;
+  position:relative;
+}
+.section-head p{ margin:0 0 16px; }
 
+/* Línea animada debajo de TODOS los títulos */
+.section-head h2::after{
+  content:"";
+  display:block;
+  width:170px;
+  height:4px;
+  margin-top:10px;
+  border-radius:999px;
+  background: var(--title-line);
+  background-size: 400% 100%;
+  animation: btrLine 3s linear infinite;
+  box-shadow: 0 0 18px rgba(0,255,180,.25);
+}
+@keyframes btrLine{
+  0%{ background-position:0% 0%; }
+  100%{ background-position:400% 0%; }
+}
+@media (prefers-reduced-motion: reduce){
+  .section-head h2::after{ animation:none; }
+}
+
+/* =========================================
+   BUTTONS / LINKS
+   ========================================= */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 16px;
+  background: rgba(255,255,255,.10);
+  color:#fff;
+  text-decoration:none;
+  cursor:pointer;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+}
+.btn:hover{ background: rgba(255,255,255,.14); }
+.btn-ghost{ background: transparent; }
+.btn-sm{ padding:10px 12px; font-size:.95rem; }
+
+.link{
+  color: rgba(255,255,255,.86);
+  text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.25);
+}
+.link:hover{ border-bottom-color: rgba(255,255,255,.55); }
+
+/* Botón email (si lo usas) */
+.email-btn{
+  display: inline-block;
+  padding: 10px 18px;
+  background: #ffffff;
+  color: #000;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+.email-btn:hover{
+  background: #ff7a00;
+  color: #fff;
+}
+.contact-email{
+  margin-top: 20px;
+  font-size: 16px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.contact-email a{
+  color: #fff;
+  text-decoration: underline;
+}
+.contact-email .icon{ line-height: 1; }
+
+/* =========================================
+   GRIDS (GENERIC)
+   ========================================= */
 .grid-2{
   display:grid;
   grid-template-columns: 1fr 1fr;
@@ -235,838 +395,255 @@ a{color:inherit}
   gap:16px;
 }
 
-.card{
-  background: rgba(255,255,255,.04);
-  padding:18px;
-}
-.card h3{margin:10px 0 8px}
-.meta{color:rgba(255,255,255,.55); font-size:.92rem}
-
-.tag{
-  display:inline-block;
-  font-size:.78rem;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color: rgba(255,255,255,.78);
-  padding:6px 10px;
-  background: rgba(0,0,0,.25);
-}
-.pill{
-  display:inline-block;
-  font-size:.82rem;
-  color: rgba(255,255,255,.70);
-  padding:6px 10px;
-  background: rgba(255,255,255,.04);
-}
-
-.news-item{
-  padding:12px 0;
-}
-.news-item:last-child{border-bottom:none}
-.news-top{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:8px;
-}
-.news-item h4{margin:0 0 6px}
-.news-item p{margin:0}
-
-.event-feature{
-  display:grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap:16px;
-  align-items:stretch;
-}
-.row{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
-
-.poster{
-  background: rgba(0,0,0,.20);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  padding:16px;
-  min-height: 220px;
-}
-.poster-placeholder{
-  color: rgba(255,255,255,.55);
-  letter-spacing:.10em;
-  text-transform:uppercase;
-  font-size:.85rem;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:12px 16px;
-  background: rgba(255,255,255,.10);
-  color:#fff;
-  text-decoration:none;
-  cursor:pointer;
-}
-.btn:hover{background: rgba(255,255,255,.14)}
-.btn-ghost{
-  background: transparent;
-}
-.btn-sm{padding:10px 12px;  font-size:.95rem}
-
-.link{color: rgba(255,255,255,.86); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.25)}
-.link:hover{rgba(255,255,255,.55)}
-
-.footer{
-  padding:54px 0 64px;
-  background: rgba(0,0,0,.35);
-}
-.footer-grid{
-  position:relative;
-  display:grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap:18px;
-  align-items:end;
-}
-.watermark{
-  position:absolute;
-  left: var(--pad);
-  bottom: -6px;
-  font-size: clamp(2.6rem, 6vw, 4.6rem);
-  letter-spacing:.08em;
-  color: rgba(255,255,255,.10); /* gris marca agua */
-  text-transform:uppercase;
-  pointer-events:none;
-  user-select:none;
-}
-.footer-card{
-  margin-left:auto;
-  width:min(520px, 100%);
-  background: rgba(255,255,255,.04);
-  padding:18px;
-}
-.subscribe{
-  display:flex;
-  gap:10px;
-  margin-top:10px;
-}
-.subscribe input{
-  flex:1;
-  background: rgba(0,0,0,.20);
-  color:#fff;
-  padding:12px 12px;
-  outline:none;
-  font:inherit;
-}
-.subscribe input::placeholder{color: rgba(255,255,255,.45)}
-
-/* Responsive */
-@media (max-width: 980px){
-  .nav{display:none}
-  .search{display:none}
-  .menu-btn{display:inline-flex}
-  .grid-2{grid-template-columns:1fr}
-  .grid-3{grid-template-columns:1fr}
-  .event-feature{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr}
-  .watermark{left: var(--pad); bottom: 120px}
-  .footer-card{margin-left:0}
-}deha
-* {
-  outline: none !important;
-  box-shadow: none !important;
-}
-/* ===== MODO EDITORIAL ULTRA MINIMAL ===== */
-
-.section,
-.card,
-.poster,
-.footer-card,
-.hero-inner {
-  border: none !important;
-  box-shadow: none !important;
-  background: transparent !important;
-}
-
-/* Quita cualquier línea separadora */
-.section.alt {
-  background: transparent !important;
-}
-
-/* Separación solo por espacio (sin líneas) */
-.section {
-  padding: 90px 0;
-}
-
-/* Cartas sin fondo tipo caja */
-.card {
-  padding: 0;
-  margin-bottom: 40px;
-}
-
-/* Eventos feature limpio */
-.event-feature {
-  background: transparent !important;
-}
-
-/* Poster limpio */
-.poster {
-  background: transparent !important;
-}
-
-/* Footer limpio */
-.footer {
-  background: transparent !important;
-}
-/* ===== GALERÍA DE CARTELES (5 en una pantalla) ===== */
-
-.posters-grid{
-  display:grid;
-  grid-template-columns: repeat(5, 1fr);
+/* =========================================
+   DISCOVER CONTROLS + GRID
+   (usa tus clases: .discover-controls y .discover-grid)
+   ========================================= */
+.discover-controls{
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
   gap: 12px;
-  align-items:start;
+  margin: 16px 0 18px;
 }
-
-.poster-card{
-  background: transparent !important;
-  padding: 0 !important;
-}
-
-.poster-thumb{
+.discover-controls .input,
+.discover-controls .select{
+  width: 100%;
+  padding: 12px 14px;
   border-radius: 14px;
-  overflow:hidden;
-  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.22);
+  color: inherit;
+  outline: none;
+}
+.discover-controls .input::placeholder{
+  color: rgba(255,255,255,0.45);
+}
+.discover-controls .input:focus,
+.discover-controls .select:focus{
+  border-color: rgba(255,255,255,0.26);
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.06);
 }
 
-.poster-thumb img{
-  width:100%;
-  height: 180px;         /* tamaño fijo para que todos sean iguales */
-  object-fit: cover;      /* recorta bonito sin deformar */
-  display:block;
-}
-
-/* texto debajo del cartel */
-.poster-info{
-  margin-top:10px;
-  font-size: .9rem;
-  color: rgba(255,255,255,.78);
-  line-height:1.3;
-}
-
-.poster-info .muted{
-  color: rgba(255,255,255,.55);
-  font-size:.85rem;
-}
-
-/* Responsive */
-@media (max-width: 1100px){
-  .posters-grid{ grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 700px){
-  .posters-grid{ grid-template-columns: repeat(2, 1fr); }
-  .poster-thumb img{ height: 160px; }
-}
-/* ===== ED5 ANUNCIO VIDEO ===== */
-/* ===== ED5 ANUNCIO VIDEO (MINIMAL / VERTICAL) ===== */
-
-.ed5-announcement{
-  margin-bottom:60px;
-  display:grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap:30px;
-  align-items:center;
-}
-
-.ed5-video{
-  /* sin bordes */
-  border-radius:22px;
-  overflow:hidden;
-  background: transparent;
-  position: relative;
-
-  /* este alto hace que el vídeo vertical se vea bien */
-  height: 360px;
-}
-
-.ed5-video video{
-  width:100%;
-  height:100%;
-  object-fit: cover;   /* CLAVE: para vertical, recorta estético */
-  display:block;
-
-  /* por si el navegador intenta pintar fondo */
-  background: transparent;
-}
-
-/* texto */
-.ed5-info h3{
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  margin:12px 0 10px;
-  letter-spacing:.06em;
-  text-transform: uppercase;
-}
-
-@media (max-width: 900px){
-  .ed5-announcement{ grid-template-columns:1fr; }
-  .ed5-video{ height: 420px; } /* en móvil mejor más alto */
-}
-/* ===== ED5 ANUNCIO VIDEO (MINIMAL / VERTICAL) ===== */
-.ed5-announcement{
-  margin-bottom:60px;
-  display:grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap:30px;
-  align-items:center;
-}
-.ed5-video{
-  border-radius:22px;
-  overflow:hidden;
-  background: transparent;
-  position: relative;
-  height: 360px;
-}
-.ed5-video video{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-  display:block;
-  background: transparent;
-}
-.ed5-info h3{
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  margin:12px 0 10px;
-  letter-spacing:.06em;
-  text-transform: uppercase;
-}
-@media (max-width: 900px){
-  .ed5-announcement{ grid-template-columns:1fr; }
-  .ed5-video{ height: 420px; }
-}
-
-/* ===== GALERÍA DE CARTELES ===== */
-.posters-grid{
-  display:grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-  align-items:start;
-}
-.poster-card{ background: transparent !important; padding: 0 !important; }
-.poster-thumb{
-  border-radius: 14px;
-  overflow:hidden;
-  background: rgba(255,255,255,.05);
-}
-.poster-thumb img{
-  width:100%;
-  height: 180px;
-  object-fit: cover;
-  display:block;
-}
-.poster-info{
-  margin-top:10px;
-  font-size: .9rem;
-  line-height:1.3;
-}
-@media (max-width: 1100px){
-  .posters-grid{ grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 700px){
-  .posters-grid{ grid-template-columns: repeat(2, 1fr); }
-  .poster-thumb img{ height: 160px; }
-}
-/* ===== ED5 ANUNCIO VIDEO (MINIMAL / VERTICAL) ===== */
-.ed5-announcement{
-  margin-bottom:60px;
-  display:grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap:30px;
-  align-items:center;
-}
-.ed5-video{
-  border-radius:22px;
-  overflow:hidden;
-  background: transparent;
-  position: relative;
-  height: 360px;
-}
-.ed5-video video{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-  display:block;
-  background: transparent;
-}
-.ed5-info h3{
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  margin:12px 0 10px;
-  letter-spacing:.06em;
-  text-transform: uppercase;
-}
-@media (max-width: 900px){
-  .ed5-announcement{ grid-template-columns:1fr; }
-  .ed5-video{ height: 420px; }
-}
-
-/* ===== GALERÍA 5 CARTELES ===== */
-.posters-grid{
-  display:grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-  align-items:start;
-}
-.poster-card{ background: transparent !important; padding: 0 !important; }
-.poster-thumb{
-  border-radius: 14px;
-  overflow:hidden;
-  background: rgba(255,255,255,.05);
-}
-.poster-thumb img{
-  width:100%;
-  height: 180px;
-  object-fit: cover;
-  display:block;
-}
-.poster-info{
-  margin-top:10px;
-  font-size: .9rem;
-  line-height:1.3;
-}
-@media (max-width: 1100px){
-  .posters-grid{ grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 700px){
-  .posters-grid{ grid-template-columns: repeat(2, 1fr); }
-  .poster-thumb img{ height: 160px; }
-}
-window.addEventListener("load", () => {
-  const v = document.getElementById("ed5Video");
-  if (!v) return;
-  const p = v.play();
-  if (p && typeof p.catch === "function") {
-    p.catch(() => {
-      document.addEventListener("click", () => v.play(), { once: true });
-    });
-  }
-});
-/* ===== MOBILE FIX HERO ===== */
-@media (max-width: 768px){
-
-  .hero{
-    padding: 60px 20px;
-  }
-
-  .hero h1{
-    font-size: clamp(28px, 8vw, 42px);
-    line-height: 1.1;
-  }
-
-  .hero p{
-    font-size: 16px;
-  }
-
-  /* Si tienes una imagen gigante de fondo */
-  .hero{
-    background-size: cover;
-    background-position: center;
-  }
-
-  /* Si la imagen STP es un <img> */
-  .hero img{
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-  }
-}
-@media (max-width: 768px){
-  .hero{
-    min-height: 60vh;
-    background-size: clamp(260px, 92vw, 520px) auto;
-  }
-}
-.email-btn{
-  display: inline-block;
-  padding: 10px 18px;
-  background: #ffffff;
-  color: #000;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s ease;
-}
-
-.email-btn:hover{
-  background: #ff7a00;
-  color: #fff;
-}
-.contact-email{
-  margin-top: 20px;
-  font-size: 16px;
-}
-
-.contact-email a{
-  color: #fff;
-  text-decoration: underline;
-}
-@media (max-width: 768px){
-  .hero{
-    min-height: 55vh;
-    padding: 64px 16px;
-    background-position: center;
-  }
-
-  .hero h1{
-    font-size: 2.1rem;
-    line-height: 1.1;
-  }
-}
-
-.contact-email{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex-wrap:wrap;
-}
-
-.contact-email .icon{
-  line-height: 1;
-}
 .discover-grid{
   display:grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap:16px;
 }
-.artist-card{
-  background: rgba(255,255,255,.04);
-  border-radius: 18px;
-  padding: 18px;
-}
-.artist-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-}
-.embed{ margin-top:12px; }
+/* =========================
+   DISCOVER (FIX LAYOUT)
+========================= */
 
-@media (max-width: 768px){
-  .discover-grid{ grid-template-columns: 1fr; }
-}
-.artist-card{
-  background: rgba(255,255,255,.04);
-  border-radius: 18px;
-  padding: 18px;
-}
-
-.artist-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-}/* Próxima edición (layout moderno) */
-.next-event{
+.discover-controls{
   display: grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap: 22px;
+  grid-template-columns: 1fr 220px 220px;
+  gap: 12px;
   align-items: center;
+  margin-top: 14px;
 }
 
-.next-event__poster{
+@media (max-width: 900px){
+  .discover-controls{
+    grid-template-columns: 1fr;
+  }
+}
+
+.discover-grid{
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+@media (max-width: 900px){
+  .discover-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+.artist-card{
   position: relative;
-  display: block;
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.10);
-  box-shadow: 0 18px 60px rgba(0,0,0,.45);
-}
+  border-radius: 18px;
 
-.next-event__poster img{
-  width: 100%;
-  height: auto;
-  display: block;
-  transform: scale(1);
-  transition: transform .25s ease, filter .25s ease;
-}
+  border: 1px solid rgba(255,255,255,.08);
 
-.poster-hint{
-  position: absolute;
-  left: 12px;
-  bottom: 12px;
-  padding: 8px 10px;
-  border-radius: 999px;
-  font-size: .9rem;
-  background: rgba(0,0,0,.55);
-  border: 1px solid rgba(255,255,255,.18);
-  backdrop-filter: blur(8px);
-}
+  background:
+  linear-gradient(180deg,
+  rgba(255,255,255,.05),
+  rgba(0,0,0,.25));
 
-.next-event__poster:hover img{
-  transform: scale(1.03);
-  filter: contrast(1.05);
-}
+  backdrop-filter: blur(10px);
 
-/* Móvil */
-@media (max-width: 768px){
-  .next-event{
-    grid-template-columns: 1fr;
-  }
-}
-/* Próximo evento: layout pro */
-.next-event{
-  display:grid;
-  grid-template-columns: 1fr 360px;
-  gap:24px;
-  align-items:start;
-}
+  box-shadow:
+  0 8px 30px rgba(0,0,0,.45),
+  inset 0 1px rgba(255,255,255,.05);
 
-.next-event__poster{
-  position:relative;
-  display:block;
-  border-radius:16px;
-  overflow:hidden;
-}
+  ; transition: transform .18s ease, box-shadow .18s ease;
 
-.next-event__poster img{
-  width:100%;
-  height:auto;
-  display:block;
-  border-radius:16px;
-  transition: transform .25s ease, filter .25s ease;
+  padding: 16px;
 }
+.artist-card:hover{
 
-.next-event__poster:hover img{
-  transform: scale(1.03);
-  filter: saturate(1.1) contrast(1.05);
-}
+  transform: translateY(-6px) scale(1.01);
+box-shadow: 0 20px 60px rgba(0,0,0,.55);
+  border-color: rgba(255,255,255,.22);
+} 
 
-.poster-hint{
-  position:absolute;
-  left:12px;
-  bottom:12px;
-  padding:8px 10px;
-  border-radius:999px;
-  font-size:.9rem;
-  background: rgba(0,0,0,.55);
-  backdrop-filter: blur(6px);
-}
 
-/* Móvil: el cartel arriba y centrado */
-@media (max-width: 768px){
-  .next-event{
-    grid-template-columns: 1fr;
-  }
-  .next-event__poster{
-    order:-1;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-}
-/* ✅ RESET anti-descoloque (imágenes) */
-img{
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-/* ✅ ARCHIVO DE EDICIONES: grid limpio */
-.posters-grid{
+.artist-top{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  align-items: start;
+  grid-template-columns: 64px 1fr 40px;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
-/* Cada tarjeta de cartel */
-.poster-card{
+.artist-avatar{
+  width: 64px;
+  height: 64px;
   border-radius: 14px;
   overflow: hidden;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
 }
 
-/* Miniatura del cartel */
-.poster-thumb img{
+.artist-avatar img{
   width: 100%;
-  height: 140px;      /* miniatura fija */
-  object-fit: cover;  /* recorta bonito */
-}
-/* ✅ Cartel del próximo evento: tamaño controlado */
-.next-event__poster{
-  display: block;
-  max-width: 380px;
-  width: 100%;
-  margin-left: auto;
-}
-
-@media (max-width: 768px){
-  .next-event__poster{
-    max-width: 440px;
-    margin: 0 auto;
-  }
-}
-/* =========================
-   FIX GLOBAL ANTI-DESCUADRE
-========================= */
-img{
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* =========================
-   GRID DE EDICIONES ANTERIORES
-========================= */
-.posters-grid{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  align-items: start;
-}
-
-.poster-card{
-  border-radius: 14px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-}
-
-.poster-thumb{
-  overflow: hidden;
-}
-
-.poster-thumb img{
-  width: 100%;
-  height: 140px;
+  height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-.poster-info{
-  padding: 12px 12px 14px;
+.artist-head{
+  min-width: 0;
 }
 
-/* =========================
-   PRÓXIMO EVENTO (texto + cartel)
-========================= */
-.next-event{
+.artist-name{
+  margin: 0;
+  line-height: 1.1;
+}
+
+.artist-meta{
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mini-preview{
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 22px;
+  grid-template-columns: 140px 1fr;
+  gap: 14px;
   align-items: start;
 }
 
-.next-event__poster{
-  position: relative;
-  display: block;
+@media (max-width: 520px){
+  .mini-preview{
+    grid-template-columns: 1fr;
+  }
+}
+
+.cover{
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.06);
+  aspect-ratio: 1 / 1;
+  position: relative;
 }
 
-.next-event__poster img{
+.cover img{
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+   transition: transform .6s ease;
+  }
+.artist-card:hover .cover img{
+  transform: scale(1.05);
 }
 
-.poster-hint{
+
+.play-btn{
   position: absolute;
-  left: 12px;
-  bottom: 12px;
-  font-size: 0.9rem;
-  padding: 8px 10px;
-  border-radius: 999px;
-  background: rgba(0,0,0,0.55);
-  border: 1px solid rgba(255,255,255,0.12);
+  right: 10px;
+  bottom: 10px;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.55);
+  cursor: pointer;
 }
 
-.next-event__poster:hover{
-  transform: translateY(-2px);
-  transition: transform .18s ease;
+.preview-info{
+  min-width: 0;
 }
 
-@media (max-width: 768px){
-  .next-event{
-    grid-template-columns: 1fr;
-  }
-  .poster-thumb img{
-    height: 170px;
-  }
-} 
-<!-- ARTISTA -->
-<article class="artist-card">
-  <header class="artist-top">
-    <h3 class="artist-name">El Asere</h3>
-    <span class="artist-city">Las Palmas</span>
-  </header>
-
-  <p class="artist-bio">
-    Conciencia hardcore con esencia jazzy.
-  </p>
-
-  <div class="artist-links">
-    <a class="btn btn-ghost btn-sm" href="https://open.spotify.com/artist/7KQg9gDo5wbrlm29H24P6f" target="_blank" rel="noopener">Spotify</a>
-    <a class="btn btn-ghost btn-sm" href="https://youtube.com/@asereestaenlacasa" target="_blank" rel="noopener">YouTube</a>
-    <a class="btn btn-ghost btn-sm" href="https://www.instagram.com/elasereofficial/" target="_blank" rel="noopener">Instagram</a>
-  </div>
-</article>
-/* =========================
-   DISCOVER PRO (Cards + filtro)
-   ========================= */
-
-.discover-tools{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  align-items:center;
-  justify-content:space-between;
-  margin:18px 0 14px;
+.preview-title{
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-size: 12px;
+  opacity: .9;
 }
 
-.discover-tools .left,
-.discover-tools .right{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  align-items:center;
+.preview-sub{
+  margin-top: 4px;
 }
 
-.discover-search{
-  min-width:240px;
-  max-width:420px;
-  width: min(420px, 100%);
-  padding:10px 12px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.04);
-  color:#fff;
-  outline:none;
+/* EMBEDS dentro de tarjeta */
+.artist-embed{
+  margin-top: 12px;
+  display: grid;
+  gap: 12px;
 }
 
-.discover-select{
-  padding:10px 12px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.04);
-  color:#fff;
-  outline:none;
+.artist-embed.hidden{
+  display: none;
 }
 
-.artists-grid{
+.embed iframe{
+  width: 100%;
+  border: 0;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* Botón favoritos */
+.icon-btn{
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.35);
+  cursor: pointer;
+}
+
+/* =========================================
+   PODCAST GRID
+   ========================================= */
+.podcast-grid{
   display:grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap:14px;
-  margin-top:14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:18px;
+  align-items: stretch;
 }
 
-@media (max-width: 980px){
-  .artists-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 640px){
-  .artists-grid{ grid-template-columns: 1fr; }
-}
-
+/* =========================================
+   ARTIST CARD (GLOBAL — 1 SOLO BLOQUE)
+   Aplica a Discover + Podcast si reutilizas artist-card
+   ========================================= */
 .artist-card{
   position:relative;
   overflow:hidden;
   border-radius:18px;
-  border:1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.03);
-  padding:16px;
-  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  padding:18px;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+  transition: transform .25s ease, border-color .25s ease, background .25s ease;
 }
 
 .artist-card::before{
@@ -1074,28 +651,28 @@ img{
   position:absolute;
   inset:-2px;
   background: radial-gradient(600px 220px at 20% 0%, rgba(255,255,255,.10), transparent 60%);
-  opacity:.8;
+  opacity:.75;
   pointer-events:none;
 }
 
 .artist-card:hover{
-  transform: translateY(-2px);
+  transform: translateY(-4px);
   border-color: rgba(255,255,255,.22);
-  background: rgba(255,255,255,.05);
+  background: rgba(255,255,255,.06);
 }
 
 .artist-top{
   display:flex;
-  align-items:flex-start;
   justify-content:space-between;
-  gap:10px;
+  align-items:center;
+  gap:12px;
   margin-bottom:10px;
 }
 
 .artist-name{
   margin:0;
   font-size:1.05rem;
-  letter-spacing:.3px;
+  letter-spacing:.08em;
 }
 
 .artist-meta{
@@ -1117,23 +694,21 @@ img{
   color: rgba(255,255,255,.88);
   white-space:nowrap;
 }
-
 .badge--status{
   border-color: rgba(255,255,255,.18);
 }
 
 .artist-bio{
-  margin:0 0 12px;
-  color: rgba(255,255,255,.75);
+  margin: 10px 0 12px;
+  color: rgba(255,255,255,.78);
   line-height:1.35;
-  font-size:.95rem;
 }
 
 .artist-links{
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
-  margin-top:10px;
+  gap:10px;
+  margin-top:6px;
 }
 
 .artist-embed{
@@ -1141,499 +716,170 @@ img{
   display:grid;
   gap:10px;
 }
-
 .embed{
   border-radius:14px;
   overflow:hidden;
   border:1px solid rgba(255,255,255,.10);
   background:rgba(0,0,0,.25);
 }
-
 .embed iframe{
   width:100%;
   border:0;
   display:block;
 }
 
-/* Botón "ver/ocultar" embeds */
-.toggle-embeds{
-  margin-top:8px;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 12px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.04);
-  color:#fff;
-  cursor:pointer;
-}
+/* Clase para ocultar embeds si la usas */
+.hidden{ display:none !important; }
 
-.toggle-embeds:hover{
-  border-color: rgba(255,255,255,.22);
-  background:rgba(255,255,255,.06);
-}
-
-.hidden{
-  display:none !important;
-}
-/* =========================
-   NOTICIAS PRO (cards visibles)
-   ========================= */
-
-.news-grid{
+/* =========================================
+   EVENT HERO / NEXT EVENT
+   (si lo usas en la sección eventos)
+   ========================================= */
+.next-event{
   display:grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap:16px;
-  margin-top:14px;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap:22px;
+  align-items:start;
 }
 
-@media (max-width: 900px){
-  .news-grid{ grid-template-columns: 1fr; }
-}
-
-.panel{
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.04);
+.next-event__poster{
+  position:relative;
+  display:block;
+  border-radius:16px;
   overflow:hidden;
+  border:1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.03);
+  box-shadow: var(--shadow);
 }
 
-.panel-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  padding:14px 16px;
-  border-bottom:1px solid rgba(255,255,255,.10);
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+.next-event__poster img{
+  width:100%;
+  height:auto;
+  display:block;
+  transition: transform .25s ease, filter .25s ease;
 }
-
-.panel-title{
-  margin:0;
-  font-size:1.05rem;
-  letter-spacing:.2px;
+.next-event__poster:hover img{
+  transform: scale(1.03);
+  filter: saturate(1.1) contrast(1.05);
 }
-
-.panel-body{
-  padding:16px;
-}
-
-.kicker{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:10px;
-}
-
-.pill{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:7px 10px;
+.poster-hint{
+  position:absolute;
+  left:12px;
+  bottom:12px;
+  padding:8px 10px;
   border-radius:999px;
-  border:1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.04);
-  font-size:.80rem;
-  color: rgba(255,255,255,.88);
-  white-space:nowrap;
+  font-size:.9rem;
+  background: rgba(0,0,0,.55);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(6px);
 }
 
-.event-hero{
+/* =========================================
+   POSTERS GRID (ediciones anteriores)
+   ========================================= */
+.posters-grid{
   display:grid;
-  grid-template-columns: 1fr 180px;
-  gap:14px;
-  align-items:stretch;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap:16px;
+  align-items:start;
 }
-
-@media (max-width: 520px){
-  .event-hero{ grid-template-columns: 1fr; }
-}
-
-.event-info h3{
-  margin:0 0 8px;
-  font-size:1.25rem;
-}
-
-.event-info p{
-  margin:0 0 10px;
-  color: rgba(255,255,255,.75);
-  line-height:1.35;
-}
-
-.event-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:10px;
-}
-
-.btn-primary{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:12px 14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.18);
-  background: rgba(255,255,255,.12);
-  color:#fff;
-  text-decoration:none;
-  font-weight:600;
-}
-
-.btn-primary:hover{
-  background: rgba(255,255,255,.18);
-  border-color: rgba(255,255,255,.25);
-}
-
-.thumb{
+.poster-card{
   border-radius:14px;
   overflow:hidden;
-  border:1px solid rgba(255,255,255,.10);
-  background: rgba(0,0,0,.25);
-  min-height:140px;
-  display:flex;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.poster-thumb{ overflow:hidden; }
+.poster-thumb img{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+}
+.poster-info{
+  padding: 12px 12px 14px;
+  font-size: .92rem;
+  line-height: 1.3;
 }
 
-.thumb img{
+/* =========================================
+   ED5 VIDEO
+   ========================================= */
+.ed5-announcement{
+  margin-bottom:60px;
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap:30px;
+  align-items:center;
+}
+.ed5-video{
+  border-radius:22px;
+  overflow:hidden;
+  background: transparent;
+  position: relative;
+  height: 360px;
+  border: 1px solid rgba(255,255,255,.10);
+}
+.ed5-video video{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit: cover;
   display:block;
-  transition: transform .2s ease;
+  background: transparent;
 }
-
-.panel:hover .thumb img{
-  transform: scale(1.02);
-}
-
-.list{
-  display:grid;
-  gap:10px;
-}
-
-.item{
-  border:1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.03);
-  border-radius:14px;
-  padding:12px;
-}
-
-.item strong{
-  display:block;
-  margin-bottom:4px;
-}
-
-.item .muted{
-  margin:0;
-  color: rgba(255,255,255,.70);
-  font-size:.95rem;
-  line-height:1.35;
-}
-/* =========================
-   HERO EVENTO DESTACADO
-   ========================= */
-
-.event-hero-section{
-  padding: 22px 0 10px;
-}
-
-.event-hero-card{
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 18px;
-  align-items: center;
-
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 18px;
-  padding: 18px;
-
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.08));
-  box-shadow: 0 18px 60px rgba(0,0,0,.35);
-}
-
-.event-kicker{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-
-.pill{
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(0,0,0,.25);
-  font-size: .82rem;
-  letter-spacing: .06em;
+.ed5-info h3{
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  margin:12px 0 10px;
+  letter-spacing:.06em;
   text-transform: uppercase;
 }
 
-.event-hero-info h2{
-  margin: 6px 0 10px;
-  line-height: 1.05;
-}
-
-.event-meta{
-  margin: 0 0 14px;
-  opacity: .92;
-  max-width: 56ch;
-}
-
-.event-cta-row{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 6px;
-}
-
-.event-cta-primary{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  padding: 12px 14px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 700;
-
-  background: rgba(255,255,255,.92);
-  color: #111;
-  border: 1px solid rgba(255,255,255,.2);
-
-  transition: transform .15s ease, filter .15s ease;
-}
-
-.event-cta-primary:hover{
-  transform: translateY(-1px);
-  filter: brightness(1.05);
-}
-
-.event-cta-secondary{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 12px 14px;
-  border-radius: 12px;
-  text-decoration: none;
-
-  border: 1px solid rgba(255,255,255,.16);
-  background: rgba(0,0,0,.22);
-  color: rgba(255,255,255,.92);
-
-  transition: transform .15s ease, background .15s ease;
-}
-
-.event-cta-secondary:hover{
-  transform: translateY(-1px);
-  background: rgba(0,0,0,.32);
-}
-
-.event-note{
-  margin-top: 10px;
-}
-
-.event-hero-poster{
-  position: relative;
-  display: block;
-  border-radius: 16px;
-  overflow: hidden;
-
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(0,0,0,.22);
-
-  transform: translateZ(0);
-  transition: transform .18s ease, filter .18s ease;
-}
-
-.event-hero-poster img{
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
-  display: block;
-}
-
-.event-hero-poster:hover{
-  transform: translateY(-2px) scale(1.01);
-  filter: brightness(1.02);
-}
-
-.poster-badge{
-  position: absolute;
-  left: 12px;
-  bottom: 12px;
-
-  padding: 8px 10px;
-  border-radius: 999px;
-  font-size: .85rem;
-
-  background: rgba(0,0,0,.55);
-  border: 1px solid rgba(255,255,255,.16);
-  color: rgba(255,255,255,.95);
-}
-
-/* MÓVIL */
-@media (max-width: 860px){
-  .event-hero-card{
-    grid-template-columns: 1fr;
-    padding: 14px;
-  }
-
-  .event-hero-poster img{
-    height: 360px;
-  }
-}
-
-@media (max-width: 480px){
-  .event-hero-section{
-    padding: 16px 0 8px;
-  }
-
-  .event-hero-poster img{
-    height: 320px;
-  }
-
-  .event-cta-primary,
-  .event-cta-secondary{
-    width: 100%;
-  }
-}
-/* CTA de ENTRADAS en el menú */
-.nav-cta{
-  margin-left: 10px;
-  padding: 10px 12px !important;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 800;
-  border: 1px solid rgba(255,255,255,.18);
-  background: rgba(255,255,255,.92);
-  color: #111 !important;
-  transition: transform .15s ease, filter .15s ease;
-}
-
-.nav-cta:hover{
-  transform: translateY(-1px);
-  filter: brightness(1.05);
-}
-
-/* En móvil: que el botón no quede raro dentro del menú */
-@media (max-width: 768px){
-  .nav-cta{
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-    margin-left: 0;
-  }
-}
-.btn-primary{
-  background: #ff6a00;
-  color: #111 !important;
-  font-weight: 800;
-  border-radius: 999px;
-  padding: 12px 18px;
-  border: none;
-  box-shadow: 0 6px 18px rgba(255,106,0,.25);
-  transition: all .2s ease;
-}
-
-.btn-primary:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(255,106,0,.35);
-  filter: brightness(1.05);
-}
-<footer class="footer">
-  <div class="container footer-inner">
-
-    <div class="footer-brand">
-      <strong>BEYOND THE RAPPERS</strong>
-      <p>Movimiento cultural independiente · Internacional</p>
-    </div>
-
-    <div class="footer-links">
-      <a href="#">Aviso legal</a>
-      <a href="#">Privacidad</a>
-      <a href="#">Cookies</a>
-      <a href="#">Condiciones</a>
-    </div>
-
-    <div class="footer-contact">
-      <p>Contacto:</p>
-      <a href="mailto:beyondtherappers@gmail.com">
-        beyondtherappers@gmail.com
-      </a>
-    </div>
-
-  </div>
-
-  <div class="footer-copy">
-    © 2026 Beyond The Rappers. All rights reserved.
-  </div>
-</footer>
-/* ===== Footer BTR ===== */
+/* =========================================
+   FOOTER
+   ========================================= */
 .footer{
   margin-top: 56px;
   padding: 28px 0 18px;
   border-top: 1px solid rgba(255,255,255,.12);
   background: rgba(0,0,0,.10);
 }
-
-.footer .container{
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 18px;
-}
-
 .footer-inner{
   display: grid;
   grid-template-columns: 1.2fr 1fr 1fr;
   gap: 18px;
   align-items: start;
 }
-
 .footer-brand strong{
-  display: block;
-  letter-spacing: .06em;
-  margin-bottom: 6px;
+  display:block;
+  letter-spacing:.06em;
+  margin-bottom:6px;
 }
-
 .footer-brand p{
-  margin: 0;
-  opacity: .8;
+  margin:0;
+  opacity:.8;
 }
-
 .footer-links{
-  display: flex;
-  flex-wrap: wrap;
+  display:flex;
+  flex-wrap:wrap;
   gap: 10px 14px;
 }
-
 .footer-links a{
-  opacity: .85;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,.2);
+  opacity:.85;
+  text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.2);
 }
-
 .footer-links a:hover{
-  opacity: 1;
+  opacity:1;
   border-bottom-color: rgba(255,255,255,.6);
 }
-
 .footer-contact p{
-  margin: 0 0 6px;
-  opacity: .8;
+  margin:0 0 6px;
+  opacity:.8;
 }
-
 .footer-contact a{
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,.2);
+  color:inherit;
+  text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.2);
 }
-
 .footer-copy{
   max-width: 1100px;
   margin: 16px auto 0;
@@ -1642,210 +888,698 @@ img{
   font-size: 13px;
 }
 
-/* Responsive */
-@media (max-width: 820px){
-  .footer-inner{
-    grid-template-columns: 1fr;
+/* =========================================
+   RESPONSIVE (GLOBAL)
+   ========================================= */
+@media (max-width: 980px){
+  .nav{ display:none; }
+  .search{ display:none; }
+  .menu-btn{ display:inline-flex; }
+
+  .grid-2{ grid-template-columns:1fr; }
+  .grid-3{ grid-template-columns:1fr; }
+
+  .discover-controls{ grid-template-columns: 1fr; }
+  .discover-grid{ grid-template-columns: 1fr; }
+  .podcast-grid{ grid-template-columns: 1fr; }
+
+  .next-event{ grid-template-columns: 1fr; }
+
+  .ed5-announcement{ grid-template-columns:1fr; }
+  .ed5-video{ height: 420px; }
+
+  .footer-inner{ grid-template-columns: 1fr; }
+
+  .nav-cta{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    margin-left: 0;
   }
 }
-<section id="discover" class="section alt">
-  <div class="container">
 
-    <div class="section-head">
-      <h2>Discover</h2>
-      <p class="muted">Perfiles de artistas · ciudad · estilo · estado · música/podcast embebida.</p>
-    </div>
+@media (max-width: 768px){
+  .hero{
+    min-height: 55vh;
+    padding: 64px 0;
+    background-size: clamp(260px, 92vw, 520px) auto;
+    background-position:center;
+  }
 
-    <!-- filtros + grid van aquí -->
-    <div class="discover-controls">
-      <input id="discoverSearch" class="input" type="search" placeholder="Buscar artista, estilo o ciudad..." />
-      <select id="cityFilter" class="select">
-        <option value="all">Todas las ciudades</option>
-        <option value="Las Palmas">Las Palmas</option>
-        <option value="Madrid">Madrid</option>
-        <option value="Paris">Paris</option>
-        <option value="London">London</option>
-      </select>
-      <select id="statusFilter" class="select">
-        <option value="all">Todos los estados</option>
-        <option value="Core">Core</option>
-        <option value="Emerging">Emerging</option>
-      </select>
-    </div>
-
-    <div class="artist-grid" id="artistGrid">
-      <!-- cards aquí -->
-    </div>
-
-  </div>
-</section>
-/* ===== Discover (PRO) ===== */
-#discover .section-head h2{
-  font-size: 34px;
-  letter-spacing: .02em;
-  margin: 0 0 6px;
-}
-#discover .section-head .muted{
-  margin: 0;
-  opacity: .8;
+  .artist-card{
+    padding:16px;
+    border-radius:16px;
+  }
+  .artist-top{
+    align-items:flex-start;
+    gap:10px;
+  }
+  .artist-meta{
+    justify-content:flex-start;
+  }
 }
 
-/* Controles */
-.discover-controls{
+@media (max-width: 520px){
+  .poster-thumb img{ height: 170px; }
+}
+.footer{
+  margin-top:60px;
+  padding:40px 0 20px;
+  border-top:1px solid rgba(255,255,255,0.12);
+  background:rgba(0,0,0,0.2);
+}
+
+.footer-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:20px;
+  align-items:start;
+}
+
+.footer-brand strong{
+  display:block;
+  font-size:14px;
+  letter-spacing:1px;
+}
+
+.footer-brand p{
+  font-size:13px;
+  opacity:0.7;
+}
+
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.footer-links a{
+  font-size:13px;
+  opacity:0.8;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  opacity:1;
+}
+
+.footer-contact p{
+  font-size:13px;
+  margin-bottom:4px;
+}
+
+.footer-contact a{
+  font-size:13px;
+  text-decoration:none;
+}
+
+.footer-copy{
+  margin-top:20px;
+  font-size:12px;
+  text-align:center;
+  opacity:0.6;
+}
+/* =========================================================
+   EVENT HERO (tarjeta: info izq + poster dcha, sin gigante)
+   Pegar al FINAL de styles.css
+========================================================= */
+
+.event-hero-section {
+  padding: 28px 0;
+}
+
+.event-hero-card {
   display: grid;
-  grid-template-columns: 1.2fr .6fr .6fr;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 22px;
+  align-items: stretch;
+
+  /* tarjeta */
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  padding: 22px;
+  overflow: hidden;
+
+  /* si tienes fondo oscuro */
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(8px);
+}
+
+.event-hero-info h2 {
+  margin: 10px 0 8px;
+  line-height: 1.1;
+}
+
+.event-meta {
+  max-width: 52ch; /* evita que el texto se vaya a todo el ancho */
+  margin: 0 0 14px;
+}
+
+.event-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.event-cta-row {
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  margin-top: 14px;
-  margin-bottom: 14px;
+  margin-top: 10px;
 }
 
-.input, .select{
-  width: 100%;
-  padding: 12px 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(0,0,0,.18);
-  color: inherit;
-  outline: none;
-}
-
-.input:focus, .select:focus{
-  border-color: rgba(255,255,255,.35);
-  box-shadow: 0 0 0 4px rgba(255,255,255,.06);
-}
-
-/* Grid */
-.artist-grid{
+/* Poster más pequeño y contenido, sin comerse la web */
+.event-hero-poster {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  align-content: start;
+  justify-items: end;
+  text-decoration: none;
+  position: relative;
 }
 
-/* Card PRO */
+.event-hero-poster img {
+  width: 100%;
+  max-width: 320px;      /* << “una palma” aprox */
+  height: auto;
+  border-radius: 14px;
+  display: block;
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+/* Badge "Ver cartel" sobre el poster */
+.poster-badge {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.55);
+}
+
+/* Responsive: en móvil apila y centra */
+@media (max-width: 860px) {
+  .event-hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .event-hero-poster {
+    justify-items: start;
+  }
+
+  .event-hero-poster img {
+    max-width: 420px;
+  }
+}
+/* =========================================================
+   EVENT HERO (tarjeta: info izq + poster dcha, sin gigante)
+   Pegar al FINAL de styles.css
+========================================================= */
+
+.event-hero-section {
+  padding: 28px 0;
+}
+
+.event-hero-card {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 22px;
+  align-items: stretch;
+
+  /* tarjeta */
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  padding: 22px;
+  overflow: hidden;
+
+  /* si tienes fondo oscuro */
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(8px);
+}
+
+.event-hero-info h2 {
+  margin: 10px 0 8px;
+  line-height: 1.1;
+}
+
+.event-meta {
+  max-width: 52ch; /* evita que el texto se vaya a todo el ancho */
+  margin: 0 0 14px;
+}
+
+.event-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.event-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Poster más pequeño y contenido, sin comerse la web */
+.event-hero-poster {
+  display: grid;
+  align-content: start;
+  justify-items: end;
+  text-decoration: none;
+  position: relative;
+}
+
+.event-hero-poster img {
+  width: 100%;
+  max-width: 320px;      /* << “una palma” aprox */
+  height: auto;
+  border-radius: 14px;
+  display: block;
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+/* Badge "Ver cartel" sobre el poster */
+.poster-badge {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.55);
+}
+
+/* Responsive: en móvil apila y centra */
+@media (max-width: 860px) {
+  .event-hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .event-hero-poster {
+    justify-items: start;
+  }
+
+  .event-hero-poster img {
+    max-width: 420px;
+  }
+}
+/* =========================================================
+   EVENT POSTER — ULTRA SMALL FORCE FIX
+   (pegar al final de styles.css)
+========================================================= */
+
+.event-hero-card{
+  max-width: 1120px;
+  margin: 0 auto;
+  width: calc(100% - 2*22px);
+}
+
+.event-hero-poster{
+  width: 100%;
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: flex-start !important;
+}
+
+.event-hero-poster img{
+  width: auto !important;
+  max-width: 240px !important;   /* << más pequeño aún */
+  height: auto !important;
+  max-height: 340px !important;  /* por si alguien le puso height grande */
+  object-fit: cover !important;
+
+  display: block !important;
+  border-radius: 14px !important;
+}
+
+/* Si el link/anchor está forzando tamaños raros */
+.event-hero-poster{
+  max-width: 260px !important;
+  margin-left: auto !important;
+}
+
+/* Móvil: centrado y un pelín más grande */
+@media (max-width: 860px){
+  .event-hero-poster{
+    justify-content: center !important;
+    max-width: 100% !important;
+  }
+  .event-hero-poster img{
+    max-width: 320px !important;
+  }
+}
+/* =========================
+   EVENT HERO — FIX tamaño + botones pro
+========================= */
+
+.event-hero-section{
+  padding: 18px 0 10px;
+}
+
+.event-hero-card{
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 18px;
+}
+
+/* Columna del cartel más estrecha (NO ocupa media pantalla) */
+.event-hero-card{
+  grid-template-columns: 1fr 320px; /* <- antes era demasiado grande */
+  align-items: start;
+}
+
+/* Cartel más “pequeño” y controlado */
+.event-hero-poster{
+  max-width: 320px;
+  width: 100%;
+  margin-left: auto;
+}
+
+.event-hero-poster img{
+  height: 360px;          /* tamaño estable */
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* Botones tipo “mobile UI” */
+.event-cta-row{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 12px;
+  max-width: 420px; /* para que no se vaya a todo lo ancho */
+}
+
+.event-cta-primary,
+.event-cta-secondary{
+  width: 100%;
+  border-radius: 16px;
+  padding: 14px 16px;
+  font-weight: 800;
+  text-align: center;
+  justify-content: center;
+  display: inline-flex;
+  gap: 10px;
+}
+
+/* Primario (comprar) */
+.event-cta-primary{
+  background: rgba(255,255,255,.92);
+  color: #111;
+  border: 1px solid rgba(255,255,255,.25);
+}
+
+/* Secundario (ver cartel) */
+.event-cta-secondary{
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.92);
+  border: 1px solid rgba(255,255,255,.14);
+}
+
+/* Hover suave */
+.event-cta-primary:hover,
+.event-cta-secondary:hover{
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .event-hero-card{
+    grid-template-columns: 1fr; /* cartel abajo en móvil */
+  }
+  .event-hero-poster{
+    margin: 10px auto 0;
+    max-width: 360px;
+  }
+  .event-hero-poster img{
+    height: 420px;
+  }
+  .event-cta-row{
+    max-width: 100%;
+  }
+}
+/* =========================
+   COOKIE BANNER (RGPD)
+========================= */
+.cookie-banner{
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 9999;
+  display: none;
+}
+
+.cookie-banner.show{ display:block; }
+
+.cookie-box{
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.78);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 60px rgba(0,0,0,.45);
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.cookie-text p{
+  margin: 6px 0 0;
+  color: rgba(255,255,255,.78);
+  line-height: 1.35;
+}
+.cookie-text a{
+  color: rgba(255,255,255,.95);
+  text-decoration: underline;
+}
+
+.cookie-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.cookie-btn{
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-weight: 800;
+  cursor:pointer;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.92);
+}
+
+.cookie-btn-primary{
+  background: rgba(255,255,255,.92);
+  color: #111;
+  border-color: rgba(255,255,255,.2);
+}
+
+.cookie-btn:hover{ transform: translateY(-1px); }
+
+.cookie-modal{
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display:none;
+  background: rgba(0,0,0,.6);
+}
+.cookie-modal.show{ display:grid; place-items:center; }
+
+.cookie-modal-card{
+  width: min(520px, calc(100% - 28px));
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.88);
+  backdrop-filter: blur(12px);
+  padding: 16px;
+}
+
+.cookie-switch{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding: 10px 0;
+  color: rgba(255,255,255,.9);
+}
+.artist-actions{
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.icon-link{
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  padding:10px 14px;
+
+  border-radius:999px;
+
+  background:rgba(255,255,255,.05);
+
+  border:1px solid rgba(255,255,255,.12);
+
+  font-weight:700;
+
+  transition:all .25s ease;
+
+}
+
+
+.icon-link--btn{
+  font: inherit;
+  color: inherit;
+}
+
+.icon-circle{
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  font-weight: 800;
+}
+
+.icon-text{
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.icon-link:hover{
+  border-color: rgba(255,255,255,.28);
+  background: rgba(255,255,255,.06);
+  transform:translateY(-1px);
+
+}
+/* =========================================
+   MUSIC PLATFORM BUTTON GLOW
+   ========================================= */
+/* COLORES PLATAFORMAS MUSICALES */
+
+.icon-link:nth-child(1):hover{
+  box-shadow:0 0 12px #1db954;
+}
+
+.icon-link:nth-child(2):hover{
+  box-shadow:0 0 12px #ff0000;
+}
+
+.icon-link:nth-child(3):hover{
+  box-shadow:0 0 12px #e1306c;
+}
+
+.icon-link:nth-child(4):hover{
+  box-shadow:0 0 12px #ffffff;
+}
+.artist-name{
+  font-family: 'Orbitron', sans-serif
+  letter-spacing:.1px;
+ } ¨
+ /* ======================================
+   ARTIST CARD COLOR GLOW
+   ====================================== */
+
+.artist-card:nth-child(1):hover{
+  box-shadow:
+  0 18px 60px rgba(0,0,0,.6),
+  0 0 40px rgba(80,120,255,.25);
+}
+
+.artist-card:nth-child(2):hover{
+  box-shadow:
+  0 18px 60px rgba(0,0,0,.6),
+  0 0 40px rgba(255,80,80,.25);
+}
+
+.artist-card:nth-child(3):hover{
+  box-shadow:
+  0 18px 60px rgba(0,0,0,.6),
+  0 0 40px rgba(255,180,60,.25);
+}
+
+.artist-card:nth-child(4):hover{
+  box-shadow:
+  0 18px 60px rgba(0,0,0,.6),
+  0 0 40px rgba(160,100,255,.25);
+}
+/* =========================
+   DISCOVER – COLOR GLOW POR ARTISTA
+   Pégalo al final del CSS
+========================= */
+
+.artist-card{ --glow: rgba(255,255,255,.10); }
+
 .artist-card{
   position: relative;
-  border-radius: 18px;
-  padding: 14px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-  box-shadow: 0 18px 40px rgba(0,0,0,.25);
-  overflow: hidden;
-  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 
 .artist-card::before{
   content:"";
   position:absolute;
-  inset:-2px;
-  background: radial-gradient(500px 180px at 15% 10%, rgba(255,255,255,.10), transparent 60%),
-              radial-gradient(500px 180px at 85% 0%, rgba(255,255,255,.06), transparent 60%);
+  inset:-1px;
+  border-radius: 18px;
   pointer-events:none;
+  background: radial-gradient(700px 200px at 20% 0%, var(--glow), transparent 60%);
+  opacity:.9;
+  filter: blur(6px);
+}
+
+/* Colores por artista (ajusta si quieres) */
+.artist-card[data-search*="marroko"]{ --glow: rgba(120,140,255,.35); }
+.artist-card[data-search*="el asere"]{ --glow: rgba(255,255,255,.22); }
+.artist-card[data-search*="kalatrava"]{ --glow: rgba(255,90,90,.28); }
+.artist-card[data-search*="big de litto"]{ --glow: rgba(90,200,255,.30); }
+/* =========================
+   DISCOVER – HOVER 3D SUAVE
+========================= */
+
+.discover-grid{ perspective: 1000px; }
+
+.artist-card{
+  transform: translateZ(0);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  will-change: transform;
 }
 
 .artist-card:hover{
-  transform: translateY(-3px);
+  transform: translateY(-8px) rotateX(.8deg) rotateY(-.8deg);
+  box-shadow: 0 24px 70px rgba(0,0,0,.55);
   border-color: rgba(255,255,255,.22);
-  box-shadow: 0 22px 55px rgba(0,0,0,.35);
+}
+/* =========================
+   DISCOVER – LOOK PREMIUM
+========================= */
+
+#discover{
+  background: radial-gradient(1000px 400px at 10% 0%, rgba(255,255,255,.06), transparent 55%);
 }
 
-.artist-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap: 10px;
+.discover-grid{
+  gap: 18px; /* un pelín más de aire */
 }
 
-.artist-name{
-  font-size: 18px;
-  margin: 0;
+.artist-card{
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.20));
+  backdrop-filter: blur(10px);
 }
-
-.artist-meta{
-  display:flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 8px;
-}
-
-.tag{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(0,0,0,.16);
-  font-size: 12px;
-  opacity: .95;
-}
-
-.tag-dot{
-  width: 8px;
-  height: 8px;
-  border-radius: 99px;
-  background: rgba(255,255,255,.65);
-}
-
-/* mini “status glow” */
-.tag.status-Core .tag-dot{ background: #b8f3ff; }
-.tag.status-Emerging .tag-dot{ background: #ffd7a8; }
-
-.artist-desc{
-  margin: 10px 0 12px;
-  opacity: .85;
-  line-height: 1.35;
-}
-
-/* Buttons */
-.artist-actions{
-  display:flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.btn-mini{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding: 9px 10px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(0,0,0,.18);
-  text-decoration: none;
-  color: inherit;
-  font-size: 13px;
-  transition: transform .12s ease, border-color .12s ease, background .12s ease;
-}
-.btn-mini:hover{
-  transform: translateY(-1px);
-  border-color: rgba(255,255,255,.26);
-  background: rgba(0,0,0,.24);
-}
-
-/* Embeds (colapsable) */
-.embed-wrap{
-  margin-top: 10px;
-  border-top: 1px solid rgba(255,255,255,.10);
-  padding-top: 10px;
-  display: none;
-}
-.artist-card.is-open .embed-wrap{
-  display: block;
-}
-.embed-frame{
-  width: 100%;
-  border: 0;
-  border-radius: 14px;
-  background: rgba(0,0,0,.20);
-}
-
-/* Responsive */
-@media (max-width: 980px){
-  .artist-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .discover-controls{ grid-template-columns: 1fr 1fr; }
-  #discover .section-head h2{ font-size: 30px; }
-}
-@media (max-width: 620px){
-  .artist-grid{ grid-template-columns: 1fr; }
-  .discover-controls{ grid-template-columns: 1fr; }
+/* Móvil: aplica efecto sin hover */
+@media (hover: none) {
+  .artist-card{
+    box-shadow: 0 18px 50px rgba(0,0,0,.45);
+    border-color: rgba(255,255,255,.18);
+  }
+  .artist-card::before{
+    opacity: 1;
+  }
 }
