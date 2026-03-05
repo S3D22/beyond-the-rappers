@@ -413,3 +413,14 @@ card.addEventListener("mouseleave", () => {
   const iframe = card.querySelector("iframe");
   if(iframe) iframe.remove();
 });
+// Discover: botón Play abre/cierra embeds
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-open]");
+  if (!btn) return;
+
+  const id = btn.getAttribute("data-open");
+  const panel = document.getElementById(id);
+  if (!panel) return;
+
+  panel.classList.toggle("hidden");
+});
