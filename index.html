@@ -568,11 +568,11 @@
         </div>
       </article>
 
-      <!-- CARDONA (TATTOO) -->
+      <!-- CARDONA ink (TATTOO) -->
       <article class="artist-card gamecard"
         data-city="Barcelona"
         data-type="Tattoo"
-        data-search="cardona barcelona tattoo lettering freehand">
+        data-search="cardona ink barcelona tattoo lettering freehand">
         <div class="card-glow" aria-hidden="true"></div>
         <div class="scanline" aria-hidden="true"></div>
 
@@ -582,7 +582,7 @@
           </div>
 
           <div class="artist-head">
-            <h3 class="artist-name">CARDONA</h3>
+            <h3 class="artist-name">CARDONA INK</h3>
             <div class="artist-meta">
               <span class="badge badge--city">Barcelona</span>
               <span class="badge badge--status">Emerging</span>
@@ -609,6 +609,55 @@
     </div>
   </div>
 </section>
+
+
+   
+<!-- MAPA MUNDIAL (PRO) -->
+<section id="mapa" class="section alt">
+  <div class="container">
+
+    <div class="section-head">
+      <h2 class="section-title">Mapa Mundial</h2>
+      <div class="title-underline" aria-hidden="true"></div>
+      <p class="muted">Toca un punto para ver el perfil y escuchar en Spotify.</p>
+    </div>
+
+    <div class="rapmap-pro" aria-label="Mapa de artistas">
+      <!-- Pins (posiciones en %) -->
+      <button class="map-pin" style="left:33%; top:40%" data-map="marroko" aria-label="AKA.MARROKO"></button>
+      <button class="map-pin" style="left:33%; top:38%" data-map="elasere" aria-label="El Asere"></button>
+      <button class="map-pin" style="left:31%; top:32%" data-map="bigdelitto" aria-label="Big De Litto"></button>
+      <button class="map-pin" style="left:30%; top:34%" data-map="kalatrava" aria-label="Kalatrava"></button>
+      <button class="map-pin map-pin--alt" style="left:31%; top:30%" data-map="cardona" aria-label="Cardona Ink"></button>
+
+      <div class="map-hint">ES / EU</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MODAL MAPA (PÉGALO una sola vez en la página) -->
+<div class="map-modal" id="mapModal" aria-hidden="true">
+  <div class="map-modal__backdrop" data-map-close></div>
+
+  <div class="map-modal__panel" role="dialog" aria-modal="true" aria-label="Perfil">
+    <button class="map-modal__close" type="button" data-map-close aria-label="Cerrar">✕</button>
+
+    <div class="map-modal__top">
+      <img class="map-modal__img" id="mapImg" src="" alt="">
+      <div class="map-modal__meta">
+        <h3 class="map-modal__name" id="mapName"></h3>
+        <p class="map-modal__tags" id="mapTags"></p>
+
+        <div class="map-modal__actions" id="mapActions"></div>
+      </div>
+    </div>
+
+    <div class="map-modal__embed" id="mapEmbed"></div>
+  </div>
+</div>
+
+
     <!-- DESCUBRIR (texto sobre la marca) -->
     <section id="descubrir" class="section alt">
       <div class="container">

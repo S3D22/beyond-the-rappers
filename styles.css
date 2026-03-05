@@ -1811,3 +1811,296 @@ box-shadow: 0 20px 60px rgba(0,0,0,.55);
 }
 
 .hidden{ display:none !important; }
+/* =========================
+   MAPA PRO (DISCOVER)
+========================= */
+.rapmap-pro{
+  position: relative;
+  height: clamp(260px, 45vw, 520px);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.14);
+  background:
+    radial-gradient(1200px 600px at 30% 30%, rgba(255,255,255,.10), transparent 60%),
+    radial-gradient(900px 500px at 70% 70%, rgba(255,255,255,.08), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.10));
+  box-shadow: 0 18px 55px rgba(0,0,0,.35);
+}
+
+.rapmap-pro::before{
+  content:"";
+  position:absolute; inset:-2px;
+  background:
+    linear-gradient(to right, rgba(255,255,255,.08) 1px, transparent 1px) 0 0/42px 42px,
+    linear-gradient(to bottom, rgba(255,255,255,.08) 1px, transparent 1px) 0 0/42px 42px;
+  opacity:.25;
+  pointer-events:none;
+}
+
+.rapmap-pro::after{
+  content:"";
+  position:absolute; inset:0;
+  background: radial-gradient(600px 300px at 50% 50%, rgba(255,255,255,.10), transparent 60%);
+  pointer-events:none;
+}
+
+.map-pin{
+  position:absolute;
+  width: 16px; height: 16px;
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,.9);
+  background: rgba(255,255,255,.10);
+  box-shadow: 0 0 0 6px rgba(255,255,255,.10);
+  transform: translate(-50%, -50%);
+  cursor:pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.map-pin::after{
+  content:"";
+  position:absolute; inset:-14px;
+  border-radius:999px;
+  border: 1px solid rgba(255,255,255,.25);
+  animation: mapPulse 1.5s infinite ease-out;
+}
+
+.map-pin--alt{ border-color: rgba(255,210,120,.95); box-shadow: 0 0 0 6px rgba(255,210,120,.10); }
+
+.map-pin:hover{
+  transform: translate(-50%, -50%) scale(1.12);
+  box-shadow: 0 0 0 10px rgba(255,255,255,.12);
+}
+
+@keyframes mapPulse{
+  0%{ transform: scale(.6); opacity:.65; }
+  100%{ transform: scale(1.15); opacity:0; }
+}
+
+.map-hint{
+  position:absolute;
+  right:14px; bottom:12px;
+  font-size: 12px;
+  letter-spacing: .18em;
+  opacity:.55;
+}
+
+/* =========================
+   MODAL MAPA
+========================= */
+.map-modal{
+  position: fixed; inset:0;
+  display:none;
+  z-index: 9999;
+}
+.map-modal.is-open{ display:block; }
+
+.map-modal__backdrop{
+  position:absolute; inset:0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(6px);
+}
+
+.map-modal__panel{
+  position: relative;
+  width: min(920px, calc(100% - 24px));
+  margin: 18px auto;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(18,18,18,.86);
+  box-shadow: 0 25px 80px rgba(0,0,0,.55);
+  overflow: hidden;
+}
+
+.map-modal__close{
+  position:absolute;
+  top:10px; right:10px;
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  cursor:pointer;
+}
+
+.map-modal__top{
+  display:grid;
+  grid-template-columns: 140px 1fr;
+  gap: 14px;
+  padding: 16px;
+}
+
+.map-modal__img{
+  width: 140px; height: 140px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.map-modal__name{ margin: 2px 0 6px; }
+.map-modal__tags{ margin: 0 0 12px; opacity: .75; }
+
+.map-modal__actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+/* Reutiliza tu estilo de botones, pero si no existe, esto los deja pro */
+.map-modal__actions a{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  text-decoration:none;
+  color: inherit;
+}
+.map-modal__actions a:hover{
+  background: rgba(255,255,255,.10);
+}
+
+.map-modal__embed{
+  padding: 0 16px 16px;
+}
+.map-modal__embed iframe{
+  width: 100%;
+  height: 152px;
+  border: 0;
+  border-radius: 14px;
+  background: rgba(255,255,255,.05);
+}
+
+/* Mobile */
+@media (max-width: 560px){
+  .map-modal__top{ grid-template-columns: 1fr; }
+  .map-modal__img{ width: 100%; height: 180px; }
+}
+/* =========================
+   MAPA PRO (Discover)
+========================= */
+const MAP_DATA = {
+  marroko: {
+    name: "AKA.MARROKO",
+    city: "Las Palmas",
+    style: "VOY AMI",
+    img: "assets/ARTIST/akaMarroko.jpeg",
+    ig: "https://www.instagram.com/aka.maaaaaaaaaarroko?igsh=MWpweDd4dXN4Y2Y1ZQ==",
+    sp: "https://open.spotify.com/artist/2Kq8reL54qJucfSl7eWiV8",
+    yt: "https://youtube.com/@akamarroko?si=0hQWVTnWTqtqI9BE"
+  },
+  elasere: {
+    name: "El Asere",
+    city: "Las Palmas / Madrid / Paris / London",
+    style: "Conciencia · Hardcore · Jazzy",
+    img: "assets/ARTIST/ElAsere.jpg",
+    ig: "https://www.instagram.com/elasereofficial/?hl=es",
+    sp: "https://open.spotify.com/artist/277kyAB17i5CgjdJtPPec6", // (pusiste un link suelto: lo uso aquí)
+    yt: "https://youtube.com/@asereestaenlacasa?si=Qlv4NbeRU-RDHDoE"
+  },
+  bigdelitto: {
+    name: "Big De Litto",
+    city: "Madrid",
+    style: "Electrónica / HipHop",
+    img: "assets/ARTIST/BigDeLitto.jpeg",
+    ig: "https://www.instagram.com/bigdelitto?igsh=MTNxMm4yN3VwMDZycg%3D%3D&utm_source=qr",
+    sp: "https://open.spotify.com/artist/1VMUauDPFXyBM4VTmQZREA",
+    yt: "https://youtube.com/@bigdelitto?si=GIn7nhUlv2JajgPD"
+  },
+  kalatrava: {
+    name: "KALATRAVA",
+    city: "Madrid",
+    style: "Rap / Energía calle",
+    img: "assets/ARTIST/KALATRAVA.jpeg",
+    ig: "https://www.instagram.com/kalatrav4?igsh=Z3h1cHd5dHhtb2Fz",
+    sp: "https://open.spotify.com/intl-es/artist/6AnfmwUAyPF2nAhfQfhnD8",
+    yt: "https://youtube.com/@kalatravaoficial?si=UfMKHCbGhwKN909k"
+  },
+  cardona: {
+    name: "Cardona Ink",
+    city: "Barcelona",
+    style: "Tatuaje · Lettering · Freehand",
+    img: "assets/ARTIST/Cardonalnk.jpeg",
+    ig: "https://www.instagram.com/cardona_ink?igsh=MXkyaGNscmZ6dHdsbw%3D%3D&utm_source=qr",
+    sp: "", // si no tiene, lo dejamos vacío
+    yt: ""
+  }
+};
+
+function spotifyEmbedFromUrl(url){
+  if(!url) return "";
+  // artist:
+  const m = url.match(/open\.spotify\.com\/artist\/([a-zA-Z0-9]+)/);
+  if(m) return `https://open.spotify.com/embed/artist/${m[1]}`;
+  // track:
+  const t = url.match(/open\.spotify\.com\/track\/([a-zA-Z0-9]+)/);
+  if(t) return `https://open.spotify.com/embed/track/${t[1]}`;
+  return "";
+}
+
+function openMapModal(key){
+  const data = MAP_DATA[key];
+  if(!data) return;
+
+  const modal = document.getElementById("mapModal");
+  const img = document.getElementById("mapImg");
+  const name = document.getElementById("mapName");
+  const tags = document.getElementById("mapTags");
+  const actions = document.getElementById("mapActions");
+  const embed = document.getElementById("mapEmbed");
+
+  img.src = data.img || "";
+  img.alt = data.name || "Artista";
+
+  name.textContent = data.name || "";
+  tags.textContent = `${data.city || ""}${data.style ? " · " + data.style : ""}`;
+
+  // Botones
+  actions.innerHTML = "";
+  if(data.ig){
+    actions.innerHTML += `<a href="${data.ig}" target="_blank" rel="noopener">Instagram</a>`;
+  }
+  if(data.yt){
+    actions.innerHTML += `<a href="${data.yt}" target="_blank" rel="noopener">YouTube</a>`;
+  }
+  if(data.sp){
+    actions.innerHTML += `<a href="${data.sp}" target="_blank" rel="noopener">Spotify</a>`;
+  }
+
+  // Embed Spotify (si hay)
+  const embedUrl = spotifyEmbedFromUrl(data.sp);
+  embed.innerHTML = embedUrl
+    ? `<iframe src="${embedUrl}" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`
+    : `<div style="opacity:.7;padding:14px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(255,255,255,.05)">
+        Este perfil aún no tiene Spotify embed.
+      </div>`;
+
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden","false");
+}
+
+function closeMapModal(){
+  const modal = document.getElementById("mapModal");
+  if(!modal) return;
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden","true");
+  // cortar audio al cerrar
+  const embed = document.getElementById("mapEmbed");
+  if(embed) embed.innerHTML = "";
+}
+
+document.addEventListener("click", (e) => {
+  const pin = e.target.closest(".map-pin");
+  if(pin){
+    openMapModal(pin.dataset.map);
+    return;
+  }
+  if(e.target.closest("[data-map-close]")){
+    closeMapModal();
+    return;
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if(e.key === "Escape") closeMapModal();
+});
