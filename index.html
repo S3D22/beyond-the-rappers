@@ -6,6 +6,12 @@
 
   <title>BEYOND THE RAPPER’S</title>
 
+<meta property="og:title" content="Beyond The Rappers">
+<meta property="og:description" content="Urban culture platform connecting artists, events and community">
+<meta property="og:image" content="https://beyondtherappers.com/assets/LOGOBLANCO.jpg">
+<meta property="og:url" content="https://beyondtherappers.com">
+<meta property="og:type" content="website">
+
   <!-- Google font (tu Rock Salt) -->
   <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
   <!-- Fuente moderna para nombres de artistas -->
@@ -320,337 +326,289 @@
 
     <!-- DISCOVER (tu versión PRO “gamecard”) -->
     <section id="discover" class="section alt">
-      <div class="container">
+  <div class="container">
 
-        <div class="section-head discover-head">
-          <h2 class="section-title">Discover</h2>
-          <div class="title-underline" aria-hidden="true"></div>
-          <p class="muted">Perfiles de artistas · ciudad · estilo · música/podcast.</p>
+    <!-- HEADER DISCOVER -->
+    <div class="section-head discover-head">
+      <h2 class="section-title">Discover</h2>
+      <div class="title-underline" aria-hidden="true"></div>
+      <p class="muted">Perfiles · música · artistas · tatuadores · ciudad.</p>
+    </div>
+
+    <!-- CONTROLES / BUSCADORES -->
+    <div class="discover-controls">
+      <input id="discoverSearch" class="input" type="search" placeholder="Buscar: nombre, ciudad, estilo..." autocomplete="off">
+
+      <select id="cityFilter" class="select">
+        <option value="all">Todas las ciudades</option>
+        <option value="Las Palmas">Las Palmas</option>
+        <option value="Madrid">Madrid</option>
+        <option value="Barcelona">Barcelona</option>
+      </select>
+
+      <select id="typeFilter" class="select">
+        <option value="all">Todos</option>
+        <option value="Music">Música</option>
+        <option value="Tattoo">Tattoo</option>
+      </select>
+    </div>
+
+    <!-- GRID -->
+    <div class="discover-grid" id="discoverGrid">
+
+      <!-- AKA.MARROKO -->
+      <article class="artist-card gamecard"
+        data-city="Las Palmas"
+        data-type="Music"
+        data-search="aka marroko las palmas voy ami">
+        <div class="card-glow" aria-hidden="true"></div>
+        <div class="scanline" aria-hidden="true"></div>
+
+        <header class="artist-top">
+          <div class="artist-avatar">
+            <img src="assets/ARTIST/akaMarroko.jpeg" loading="lazy" alt="AKA.MARROKO">
+          </div>
+
+          <div class="artist-head">
+            <h3 class="artist-name">AKA.MARROKO</h3>
+            <div class="artist-meta">
+              <span class="badge badge--city">Las Palmas</span>
+              <span class="badge badge--status">Emerging</span>
+              <span class="badge badge--type">Music</span>
+            </div>
+          </div>
+
+          <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
+        </header>
+
+        <div class="artist-bio muted">VOY AMI</div>
+
+        <div class="artist-actions">
+          <a class="icon-link" href="https://open.spotify.com/artist/2Kq8reL54qJucfSl7eWiV8?si=xpfAMLR_RMy-o3QXZZB5jg" target="_blank" rel="noopener" aria-label="Spotify">
+            <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
+          </a>
+          <a class="icon-link" href="https://youtube.com/@akamarroko?si=0hQWVTnWTqtqI9BE" target="_blank" rel="noopener" aria-label="YouTube">
+            <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
+          </a>
+          <a class="icon-link" href="https://www.instagram.com/aka.maaaaaaaaaarroko?igsh=MWpweDd4dXN4Y2Y1ZQ==" target="_blank" rel="noopener" aria-label="Instagram">
+            <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
+          </a>
+
+          <button class="icon-link icon-link--btn" type="button" data-open="embeds-mar" aria-label="Abrir Spotify aquí">
+            <span class="icon-circle">▶</span><span class="icon-text">Play</span>
+          </button>
         </div>
 
-        <div class="discover-controls">
-          <input id="discoverSearch" class="input" type="search" placeholder="Buscar artista, estilo o ciudad..." autocomplete="off">
+        <div class="artist-embed hidden" id="embeds-mar">
+          <div class="embed">
+            <iframe
+              src="https://open.spotify.com/embed/artist/2Kq8reL54qJucfSl7eWiV8"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"></iframe>
+          </div>
+        </div>
+      </article>
 
-          <select id="cityFilter" class="select">
-            <option value="all">Todas las ciudades</option>
-            <option value="Las Palmas">Las Palmas</option>
-            <option value="Madrid">Madrid</option>
-          </select>
+      <!-- EL ASERE (sin foto, avatar gamer) -->
+      <article class="artist-card gamecard"
+        data-city="Las Palmas"
+        data-type="Music"
+        data-search="el asere conciencia hardcore jazzy">
+        <div class="card-glow" aria-hidden="true"></div>
+        <div class="scanline" aria-hidden="true"></div>
 
-          <select id="statusFilter" class="select">
-            <option value="all">Todos los estatus</option>
-            <option value="Emerging">Emerging</option>
-          </select>
+        <header class="artist-top">
+          <div class="artist-avatar artist-avatar--gamer" aria-hidden="true">
+           <img src="assets/ARTIST/ElAsere.jpg" loading="lazy" alt="El Asere">
+          </div>
+
+          <div class="artist-head">
+            <h3 class="artist-name">EL ASERE</h3>
+            <div class="artist-meta">
+              <span class="badge badge--city">Las Palmas</span>
+              <span class="badge badge--status">Emerging</span>
+              <span class="badge badge--type">Music</span>
+            </div>
+          </div>
+
+          <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
+        </header>
+
+        <div class="artist-bio muted">Conciencia · Hardcore · Jazzy</div>
+
+        <div class="artist-actions">
+          <a class="icon-link" href="https://open.spotify.com/artist/277kyAB17i5CgjdJtPPec6" target="_blank" rel="noopener" aria-label="Spotify">
+            <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
+          </a>
+          <a class="icon-link" href="https://youtube.com/@asereestaenlacasa?si=Qlv4NbeRU-RDHDoE" target="_blank" rel="noopener" aria-label="YouTube">
+            <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
+          </a>
+          <a class="icon-link" href="https://www.instagram.com/elasereofficial/" target="_blank" rel="noopener" aria-label="Instagram">
+            <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
+          </a>
+
+          <button class="icon-link icon-link--btn" type="button" data-open="embeds-asere" aria-label="Abrir Spotify aquí">
+            <span class="icon-circle">▶</span><span class="icon-text">Play</span>
+          </button>
         </div>
 
-        <div class="discover-grid" id="discoverGrid">
-
-          <!-- AKA.MARROKO -->
-          <article class="artist-card gamecard"
-            data-city="Las Palmas"
-            data-status="Emerging"
-            data-search="aka marroko las palmas canarias hiphop">
-
-            <div class="card-glow" aria-hidden="true"></div>
-            <div class="scanline" aria-hidden="true"></div>
-
-            <header class="artist-top">
-              <div class="artist-avatar">
-                <img src="assets/ARTIST/akaMarroko.jpeg" loading="lazy" alt="Aka.Marroko">
-              </div>
-
-              <div class="artist-head">
-                <h3 class="artist-name">Aka.Marroko</h3>
-                <div class="artist-meta">
-                  <span class="badge badge--city">Las Palmas</span>
-                  <span class="badge badge--status">Emerging</span>
-                </div>
-              </div>
-
-              <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
-            </header>
-
-            <div class="mini-preview">
-              <div class="cover">
-                <img src="assets/ARTIST/akaMarroko.jpeg" alt="Cover Aka.Marroko">
-                <button class="play-btn" type="button" data-open="embeds-mar" aria-label="Abrir preview">▶</button>
-              </div>
-
-              <div class="preview-info">
-                <div class="preview-title">Preview</div>
-                <div class="preview-sub muted">Spotify + YouTube</div>
-
-   <div class="artist-actions">
-
-  <a class="icon-link" href="https://open.spotify.com/artist/2Kq8reL54qJucfSl7eWiV8" target="_blank" rel="noopener" aria-label="Spotify">
-    <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
-  </a>
-
-  <a class="icon-link" href="https://www.youtube.com/@akamarroko" target="_blank" rel="noopener" aria-label="YouTube">
-    <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
-  </a>
-
-  <a class="icon-link" href="https://www.instagram.com/aka.marroko/" target="_blank" rel="noopener" aria-label="Instagram">
-    <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
-  </a>
-
-  <button class="icon-link icon-link--btn" type="button" data-open="embeds-mar" aria-label="Abrir Spotify aquí">
-    <span class="icon-circle">▶</span><span class="icon-text">Play</span>
-  </button>
-
-</div>
-              </div>
-            </div>
-
-            <div class="artist-embed hidden" id="embeds-mar">
-              <div class="embed">
-                <iframe
-                  src="https://open.spotify.com/embed/artist/2Kq8reL54qJucfSl7eWiV8?utm_source=generator"
-                  height="152"
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"></iframe>
-              </div>
-              <div class="embed">
-                <iframe
-                  height="315"
-                  src="https://www.youtube.com/embed?listType=user_uploads&list=akamarroko"
-                  title="YouTube"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  loading="lazy"></iframe>
-              </div>
-            </div>
-          </article>
-
-          <!-- EL ASERE -->
-          <article class="artist-card gamecard"
-            data-city="Las Palmas"
-            data-status="Emerging"
-            data-search="el asere las palmas hardcore">
-
-            <div class="card-glow" aria-hidden="true"></div>
-            <div class="scanline" aria-hidden="true"></div>
-
-            <header class="artist-top">
-              <div class="artist-avatar artist-avatar--gamer" aria-hidden="true">
-                <span class="artist-initials">EA</span>
-              </div>
-
-              <div class="artist-head">
-                <h3 class="artist-name">El Asere</h3>
-                <div class="artist-meta">
-                  <span class="badge badge--city">Las Palmas</span>
-                  <span class="badge badge--status">Emerging</span>
-                </div>
-              </div>
-
-              <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
-            </header>
-
-            <div class="mini-preview">
-              <div class="cover cover--gamer">
-                <div class="cover-gamer"><span>EA</span></div>
-                <button class="play-btn" type="button" data-open="embeds-asere" aria-label="Abrir preview">▶</button>
-              </div>
-
-              <div class="preview-info">
-                <div class="preview-title">Preview</div>
-                <div class="preview-sub muted">Spotify + YouTube</div>
-<div class="artist-actions">
-
-  <a class="icon-link" href="https://open.spotify.com/artist/6P6J9yBzC5F4iAfDdcQa1Q" target="_blank" rel="noopener" aria-label="Spotify">
-    <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
-  </a>
-
-  <a class="icon-link" href="https://www.youtube.com/@elasere" target="_blank" rel="noopener" aria-label="YouTube">
-    <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
-  </a>
-
-  <a class="icon-link" href="https://www.instagram.com/elasere/" target="_blank" rel="noopener" aria-label="Instagram">
-    <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
-  </a>
-
-  <button class="icon-link icon-link--btn" type="button" data-open="embeds-ase" aria-label="Abrir Spotify aquí">
-    <span class="icon-circle">▶</span><span class="icon-text">Play</span>
-  </button>
-
-</div>
-              </div>
-            </div>
-
-            <div class="artist-embed hidden" id="embeds-asere">
-              <div class="embed">
-                <iframe
-                  src="https://open.spotify.com/embed/artist/7KQg9gDo5wbrlm29H24P6f?utm_source=generator"
-                  height="152"
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"></iframe>
-              </div>
-              <div class="embed">
-                <iframe
-                  height="315"
-                  src="https://www.youtube.com/embed?listType=user_uploads&list=asereestaenlacasa"
-                  title="YouTube"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  loading="lazy"></iframe>
-              </div>
-            </div>
-          </article>
-
-          <!-- KALATRAVA -->
-          <article class="artist-card gamecard"
-            data-city="Madrid"
-            data-status="Emerging"
-            data-search="kalatrava madrid hiphop">
-
-            <div class="card-glow" aria-hidden="true"></div>
-            <div class="scanline" aria-hidden="true"></div>
-
-            <header class="artist-top">
-              <div class="artist-avatar">
-                <img src="assets/ARTIST/KALATRAVA.jpeg" alt="Kalatrava" loading="lazy">
-              </div>
-
-              <div class="artist-head">
-                <h3 class="artist-name">Kalatrava</h3>
-                <div class="artist-meta">
-                  <span class="badge badge--city">Madrid</span>
-                  <span class="badge badge--status">Emerging</span>
-                </div>
-              </div>
-
-              <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
-            </header>
-
-            <div class="mini-preview">
-              <div class="cover">
-                <img src="assets/ARTIST/KALATRAVA.jpeg" alt="Cover Kalatrava">
-                <button class="play-btn" type="button" data-open="embeds-kala" aria-label="Abrir preview">▶</button>
-              </div>
-
-              <div class="preview-info">
-                <div class="preview-title">Preview</div>
-                <div class="preview-sub muted">Spotify + YouTube</div>
-
-   <div class="artist-actions">
-
-  <a class="icon-link" href="https://open.spotify.com/artist/4aL8nGczLz7YT1Do1B4ezh" target="_blank" rel="noopener" aria-label="Spotify">
-    <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
-  </a>
-
-  <a class="icon-link" href="https://www.youtube.com/@kalatrava" target="_blank" rel="noopener" aria-label="YouTube">
-    <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
-  </a>
-
-  <a class="icon-link" href="https://www.instagram.com/kalatrava/" target="_blank" rel="noopener" aria-label="Instagram">
-    <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
-  </a>
-
-  <button class="icon-link icon-link--btn" type="button" data-open="embeds-kala" aria-label="Abrir Spotify aquí">
-    <span class="icon-circle">▶</span><span class="icon-text">Play</span>
-  </button>
-
-</div>
-              </div>
-            </div>
-
-            <div class="artist-embed hidden" id="embeds-kala">
-              <div class="embed">
-                <iframe
-                  src="https://open.spotify.com/embed/artist/6AnfmwUAyPF2nAhfQfhnD8?utm_source=generator"
-                  height="152"
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"></iframe>
-              </div>
-              <div class="embed">
-                <iframe
-                  height="315"
-                  src="https://www.youtube.com/embed?listType=user_uploads&list=kalatravaoficial"
-                  title="YouTube"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  loading="lazy"></iframe>
-              </div>
-            </div>
-          </article>
-
-          <!-- BIG DE LITTO -->
-          <article class="artist-card gamecard"
-            data-city="Madrid"
-            data-status="Emerging"
-            data-search="big de litto madrid electronica hiphop">
-
-            <div class="card-glow" aria-hidden="true"></div>
-            <div class="scanline" aria-hidden="true"></div>
-
-            <header class="artist-top">
-              <div class="artist-avatar">
-                <img src="assets/ARTIST/BigDeLitto.jpeg" alt="Big De Litto" loading="lazy">
-              </div>
-
-              <div class="artist-head">
-                <h3 class="artist-name">Big De Litto</h3>
-                <div class="artist-meta">
-                  <span class="badge badge--city">Madrid</span>
-                  <span class="badge badge--status">Emerging</span>
-                </div>
-              </div>
-
-              <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
-            </header>
-
-            <div class="mini-preview">
-              <div class="cover">
-                <img src="assets/ARTIST/BigDeLitto.jpeg" alt="Cover Big De Litto">
-                <button class="play-btn" type="button" data-open="embeds-bdl" aria-label="Abrir preview">▶</button>
-              </div>
-
-              <div class="preview-info">
-                <div class="preview-title">Preview</div>
-                <div class="preview-sub muted">Spotify + YouTube</div>
-<div class="artist-actions">
-
-  <a class="icon-link" href="https://open.spotify.com/artist/4S6C6RkX6aJ2V8LJIYurx8" target="_blank" rel="noopener" aria-label="Spotify">
-    <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
-  </a>
-
-  <a class="icon-link" href="https://www.youtube.com/@bigdelitto" target="_blank" rel="noopener" aria-label="YouTube">
-    <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
-  </a>
-
-  <a class="icon-link" href="https://www.instagram.com/bigdelitto/" target="_blank" rel="noopener" aria-label="Instagram">
-    <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
-  </a>
-
-  <button class="icon-link icon-link--btn" type="button" data-open="embeds-litto" aria-label="Abrir Spotify aquí">
-    <span class="icon-circle">▶</span><span class="icon-text">Play</span>
-  </button>
-
-</div>
-              </div>
-            </div>
-
-            <div class="artist-embed hidden" id="embeds-bdl">
-              <div class="embed">
-                <iframe
-                  src="https://open.spotify.com/embed/artist/1VMUauDPFXyBM4VTmQZREA?utm_source=generator"
-                  height="152"
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"></iframe>
-              </div>
-              <div class="embed">
-                <iframe
-                  height="315"
-                  src="https://www.youtube.com/embed?listType=user_uploads&list=bigdelitto"
-                  title="YouTube"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  loading="lazy"></iframe>
-              </div>
-            </div>
-          </article>
-
+        <div class="artist-embed hidden" id="embeds-asere">
+          <div class="embed">
+            <iframe
+              src="https://open.spotify.com/embed/artist/277kyAB17i5CgjdJtPPec6"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"></iframe>
+          </div>
         </div>
-      </div>
-    </section>
+      </article>
 
+      <!-- BIG DE LITTO -->
+      <article class="artist-card gamecard"
+        data-city="Madrid"
+        data-type="Music"
+        data-search="big de litto madrid electronica hiphop">
+        <div class="card-glow" aria-hidden="true"></div>
+        <div class="scanline" aria-hidden="true"></div>
+
+        <header class="artist-top">
+          <div class="artist-avatar">
+            <img src="assets/ARTIST/BigDeLitto.jpeg" loading="lazy" alt="Big De Litto">
+          </div>
+
+          <div class="artist-head">
+            <h3 class="artist-name">BIG DE LITTO</h3>
+            <div class="artist-meta">
+              <span class="badge badge--city">Madrid</span>
+              <span class="badge badge--status">Emerging</span>
+              <span class="badge badge--type">Music</span>
+            </div>
+          </div>
+
+          <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
+        </header>
+
+        <div class="artist-bio muted">Electrónica / HipHop</div>
+
+        <div class="artist-actions">
+          <a class="icon-link" href="https://open.spotify.com/artist/1VMUauDPFXyBM4VTmQZREA?si=rgV-AznETQqENJLb4VZGXg" target="_blank" rel="noopener" aria-label="Spotify">
+            <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
+          </a>
+          <a class="icon-link" href="https://youtube.com/@bigdelitto?si=GIn7nhUlv2JajgPD" target="_blank" rel="noopener" aria-label="YouTube">
+            <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
+          </a>
+          <a class="icon-link" href="https://www.instagram.com/bigdelitto?igsh=MTNxMm4yN3VwMDZycg%3D%3D&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+            <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
+          </a>
+
+          <button class="icon-link icon-link--btn" type="button" data-open="embeds-bdl" aria-label="Abrir Spotify aquí">
+            <span class="icon-circle">▶</span><span class="icon-text">Play</span>
+          </button>
+        </div>
+
+        <div class="artist-embed hidden" id="embeds-bdl">
+          <div class="embed">
+            <iframe
+              src="https://open.spotify.com/embed/artist/1VMUauDPFXyBM4VTmQZREA"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"></iframe>
+          </div>
+        </div>
+      </article>
+
+      <!-- KALATRAVA -->
+      <article class="artist-card gamecard"
+        data-city="Madrid"
+        data-type="Music"
+        data-search="kalatrava madrid">
+        <div class="card-glow" aria-hidden="true"></div>
+        <div class="scanline" aria-hidden="true"></div>
+
+        <header class="artist-top">
+          <div class="artist-avatar">
+            <img src="assets/ARTIST/KALATRAVA.jpeg" loading="lazy" alt="Kalatrava">
+          </div>
+
+          <div class="artist-head">
+            <h3 class="artist-name">KALATRAVA</h3>
+            <div class="artist-meta">
+              <span class="badge badge--city">Madrid</span>
+              <span class="badge badge--status">Emerging</span>
+              <span class="badge badge--type">Music</span>
+            </div>
+          </div>
+
+          <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
+        </header>
+
+        <div class="artist-bio muted">@kalatrav4</div>
+
+        <div class="artist-actions">
+          <a class="icon-link" href="https://open.spotify.com/intl-es/artist/6AnfmwUAyPF2nAhfQfhnD8" target="_blank" rel="noopener" aria-label="Spotify">
+            <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
+          </a>
+          <a class="icon-link" href="https://youtube.com/@kalatravaoficial?si=UfMKHCbGhwKN909k" target="_blank" rel="noopener" aria-label="YouTube">
+            <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
+          </a>
+          <a class="icon-link" href="https://www.instagram.com/kalatrav4?igsh=Z3h1cHd5dHhtb2Fz" target="_blank" rel="noopener" aria-label="Instagram">
+            <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
+          </a>
+
+          <button class="icon-link icon-link--btn" type="button" data-open="embeds-kala" aria-label="Abrir Spotify aquí">
+            <span class="icon-circle">▶</span><span class="icon-text">Play</span>
+          </button>
+        </div>
+
+        <div class="artist-embed hidden" id="embeds-kala">
+          <div class="embed">
+            <iframe
+              src="https://open.spotify.com/embed/artist/6AnfmwUAyPF2nAhfQfhnD8"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"></iframe>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARDONA (TATTOO) -->
+      <article class="artist-card gamecard"
+        data-city="Barcelona"
+        data-type="Tattoo"
+        data-search="cardona barcelona tattoo lettering freehand">
+        <div class="card-glow" aria-hidden="true"></div>
+        <div class="scanline" aria-hidden="true"></div>
+
+        <header class="artist-top">
+          <div class="artist-avatar artist-avatar--gamer" aria-hidden="true">
+            <img src="assets/ARTIST/CardonaInk.jpeg" loading="lazy" alt="Cardona Ink">
+          </div>
+
+          <div class="artist-head">
+            <h3 class="artist-name">CARDONA</h3>
+            <div class="artist-meta">
+              <span class="badge badge--city">Barcelona</span>
+              <span class="badge badge--status">Emerging</span>
+              <span class="badge badge--type">Tattoo</span>
+            </div>
+          </div>
+
+          <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
+        </header>
+
+        <div class="artist-bio muted">Tatuaje lettering · Freehand</div>
+
+        <div class="artist-actions">
+          <a class="icon-link" href="https://www.instagram.com/cardona_ink?igsh=MXkyaGNscmZ6dHdsbw%3D%3D&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+            <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
+          </a>
+
+          <span class="icon-link icon-link--static" aria-label="Spotify no disponible">
+            <span class="icon-circle">S</span><span class="icon-text">No Spotify</span>
+          </span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
     <!-- DESCUBRIR (texto sobre la marca) -->
     <section id="descubrir" class="section alt">
       <div class="container">

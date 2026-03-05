@@ -1583,3 +1583,231 @@ box-shadow: 0 20px 60px rgba(0,0,0,.55);
     opacity: 1;
   }
 }
+/* =========================
+   DISCOVER (PRO + RESPONSIVE)
+========================= */
+
+.discover-controls{
+  display:grid;
+  grid-template-columns: 1fr 180px 180px;
+  gap:12px;
+  margin: 16px 0 18px;
+}
+
+@media (max-width: 860px){
+  .discover-controls{ grid-template-columns: 1fr; }
+}
+
+.discover-grid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap:16px;
+}
+
+.artist-card.gamecard{
+  grid-column: span 6;
+  position:relative;
+  padding:18px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.14);
+  background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04));
+  backdrop-filter: blur(8px);
+  overflow:hidden;
+  transition: transform .18s ease, border-color .18s ease;
+}
+
+@media (max-width: 980px){
+  .artist-card.gamecard{ grid-column: span 12; }
+}
+
+.artist-card.gamecard:hover{
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.24);
+}
+
+.card-glow{
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(520px 220px at 20% 0%, rgba(0,200,255,0.18), transparent 60%),
+    radial-gradient(420px 240px at 90% 40%, rgba(255,0,200,0.14), transparent 60%),
+    radial-gradient(380px 220px at 10% 90%, rgba(255,230,0,0.10), transparent 60%);
+  opacity:.78;
+  pointer-events:none;
+  filter: blur(10px);
+}
+
+.scanline{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.06), transparent);
+  transform: translateY(-120%);
+  animation: scan 4.2s linear infinite;
+  opacity:.6;
+}
+
+@keyframes scan{
+  0% { transform: translateY(-120%); }
+  100% { transform: translateY(120%); }
+}
+
+.artist-top{
+  position:relative;
+  display:grid;
+  grid-template-columns: 64px 1fr auto;
+  gap:12px;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.artist-avatar{
+  width:64px;
+  height:64px;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.22);
+  display:grid;
+  place-items:center;
+}
+
+.artist-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.artist-avatar--gamer{
+  background:
+    radial-gradient(circle at 30% 30%, rgba(0,255,190,0.18), transparent 60%),
+    radial-gradient(circle at 70% 70%, rgba(255,0,200,0.12), transparent 60%),
+    rgba(0,0,0,0.26);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.10), 0 0 28px rgba(0,255,200,0.16);
+}
+
+.artist-initials{
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  font-size:16px;
+  opacity:.95;
+}
+
+.artist-name{
+  margin:0;
+  font-size:18px;
+  line-height:1.1;
+}
+
+.artist-meta{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:6px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.22);
+  font-size:12px;
+}
+
+.badge--status{
+  background: rgba(0,255,190,0.08);
+  border-color: rgba(0,255,190,0.18);
+}
+
+.artist-bio{
+  margin: 2px 0 12px;
+  opacity:.82;
+  line-height:1.35;
+  min-height: 20px;
+}
+
+/* Icon links */
+.artist-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.icon-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.22);
+  text-decoration:none;
+  font-size:13px;
+  color: inherit;
+  transition: transform .14s ease, border-color .14s ease;
+}
+
+.icon-link:hover{
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,0.22);
+}
+
+.icon-link--btn{
+  cursor:pointer;
+}
+
+.icon-link--static{
+  opacity:.65;
+}
+
+.icon-circle{
+  width:26px;
+  height:26px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  font-weight:800;
+  font-size:12px;
+}
+
+.icon-btn{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.22);
+  color: inherit;
+  cursor:pointer;
+}
+
+.icon-btn:hover{
+  border-color: rgba(255,255,255,0.22);
+}
+
+.artist-embed{
+  margin-top: 14px;
+  display:grid;
+  gap:12px;
+}
+
+.embed{
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.22);
+}
+
+.embed iframe{
+  width:100%;
+  height: 152px;
+  border:0;
+  display:block;
+}
+
+.hidden{ display:none !important; }
