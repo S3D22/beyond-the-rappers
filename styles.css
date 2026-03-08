@@ -330,20 +330,30 @@ h1, h2, h3,
    BUTTONS / LINKS
    ========================================= */
 .btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:12px 16px;
-  background: rgba(255,255,255,.10);
-  color:#fff;
-  text-decoration:none;
-  cursor:pointer;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.10);
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:16px 26px;
+font-size:20px;
+background: rgba(255,255,255,.10);
+color:#fff;
+text-decoration:none;
+cursor:pointer;
+border-radius:14px;
+border:1px solid rgba(255,255,255,.10);
+
+.btn-primary{
+font-size:22px;
+font-weight:600;
 }
+
+
 .btn:hover{ background: rgba(255,255,255,.14); }
 .btn-ghost{ background: transparent; }
 .btn-sm{ padding:10px 12px; font-size:.95rem; }
+transform:scale(1.05);
+transition:all .2s ease;
+}
 
 .link{
   color: rgba(255,255,255,.86);
@@ -2103,4 +2113,133 @@ document.addEventListener("click", (e) => {
 
 document.addEventListener("keydown", (e) => {
   if(e.key === "Escape") closeMapModal();
+  .event-cta-primary{
+font-size:22px;
+padding:18px 36px;
+font-weight:700;
+}
+
+.btn-primary{
+font-size:20px;
+padding:16px 30px;
+font-weight:600;
+}
+.event-cta-primary{
+font-size:22px;
+padding:18px 36px;
+font-weight:700;
+}
+
+.btn-primary{
+font-size:20px;
+padding:16px 30px;
+font-weight:600;
+}
+.event-cta-primary:hover{
+transform:scale(1.05);
+transition:0.2s;
+}
+.event-cta-primary{
+  font-size:22px;
+  padding:18px 36px;
+  font-weight:700;
+  background:#ff6a00;
+  color:#fff;
+  border:none;
+  box-shadow:
+    0 0 10px #ff6a00,
+    0 0 20px #ff6a00,
+    0 0 40px rgba(255,106,0,.55);
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.event-cta-primary:hover{
+  transform:scale(1.05);
+  box-shadow:
+    0 0 18px #ff6a00,
+    0 0 36px #ff6a00,
+    0 0 70px rgba(255,106,0,.85);
+}
+
+.btn-primary{
+  font-size:20px;
+  padding:16px 30px;
+  font-weight:600;
+}
+.embed-modal{
+position:fixed;
+inset:0;
+display:none;
+z-index:9999;
+}
+
+.embed-modal.active{
+display:block;
+}
+
+.embed-backdrop{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.7);
+}
+
+.embed-content{
+position:relative;
+width:90%;
+max-width:600px;
+margin:120px auto;
+background:#111;
+padding:20px;
+border-radius:14px;
+}
+
+.embed-close{
+position:absolute;
+top:10px;
+right:10px;
+background:none;
+border:none;
+color:white;
+font-size:22px;
+cursor:pointer;
+}
+.embed-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  z-index:9999;
+}
+
+.embed-modal.active{
+  display:block;
+}
+
+.embed-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(6px);
+}
+
+.embed-content{
+  position:relative;
+  width:90%;
+  max-width:640px;
+  margin:100px auto;
+  background:#111;
+  padding:22px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.14);
+}
+
+.embed-close{
+  position:absolute;
+  top:10px;
+  right:12px;
+  background:none;
+  border:none;
+  color:white;
+  font-size:24px;
+  cursor:pointer;
+}
 });
