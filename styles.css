@@ -2647,5 +2647,114 @@ cursor:pointer;
   object-fit:cover;
   border-radius:12px;
 }git
+
+/* ===== FIX FUERTE BTR SHOP ===== */
+
+#shop .shop-edition-top{
+  display:grid !important;
+  grid-template-columns: 260px 1fr !important;
+  gap: 24px !important;
+  align-items: start !important;
+}
+
+#shop .shop-poster-wrap{
+  max-width: 260px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+}
+
+#shop .shop-poster-img{
+  width: 100% !important;
+  max-width: 260px !important;
+  height: 340px !important;
+  object-fit: cover !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+#shop .shop-edition-info{
+  max-width: 700px !important;
+}
+
+#shop .shop-edition-info h3{
+  font-size: 32px !important;
+  line-height: 1.1 !important;
+  margin: 8px 0 12px !important;
+}
+
+#shop .shop-edition-info .muted,
+#shop .shop-poster-note,
+#shop .shop-payments-title,
+#shop .shop-payment-chip{
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  opacity: 1 !important;
+}
+
+#shop .shop-products{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+  gap: 22px !important;
+  margin-top: 24px !important;
+}
+
+@media (max-width: 980px){
+  #shop .shop-edition-top{
+    grid-template-columns: 1fr !important;
+  }
+
+  #shop .shop-poster-wrap,
+  #shop .shop-poster-img{
+    max-width: 320px !important;
+  }
+
+  #shop .shop-products{
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* FIX CARTEL BTR SHOP */
+
+.shop-edition-top{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:28px;
+  align-items:start;
+}
+
+.shop-poster-wrap{
+  width:260px;
+  max-width:260px;
+  flex-shrink:0;
+}
+
+.shop-poster-img{
+  width:100%;
+  height:340px;
+  object-fit:cover;
+  border-radius:16px;
+  display:block;
+}
+
+.shop-edition-info{
+  max-width:700px;
+}
+
+@media (max-width:900px){
+
+  .shop-edition-top{
+    grid-template-columns:1fr;
+  }
+
+  .shop-poster-wrap{
+    width:320px;
+    margin:auto;
+  }
+
+}
+
 }
 });
