@@ -782,7 +782,12 @@ document.addEventListener("click", (e) => {
   const tooltip = document.getElementById("mapTooltip");
   const modal = document.getElementById("mapModal");
 
-  if (!mapRoot || !tooltip || !modal) return;
+  if (!mapRoot) {
+    console.log("No existe #worldMap");
+    return;
+  }
+
+  console.log("Mapa encontrado");
 
   const ARTISTS = [
     {
@@ -800,7 +805,7 @@ document.addEventListener("click", (e) => {
     {
       key: "elasere",
       name: "EL ASERE",
-      city: "Las Palmas / Madrid / Paris / London",
+      city: "Madrid",
       style: "Conciencia · Hardcore · Jazzy",
       coords: [-3.70, 40.41],
       img: "assets/ARTIST/ElAsere.jpg",
@@ -819,9 +824,7 @@ document.addEventListener("click", (e) => {
       ig: "https://www.instagram.com/bigdelitto?igsh=MTNxMm4yN3VwMDZycg%3D%3D&utm_source=qr",
       sp: "https://open.spotify.com/artist/1VMUauDPFXyBM4VTmQZREA",
       yt: "https://youtube.com/@bigdelitto?si=GIn7nhUlv2JajgPD",
-      alt: false,
-      dx: 18,
-      dy: -18
+      alt: false
     },
     {
       key: "kalatrava",
@@ -833,9 +836,7 @@ document.addEventListener("click", (e) => {
       ig: "https://www.instagram.com/kalatrav4?igsh=Z3h1cHd5dHhtb2Fz",
       sp: "https://open.spotify.com/artist/6AnfmwUAyPF2nAhfQfhnD8",
       yt: "https://youtube.com/@kalatravaoficial?si=UfMKHCbGhwKN909k",
-      alt: false,
-      dx: -20,
-      dy: -30
+      alt: false
     },
     {
       key: "cardona",
@@ -851,163 +852,81 @@ document.addEventListener("click", (e) => {
     }
   ];
 
-  function spotifyEmbedFromUrl(url) {
-    if (!url) return "";
-    const artistMatch = url.match(/spotify\.com\/(?:intl-[a-z]{2}\/)?artist\/([a-zA-Z0-9]+)/);
-    if (artistMatch) return `https://open.spotify.com/embed/artist/${artistMatch[1]}`;
-    const trackMatch = url.match(/spotify\.com\/track\/([a-zA-Z0-9]+)/);
-    if (trackMatch) return `https://open.spotify.com/embed/track/${trackMatch[1]}`;
-    return "";
-  }
-
-  function openMapModal(data) {
-    const img = document.getElementById("mapImg");
-    const name = document.getElementById("mapName");
-    const tags = document.getElementById("mapTags");
-    const actions = document.getElementById("mapActions");
-    const embed = document.getElementById("mapEmbed");
-
-    img.src = data.img || "";
-    img.alt = data.name || "";
-    name.textContent = data.name || "";
-    tags.textContent = `${data.city} · ${data.style}`;
-
-    actions.innerHTML = "";
-    if (data.ig) actions.innerHTML += `<a class="btn btn-ghost btn-sm" href="${data.ig}" target="_blank" rel="noopener">Instagram</a>`;
-    if (data.yt) actions.innerHTML += `<a class="btn btn-ghost btn-sm" href="${data.yt}" target="_blank" rel="noopener">YouTube</a>`;
-    if (data.sp) actions.innerHTML += `<a class="btn btn-primary btn-sm" href="${data.sp}" target="_blank" rel="noopener">Spotify</a>`;
-
-    const embedUrl = spotifyEmbedFromUrl(data.sp);
-    embed.innerHTML = embedUrl
-      ? `<iframe src="${embedUrl}" width="100%" height="180" style="border:0;border-radius:18px;" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`
-      : "";
-
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
-  }
-
-  function closeMapModal() {
-    const embed = document.getElementById("mapEmbed");
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("modal-open");
-    if (embed) embed.innerHTML = "";
-  }
-
-  document.querySelectorAll("[data-map-close]").forEach((btn) => {
-    btn.addEventListener("click", closeMapModal);
-  });
-
   async function initMap() {
-    // Carga D3 + TopoJSON + world-atlas desde CDN
-    await Promise.all([
-      loadScript("https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"),
-      loadScript("https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js")
-    ]);
+    try {
+      const width = mapRoot.clientWidth || 1100;
+      const height = 560;
 
-    const width = mapRoot.clientWidth || 1100;
-    const height = Math.max(460, Math.round(width * 0.52));
+      const svg = d3.select(mapRoot)
+        .html("")
+        .append("svg")
+        .attr("viewBox", `0 0 ${width} ${height}`)
+        .attr("preserveAspectRatio", "xMidYMid meet");
 
-    const svg = d3.select(mapRoot)
-      .append("svg")
-      .attr("viewBox", `0 0 ${width} ${height}`)
-      .attr("role", "img")
-      .attr("aria-label", "Mapa mundial interactivo de artistas");
+      svg.append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("fill", "#0b1422");
 
-    svg.append("rect")
-      .attr("class", "map-ocean")
-      .attr("width", width)
-      .attr("height", height);
+      const projection = d3.geoMercator()
+        .scale(width / 6.4)
+        .translate([width / 2, height / 1.62]);
 
-    const projection = d3.geoMercator()
-      .scale(width / 6.4)
-      .translate([width / 2, height / 1.62]);
+      const path = d3.geoPath(projection);
 
-    const path = d3.geoPath(projection);
+      const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+      const countries = topojson.feature(world, world.objects.countries);
 
-    const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
-    const countries = topojson.feature(world, world.objects.countries);
+      svg.append("g")
+        .selectAll("path")
+        .data(countries.features)
+        .join("path")
+        .attr("class", "map-country")
+        .attr("d", path);
 
-    svg.append("g")
-      .selectAll("path")
-      .data(countries.features)
-      .join("path")
-      .attr("class", "map-country")
-      .attr("d", path);
+      const markers = svg.append("g")
+        .selectAll(".map-marker")
+        .data(ARTISTS)
+        .join("g")
+        .attr("class", d => d.alt ? "map-marker alt" : "map-marker")
+        .attr("transform", d => {
+          const p = projection(d.coords);
+          return `translate(${p[0]}, ${p[1]})`;
+        });
 
-    const markerLayer = svg.append("g");
+      markers.append("circle")
+        .attr("class", "pulse")
+        .attr("r", 10);
 
-    const markers = markerLayer.selectAll(".map-marker")
-      .data(ARTISTS)
-      .join("g")
-      .attr("class", d => d.alt ? "map-marker alt" : "map-marker")
-      .attr("transform", (d) => {
-        const p = projection(d.coords);
-        const dx = d.dx || 0;
-        const dy = d.dy || 0;
-        return `translate(${p[0] + dx}, ${p[1] + dy})`;
-      })
-      .attr("tabindex", 0);
+      markers.append("circle")
+        .attr("class", "main-dot")
+        .attr("r", 8);
 
-    markers.append("circle")
-      .attr("class", "pulse")
-      .attr("r", 10);
+      markers
+        .on("mouseenter", function (event, d) {
+          if (!tooltip) return;
+          tooltip.innerHTML = `<strong>${d.name}</strong><span>${d.city}</span>`;
+          tooltip.style.transform = `translate(${event.offsetX + 18}px, ${event.offsetY - 12}px)`;
+        })
+        .on("mouseleave", function () {
+          if (!tooltip) return;
+          tooltip.style.transform = "translate(-9999px,-9999px)";
+        });
 
-    markers.append("circle")
-      .attr("class", "main-dot")
-      .attr("r", 8);
-
-    markers
-      .on("mouseenter", function (event, d) {
-        tooltip.innerHTML = `<strong>${d.name}</strong><span>${d.city}</span>`;
-        tooltip.setAttribute("aria-hidden", "false");
-        tooltip.style.transform = `translate(${event.offsetX + 18}px, ${event.offsetY - 12}px)`;
-      })
-      .on("mousemove", function (event) {
-        tooltip.style.transform = `translate(${event.offsetX + 18}px, ${event.offsetY - 12}px)`;
-      })
-      .on("mouseleave", function () {
-        tooltip.setAttribute("aria-hidden", "true");
-        tooltip.style.transform = "translate(-9999px,-9999px)";
-      })
-      .on("click", function (_, d) {
-        openMapModal(d);
-      })
-      .on("keydown", function (event, d) {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          openMapModal(d);
-        }
-      });
-  }
-
-  function loadScript(src) {
-    return new Promise((resolve, reject) => {
-      const existing = document.querySelector(`script[src="${src}"]`);
-      if (existing) {
-        resolve();
-        return;
-      }
-      const s = document.createElement("script");
-      s.src = src;
-      s.onload = resolve;
-      s.onerror = reject;
-      document.head.appendChild(s);
-    });
-  }
-
-  initMap().catch(console.error);
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("is-open")) {
-      closeMapModal();
+      console.log("Mapa dibujado correctamente");
+    } catch (err) {
+      console.error("Error dibujando mapa:", err);
     }
-  });
-})();
-
-
-
-
   }
-});
+
+  initMap();
+})();
+try {
+
+  initMap();
+
+} catch(e) {
+  console.error("Mapa error:", e);
+}
+
+})();
