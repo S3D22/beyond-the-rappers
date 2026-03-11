@@ -424,17 +424,25 @@ document.addEventListener("click", (e) => {
 
   panel.classList.toggle("hidden");
 });
-document.addEventListener("click", e => {
+document.addEventListener("click", (e) => {
+  const openBtn = e.target.closest("[data-open]");
+  if (openBtn) {
+    const id = openBtn.dataset.open;
+    const panel = document.getElementById(id);
+    if (panel) {
+      panel.classList.toggle("hidden");
+    }
+    return;
+  }
 
-const btn = e.target.closest("[data-open]");
-if(btn){
-
-const id = btn.dataset.open;
-document.getElementById(id).classList.add("active");
-
-}
-
-if(e.target.closest("[data-close]")){
+  const closeBtn = e.target.closest("[data-close]");
+  if (closeBtn) {
+    const modal = closeBtn.closest(".embed-modal");
+    if (modal) {
+      modal.classList.remove("is-open");
+    }
+  }
+});
 
 document.querySelectorAll(".embed-modal")
 .forEach(m => m.classList.remove("active"));
@@ -928,5 +936,126 @@ try {
 } catch(e) {
   console.error("Mapa error:", e);
 }
+// =========================
+// D3 MAPA MUNDIAL INTERACTIVO
+// =========================
+(() => {
+  const mapRoot = document.getElementById("worldMap");
+  const tooltip = document.getElementById("mapTooltip");
+
+  if (!mapRoot || typeof d3 === "undefined" || typeof topojson === "undefined") {
+    console.log("Mapa no cargado: falta #worldMap o librerías D3/TopoJSON");
+    return;
+  }
+
+  const ARTISTS = [
+    {
+      name: "AKA.MARROKO",
+      city: "Las Palmas",
+      coords: [-15.43, 28.12],
+      alt: false
+    },
+    {
+      name: "EL ASERE",
+      city: "Madrid",
+      coords: [-3.70, 40.41],
+      alt: false
+    },
+    {
+      name: "BIG DE LITTO",
+      city: "Madrid",
+      coords: [-3.70, 40.41],
+      alt: false
+    },
+    {
+      name: "KALATRAVA",
+      city: "Madrid",
+      coords: [-3.70, 40.41],
+      alt: false
+    },
+    {
+      name: "CARDONA INK",
+      city: "Barcelona",
+      coords: [2.17, 41.38],
+      alt: true
+    }
+  ];
+
+  async function initMap() {
+    try {
+      const width = mapRoot.clientWidth || 1100;
+      const height = 560;
+
+      const svg = d3.select(mapRoot)
+        .html("")
+        .append("svg")
+        .attr("viewBox", `0 0 ${width} ${height}`)
+        .attr("preserveAspectRatio", "xMidYMid meet");
+
+      svg.append("rect")
+        .attr("class", "map-ocean")
+        .attr("width", width)
+        .attr("height", height);
+
+      const projection = d3.geoMercator()
+        .scale(width / 6.4)
+        .translate([width / 2, height / 1.62]);
+
+      const path = d3.geoPath(projection);
+
+      const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+      const countries = topojson.feature(world, world.objects.countries);
+
+      svg.append("g")
+        .selectAll("path")
+        .data(countries.features)
+        .join("path")
+        .attr("class", "map-country")
+        .attr("d", path);
+
+      const markers = svg.append("g")
+        .selectAll(".map-marker")
+        .data(ARTISTS)
+        .join("g")
+        .attr("class", d => d.alt ? "map-marker alt" : "map-marker")
+        .attr("transform", d => {
+          const p = projection(d.coords);
+          return `translate(${p[0]}, ${p[1]})`;
+        });
+
+      markers.append("circle")
+        .attr("class", "pulse")
+        .attr("r", 10);
+
+      markers.append("circle")
+        .attr("class", "main-dot")
+        .attr("r", 8);
+
+      markers
+        .on("mouseenter", function (event, d) {
+          if (!tooltip) return;
+          tooltip.innerHTML = `<strong>${d.name}</strong><span>${d.city}</span>`;
+          tooltip.style.transform = `translate(${event.offsetX + 18}px, ${event.offsetY - 12}px)`;
+          tooltip.style.opacity = "1";
+        })
+        .on("mousemove", function (event) {
+          if (!tooltip) return;
+          tooltip.style.transform = `translate(${event.offsetX + 18}px, ${event.offsetY - 12}px)`;
+        })
+        .on("mouseleave", function () {
+          if (!tooltip) return;
+          tooltip.style.transform = "translate(-9999px,-9999px)";
+          tooltip.style.opacity = "0";
+        });
+
+      console.log("Mapa dibujado correctamente");
+    } catch (err) {
+      console.error("Error dibujando mapa:", err);
+    }
+  }
+
+  initMap();
+})();
+
 
 })();
