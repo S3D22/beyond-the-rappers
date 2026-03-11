@@ -154,6 +154,7 @@
     }
   });
 })();
+
 // =========================
 // MODAL CARTELES / POSTERS
 // =========================
@@ -234,6 +235,7 @@
     tags.textContent = `${data.city} · ${data.style}`;
 
     actions.innerHTML = "";
+
     if (data.ig) {
       actions.innerHTML += `<a class="btn btn-ghost btn-sm" href="${data.ig}" target="_blank" rel="noopener">Instagram</a>`;
     }
@@ -361,12 +363,33 @@
     }
   ];
 
+  let resizeTimer = null;
+
+  function placeTooltip(event, textName, textCity) {
+    if (!tooltip) return;
+
+    const rect = mapRoot.getBoundingClientRect();
+    const x = event.clientX - rect.left + 18;
+    const y = event.clientY - rect.top - 12;
+
+    tooltip.innerHTML = `<strong>${textName}</strong><span>${textCity}</span>`;
+    tooltip.style.transform = `translate(${x}px, ${y}px)`;
+    tooltip.style.opacity = "1";
+  }
+
+  function hideTooltip() {
+    if (!tooltip) return;
+    tooltip.style.transform = "translate(-9999px,-9999px)";
+    tooltip.style.opacity = "0";
+  }
+
   async function initMap() {
     try {
       const width = mapRoot.clientWidth || 1100;
       const height = 560;
 
-      const svg = d3.select(mapRoot)
+      const svg = d3
+        .select(mapRoot)
         .html("")
         .append("svg")
         .attr("viewBox", `0 0 ${width} ${height}`)
@@ -377,16 +400,16 @@
         .attr("width", width)
         .attr("height", height);
 
-const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
-const countries = topojson.feature(world, world.objects.countries);
+      const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+      const countries = topojson.feature(world, world.objects.countries);
 
-const projection = d3.geoNaturalEarth1();
-projection.fitExtent(
-  [[40, 40], [width - 40, height - 40]],
-  countries
-);
+      const projection = d3.geoNaturalEarth1();
+      projection.fitExtent(
+        [[40, 40], [width - 40, height - 40]],
+        countries
+      );
 
-const path = d3.geoPath(projection);
+      const path = d3.geoPath(projection);
 
       svg.append("g")
         .selectAll("path")
@@ -399,9 +422,10 @@ const path = d3.geoPath(projection);
         .selectAll(".map-marker")
         .data(ARTISTS)
         .join("g")
-        .attr("class", d => d.alt ? "map-marker alt" : "map-marker")
-        .attr("transform", d => {
+        .attr("class", (d) => (d.alt ? "map-marker alt" : "map-marker"))
+        .attr("transform", (d) => {
           const p = projection(d.coords);
+          if (!p) return "translate(-9999,-9999)";
           return `translate(${p[0] + (d.dx || 0)}, ${p[1] + (d.dy || 0)})`;
         })
         .style("cursor", "pointer");
@@ -416,19 +440,13 @@ const path = d3.geoPath(projection);
 
       markers
         .on("mouseenter", function (event, d) {
-          if (!tooltip) return;
-          tooltip.innerHTML = `<strong>${d.name}</strong><span>${d.city}</span>`;
-          tooltip.style.transform = `translate(${event.offsetX + 18}px, ${event.offsetY - 12}px)`;
-          tooltip.style.opacity = "1";
+          placeTooltip(event, d.name, d.city);
         })
-        .on("mousemove", function (event) {
-          if (!tooltip) return;
-          tooltip.style.transform = `translate(${event.offsetX + 18}px, ${event.offsetY - 12}px)`;
+        .on("mousemove", function (event, d) {
+          placeTooltip(event, d.name, d.city);
         })
         .on("mouseleave", function () {
-          if (!tooltip) return;
-          tooltip.style.transform = "translate(-9999px,-9999px)";
-          tooltip.style.opacity = "0";
+          hideTooltip();
         })
         .on("click", function (_, d) {
           if (window.openMapArtistModal) {
@@ -436,6 +454,7 @@ const path = d3.geoPath(projection);
           }
         });
 
+      hideTooltip();
       console.log("Mapa dibujado correctamente");
     } catch (err) {
       console.error("Error dibujando mapa:", err);
@@ -443,4 +462,11 @@ const path = d3.geoPath(projection);
   }
 
   initMap();
+
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      initMap();
+    }, 180);
+  });
 })();
