@@ -907,17 +907,26 @@ button{
 
 /* MAP */
 .rapmap-pro{
-  position:relative;
-  min-height:520px;
-  border-radius:28px;
-  border:1px solid var(--line);
-  background:
-    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px),
-    radial-gradient(circle at center, rgba(255,255,255,.08), rgba(255,255,255,.02));
-  background-size:36px 36px, 36px 36px, cover;
-  box-shadow:var(--shadow);
-  overflow:hidden;
+position:relative;
+min-height:520px;
+border-radius:28px;
+border:1px solid var(--line);
+
+background:
+linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
+url("assets/world-map.png");
+
+background-size:
+36px 36px,
+36px 36px,
+contain;
+
+background-position:center;
+background-repeat:no-repeat;
+
+box-shadow:var(--shadow);
+overflow:hidden;
 }
 
 .map-pin{
