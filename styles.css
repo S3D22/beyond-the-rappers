@@ -1383,7 +1383,7 @@ overflow:hidden;
 .d3-map svg{
   display:block;
   width:100%;
-  height:auto;
+  height:100%;
 }
 
 .map-ocean{
