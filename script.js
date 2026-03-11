@@ -424,3 +424,59 @@ document.addEventListener("click", (e) => {
 
   panel.classList.toggle("hidden");
 });
+document.addEventListener("click", e => {
+
+const btn = e.target.closest("[data-open]");
+if(btn){
+
+const id = btn.dataset.open;
+document.getElementById(id).classList.add("active");
+
+}
+
+if(e.target.closest("[data-close]")){
+
+document.querySelectorAll(".embed-modal")
+.forEach(m => m.classList.remove("active"));
+
+}
+function spotifyEmbedFromUrl(url){
+  if(!url) return "";
+
+  const artist = url.match(/spotify\.com\/(?:intl-[a-z]{2}\/)?artist\/([a-zA-Z0-9]+)/);
+  if(artist) return `https://open.spotify.com/embed/artist/${artist[1]}`;
+
+  const track = url.match(/spotify\.com\/track\/([a-zA-Z0-9]+)/);
+  if(track) return `https://open.spotify.com/embed/track/${track[1]}`;
+
+  return "";
+}
+
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-spotify]");
+
+  if(btn){
+    const spotifyUrl = btn.dataset.spotify;
+    const embedUrl = spotifyEmbedFromUrl(spotifyUrl);
+    if(!embedUrl) return;
+
+    document.getElementById("spotifyModalFrame").innerHTML = `
+      <iframe
+        src="${embedUrl}"
+        width="100%"
+        height="152"
+        frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy">
+      </iframe>
+    `;
+
+    document.getElementById("spotifyModal").classList.add("active");
+  }
+
+  if(e.target.closest("[data-close]")){
+    document.getElementById("spotifyModal").classList.remove("active");
+    document.getElementById("spotifyModalFrame").innerHTML = "";
+  }
+});
+});
