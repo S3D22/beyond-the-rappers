@@ -895,25 +895,21 @@
     </section>
 
     <!-- MAPA -->
-    <section id="mapa" class="section alt">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Mapa Mundial</h2>
-          <div class="title-underline" aria-hidden="true"></div>
-          <p class="muted">Toca un punto para ver el perfil y escuchar en Spotify.</p>
-        </div>
+   <!-- MAPA MUNDIAL INTERACTIVO D3 -->
+<section id="mapa" class="section alt">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Mapa Mundial</h2>
+      <div class="title-underline" aria-hidden="true"></div>
+      <p class="muted">Toca un punto para ver el perfil y escuchar en Spotify.</p>
+    </div>
 
-        <div class="rapmap-pro" aria-label="Mapa de artistas">
-          <button class="map-pin" style="left:33%; top:40%" data-map="marroko" aria-label="AKA.MARROKO"></button>
-          <button class="map-pin" style="left:33%; top:38%" data-map="elasere" aria-label="El Asere"></button>
-          <button class="map-pin" style="left:31%; top:32%" data-map="bigdelitto" aria-label="Big De Litto"></button>
-          <button class="map-pin" style="left:30%; top:34%" data-map="kalatrava" aria-label="Kalatrava"></button>
-          <button class="map-pin map-pin--alt" style="left:31%; top:30%" data-map="cardona" aria-label="Cardona Ink"></button>
-          <div class="map-hint">ES / EU</div>
-        </div>
-      </div>
-    </section>
-
+    <div class="d3-map-wrap">
+      <div id="worldMap" class="d3-map"></div>
+      <div id="mapTooltip" class="map-tooltip-box" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
     <!-- DESCUBRIR -->
     <section id="descubrir" class="section alt">
       <div class="container">
