@@ -377,14 +377,16 @@
         .attr("width", width)
         .attr("height", height);
 
-      const projection = d3.geoMercator()
-        .scale(width / 6.4)
-        .translate([width / 2, height / 1.62]);
+const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+const countries = topojson.feature(world, world.objects.countries);
 
-      const path = d3.geoPath(projection);
+const projection = d3.geoNaturalEarth1();
+projection.fitExtent(
+  [[40, 40], [width - 40, height - 40]],
+  countries
+);
 
-      const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
-      const countries = topojson.feature(world, world.objects.countries);
+const path = d3.geoPath(projection);
 
       svg.append("g")
         .selectAll("path")
