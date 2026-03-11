@@ -1359,9 +1359,10 @@ overflow:hidden;
     width:100px;
     height:100px;
   }
-/* =========================
+
+/* ===============================
    D3 WORLD MAP
-========================= */
+================================ */
 
 .d3-map-wrap{
   position:relative;
@@ -1370,13 +1371,15 @@ overflow:hidden;
 
 .d3-map{
   width:100%;
-  min-height:560px;
+  height:560px;
   border-radius:28px;
   overflow:hidden;
   border:1px solid rgba(255,255,255,.10);
+
   background:
     radial-gradient(circle at center, rgba(255,255,255,.05), rgba(255,255,255,.015)),
-    linear-gradient(180deg, #0a1020 0%, #09111b 100%);
+    linear-gradient(180deg,#0a1020 0%,#09111b 100%);
+
   box-shadow:0 18px 50px rgba(0,0,0,.28);
 }
 
@@ -1386,77 +1389,59 @@ overflow:hidden;
   height:100%;
 }
 
+/* países */
+
+.map-country{
+  fill:#22324b;
+  stroke:#3a4f6e;
+  stroke-width:.6;
+}
+
+/* océano */
+
 .map-ocean{
   fill:#0b1422;
 }
 
-.map-country{
-  fill:#1b2c44;
-  stroke:rgba(255,255,255,.18);
-  stroke-width:.7;
-  transition:fill .18s ease;
+/* marcadores */
+
+.map-marker .main-dot{
+  fill:#facc15;
+  stroke:white;
+  stroke-width:2;
 }
 
-.map-country:hover{
-  fill:#243a5d;
+.map-marker.alt .main-dot{
+  fill:#4ade80;
 }
 
-.map-marker{
-  cursor:pointer;
-}
+/* animación pulse */
 
-.map-marker circle.main-dot{
-  fill:#ffd400;
-  stroke:#ffffff;
-  stroke-width:2px;
-}
-
-.map-marker.alt circle.main-dot{
-  fill:#63ff9a;
-}
-
-.map-marker circle.pulse{
-  fill:rgba(255,212,0,.18);
-  stroke:none;
-  transform-origin:center;
+.pulse{
+  fill:rgba(250,204,21,.4);
   animation:mapPulse 2s infinite;
 }
 
-.map-marker.alt circle.pulse{
-  fill:rgba(99,255,154,.18);
+@keyframes mapPulse{
+  0%{ transform:scale(1); opacity:.8 }
+  70%{ transform:scale(2); opacity:0 }
+  100%{ transform:scale(2); opacity:0 }
 }
 
-@keyframes mapPulse{
-  0%{
-    transform:scale(1);
-    opacity:.75;
-  }
-  70%{
-    transform:scale(2.4);
-    opacity:0;
-  }
-  100%{
-    transform:scale(2.4);
-    opacity:0;
-  }
-}
+/* tooltip */
 
 .map-tooltip-box{
   position:absolute;
-  top:0;
-  left:0;
-  transform:translate(-9999px,-9999px);
-  padding:10px 12px;
-  border-radius:14px;
-  background:rgba(7,10,16,.94);
-  border:1px solid rgba(255,255,255,.14);
-  color:#fff;
-  font-size:13px;
-  line-height:1.35;
   pointer-events:none;
-  z-index:5;
-  min-width:160px;
-  box-shadow:0 14px 30px rgba(0,0,0,.28);
+  transform:translate(-9999px,-9999px);
+  opacity:0;
+  padding:10px 14px;
+  border-radius:12px;
+  background:#111827;
+  color:white;
+  font-size:13px;
+  transition:opacity .2s;
+}
 }
 
 .map-tooltip-box strong{
