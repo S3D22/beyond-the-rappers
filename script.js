@@ -384,16 +384,16 @@
   }
 
   async function initMap() {
-    try {
-      const width = mapRoot.clientWidth || 1100;
-      const height = 560;
 
-      const svg = d3
-        .select(mapRoot)
-        .html("")
-        .append("svg")
-        .attr("viewBox", `0 0 ${width} ${height}`)
-        .attr("preserveAspectRatio", "xMidYMid meet");
+   const width = 1100;
+   const height = 560;
+
+      const svg = d3.select(mapRoot)
+  .html("")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height);
+      
 
       svg.append("rect")
         .attr("class", "map-ocean")
