@@ -1443,18 +1443,3 @@ overflow:hidden;
   transition:opacity .2s;
 }
 }
-
-.map-tooltip-box strong{
-  display:block;
-  font-family:'Orbitron', sans-serif;
-  margin-bottom:4px;
-  font-size:12px;
-  letter-spacing:.03em;
-}
-
-@media (max-width: 768px){
-  .d3-map{
-    min-height:460px;
-  }
-}
-}
