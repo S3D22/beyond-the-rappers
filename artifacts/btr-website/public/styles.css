@@ -1387,6 +1387,7 @@ overflow:hidden;
   display:block;
   width:100%;
   height:auto;
+  overflow:visible;
 }
 
 /* países */
@@ -1420,6 +1421,8 @@ overflow:hidden;
 .pulse{
   fill:rgba(250,204,21,.4);
   animation:mapPulse 2s infinite;
+  transform-box:fill-box;
+  transform-origin:center;
 }
 
 @keyframes mapPulse{

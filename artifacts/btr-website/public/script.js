@@ -401,7 +401,8 @@
       svg.append("rect")
         .attr("class", "map-ocean")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
+        .style("fill", "#0b1422");
 
       const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
       const countries = topojson.feature(world, world.objects.countries);
@@ -419,6 +420,9 @@
         .data(countries.features)
         .join("path")
         .attr("class", "map-country")
+        .style("fill", "#22324b")
+        .style("stroke", "#3a4f6e")
+        .style("stroke-width", "0.6")
         .attr("d", path);
 
       const markers = svg.append("g")
@@ -435,11 +439,17 @@
 
       markers.append("circle")
         .attr("class", "pulse")
-        .attr("r", 10);
+        .attr("r", 10)
+        .style("fill", "rgba(250,204,21,0.4)")
+        .style("transform-box", "fill-box")
+        .style("transform-origin", "center");
 
       markers.append("circle")
         .attr("class", "main-dot")
-        .attr("r", 8);
+        .attr("r", 8)
+        .style("fill", "#facc15")
+        .style("stroke", "white")
+        .style("stroke-width", "2");
 
       markers
         .on("mouseenter", function (event, d) {
