@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Beyond The Rapper's"
+version = "1.0.0"
+id = "artifacts/btr-website"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+localPort = 24945
+name = "web"
+paths = ["/"]
+
+[services.development]
+run = "pnpm --filter @workspace/btr-website run dev"
+
+[services.env]
+PORT = "24945"
+BASE_PATH = "/"
+
+[services.production]
+build = ["pnpm", "--filter", "@workspace/btr-website", "run", "build"]
+publicDir = "artifacts/btr-website/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
