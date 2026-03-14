@@ -1371,7 +1371,7 @@ overflow:hidden;
 
 .d3-map{
   width:100%;
-  height:560px;
+  min-height:300px;
   border-radius:28px;
   overflow:hidden;
   border:1px solid rgba(255,255,255,.10);
@@ -1386,7 +1386,8 @@ overflow:hidden;
 .d3-map svg{
   display:block;
   width:100%;
-  height:100%;
+  height:auto;
+  overflow:visible;
 }
 
 /* países */
@@ -1420,6 +1421,8 @@ overflow:hidden;
 .pulse{
   fill:rgba(250,204,21,.4);
   animation:mapPulse 2s infinite;
+  transform-box:fill-box;
+  transform-origin:center;
 }
 
 @keyframes mapPulse{
