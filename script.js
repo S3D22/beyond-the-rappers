@@ -1,3 +1,4 @@
+
 // =========================
 // MENÚ MÓVIL
 // =========================
@@ -483,3 +484,303 @@
     }, 180);
   });
 })();
+document.addEventListener("DOMContentLoaded", () => {
+  initMenu();
+  initSearch();
+  initPosterModal();
+  initSpotifyModal();
+  initDiscoverFilters();
+  initCookieConsent();
+  initSmoothInternalLinks();
+});
+
+/* =========================
+   MENÚ MÓVIL
+========================= */
+function initMenu() {
+  const menuBtn = document.getElementById("menuBtn");
+  const menuClose = document.getElementById("menuClose");
+  const menuPanel = document.getElementById("menuPanel");
+  const menuLinks = document.querySelectorAll(".menu-link");
+
+  if (!menuBtn || !menuClose || !menuPanel) return;
+
+  function openMenu() {
+    menuPanel.classList.add("open");
+    menuPanel.setAttribute("aria-hidden", "false");
+    menuBtn.setAttribute("aria-expanded", "true");
+  }
+
+  function closeMenu() {
+    menuPanel.classList.remove("open");
+    menuPanel.setAttribute("aria-hidden", "true");
+    menuBtn.setAttribute("aria-expanded", "false");
+  }
+
+  menuBtn.addEventListener("click", openMenu);
+  menuClose.addEventListener("click", closeMenu);
+
+  menuLinks.forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+}
+
+/* =========================
+   BUSCADOR GENERAL
+========================= */
+function initSearch() {
+  const siteSearch = document.getElementById("siteSearch");
+  const searchBtn = document.getElementById("searchBtn");
+  const siteSearchMobile = document.getElementById("siteSearchMobile");
+  const searchBtnMobile = document.getElementById("searchBtnMobile");
+
+  const routes = {
+    podcast: "#podcast",
+    noticias: "#noticias",
+    eventos: "#eventos",
+    discover: "#discover",
+    descubrir: "#descubrir",
+    contacto: "#contacto",
+    tienda: "#btr-shop",
+    shop: "#btr-shop",
+    merch: "#btr-shop",
+    mapa: "#mapa",
+    home: "#home"
+  };
+
+  function doSearch(inputEl) {
+    if (!inputEl) return;
+    const value = inputEl.value.trim().toLowerCase();
+    if (!value) return;
+
+    const target = routes[value];
+    if (target) {
+      const el = document.querySelector(target);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    const allSections = document.querySelectorAll("section[id]");
+    const found = Array.from(allSections).find(section =>
+      section.id.toLowerCase().includes(value)
+    );
+
+    if (found) {
+      found.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      alert("No se encontró ninguna sección con ese nombre.");
+    }
+  }
+
+  searchBtn?.addEventListener("click", () => doSearch(siteSearch));
+  searchBtnMobile?.addEventListener("click", () => doSearch(siteSearchMobile));
+
+  siteSearch?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") doSearch(siteSearch);
+  });
+
+  siteSearchMobile?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") doSearch(siteSearchMobile);
+  });
+}
+
+/* =========================
+   ENLACES INTERNOS
+========================= */
+function initSmoothInternalLinks() {
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
+      if (!href || href === "#") return;
+
+      const target = document.querySelector(href);
+      if (!target) return;
+
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+}
+
+/* =========================
+   MODAL CARTEL
+========================= */
+function initPosterModal() {
+  const modal = document.getElementById("posterModal");
+  const img = document.getElementById("posterModalImg");
+  const title = document.getElementById("posterModalTitle");
+  const meta = document.getElementById("posterModalMeta");
+  const triggers = document.querySelectorAll(".poster-trigger");
+  const closers = document.querySelectorAll("[data-poster-close]");
+
+  if (!modal || !img || !title || !meta) return;
+
+  function openModal(src, posterTitle, posterMeta) {
+    img.src = src || "";
+    img.alt = posterTitle || "Cartel";
+    title.textContent = posterTitle || "";
+    meta.textContent = posterMeta || "";
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    img.src = "";
+    document.body.style.overflow = "";
+  }
+
+  triggers.forEach(trigger => {
+    trigger.addEventListener("click", () => {
+      openModal(
+        trigger.dataset.posterSrc,
+        trigger.dataset.posterTitle,
+        trigger.dataset.posterMeta
+      );
+    });
+  });
+
+  closers.forEach(c => c.addEventListener("click", closeModal));
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+}
+
+/* =========================
+   MODAL SPOTIFY
+========================= */
+function initSpotifyModal() {
+  const modal = document.getElementById("spotifyModal");
+  const frameWrap = document.getElementById("spotifyModalFrame");
+  const closeEls = modal ? modal.querySelectorAll("[data-close]") : [];
+  const openBtns = document.querySelectorAll("[data-open]");
+
+  if (!modal || !frameWrap) return;
+
+  function openWithContent(contentId) {
+    const source = document.getElementById(contentId);
+    if (!source) return;
+
+    const iframe = source.querySelector("iframe");
+    if (!iframe) return;
+
+    frameWrap.innerHTML = "";
+    frameWrap.appendChild(iframe.cloneNode(true));
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    frameWrap.innerHTML = "";
+    document.body.style.overflow = "";
+  }
+
+  openBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.dataset.open;
+      openWithContent(targetId);
+    });
+  });
+
+  closeEls.forEach(el => el.addEventListener("click", closeModal));
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+}
+
+/* =========================
+   DISCOVER FILTERS
+========================= */
+function initDiscoverFilters() {
+  const search = document.getElementById("discoverSearch");
+  const cityFilter = document.getElementById("cityFilter");
+  const typeFilter = document.getElementById("typeFilter");
+  const cards = document.querySelectorAll("#discoverGrid .artist-card");
+
+  if (!cards.length) return;
+
+  function applyFilters() {
+    const q = (search?.value || "").trim().toLowerCase();
+    const city = cityFilter?.value || "all";
+    const type = typeFilter?.value || "all";
+
+    cards.forEach(card => {
+      const cardSearch = (card.dataset.search || "").toLowerCase();
+      const cardCity = card.dataset.city || "";
+      const cardType = card.dataset.type || "";
+
+      const matchSearch = !q || cardSearch.includes(q);
+      const matchCity = city === "all" || city === cardCity;
+      const matchType = type === "all" || type === cardType;
+
+      card.style.display = (matchSearch && matchCity && matchType) ? "" : "none";
+    });
+  }
+
+  search?.addEventListener("input", applyFilters);
+  cityFilter?.addEventListener("change", applyFilters);
+  typeFilter?.addEventListener("change", applyFilters);
+}
+
+/* =========================
+   COOKIES
+========================= */
+function initCookieConsent() {
+  const root = document.getElementById("cookieConsent");
+  const settingsBtn = document.getElementById("cookieSettingsBtn");
+  const rejectBtn = document.getElementById("cookieRejectBtn");
+  const acceptBtn = document.getElementById("cookieAcceptBtn");
+  const saveBtn = document.getElementById("cookieSaveBtn");
+  const settings = document.getElementById("cookieSettings");
+  const analytics = document.getElementById("cookieAnalytics");
+  const marketing = document.getElementById("cookieMarketing");
+
+  if (!root) return;
+
+  const saved = localStorage.getItem("btr_cookie_prefs");
+  if (!saved) {
+    root.hidden = false;
+  }
+
+  settingsBtn?.addEventListener("click", () => {
+    settings.hidden = !settings.hidden;
+  });
+
+  acceptBtn?.addEventListener("click", () => {
+    localStorage.setItem("btr_cookie_prefs", JSON.stringify({
+      necessary: true,
+      analytics: true,
+      marketing: true
+    }));
+    root.hidden = true;
+  });
+
+  rejectBtn?.addEventListener("click", () => {
+    localStorage.setItem("btr_cookie_prefs", JSON.stringify({
+      necessary: true,
+      analytics: false,
+      marketing: false
+    }));
+    root.hidden = true;
+  });
+
+  saveBtn?.addEventListener("click", () => {
+    localStorage.setItem("btr_cookie_prefs", JSON.stringify({
+      necessary: true,
+      analytics: !!analytics?.checked,
+      marketing: !!marketing?.checked
+    }));
+    root.hidden = true;
+  });
+}

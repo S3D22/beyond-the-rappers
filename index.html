@@ -12,17 +12,17 @@
   <meta property="og:url" content="https://beyondtherappers.com">
   <meta property="og:type" content="website">
 
-  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=100">
 </head>
 
 <body>
 
   <!-- HEADER -->
   <header class="header" id="top">
-    <div class="header-inner">
+    <div class="container header-inner">
 
       <a class="brand" href="#home" aria-label="Ir al inicio">
         <span class="brand-title">BEYOND THE RAPPER’S</span>
@@ -32,45 +32,13 @@
         <a class="nav-link" href="#podcast">Podcast</a>
         <a class="nav-link" href="#noticias">Noticias</a>
         <a class="nav-link" href="#eventos">Eventos</a>
-         <a class="nav-link" href="#discover">Discover</a>
+        <a class="nav-link" href="#discover">Discover</a>
         <a class="nav-link" href="#descubrir">Descubrir</a>
         <a class="nav-link" href="#contacto">Contacto</a>
-
-       <a class="nav-link nav-cta" href="#btr-shop">BTR Shop</a>
-      
+        <a class="nav-link nav-cta" href="#btr-shop">BTR Shop</a>
       </nav>
-      <section id="btr-shop" class="shop-section">
-  <div class="section-head">
-    <span class="section-kicker">Merch</span>
-    <h2>BTR Shop</h2>
-    <p>Ropa y accesorios oficiales de Beyond The Rapper’s.</p>
-  </div>
 
-  <div id="shop-grid" class="shop-grid">
-    <article class="product-card">
-      <img src="assets/merch/camiseta-negra.jpg" alt="Camiseta BTR Negra">
-      <h3>Camiseta BTR Negra</h3>
-      <p class="price">25€</p>
-      <a href="#" target="_blank" rel="noopener">Comprar</a>
-    </article>
-
-    <article class="product-card">
-      <img src="assets/merch/hoodie-btr.jpg" alt="Hoodie BTR">
-      <h3>Hoodie BTR</h3>
-      <p class="price">40€</p>
-      <a href="#" target="_blank" rel="noopener">Comprar</a>
-    </article>
-
-    <article class="product-card">
-      <img src="assets/merch/gorra-btr.jpg" alt="Gorra BTR">
-      <h3>Gorra BTR</h3>
-      <p class="price">20€</p>
-      <a href="#" target="_blank" rel="noopener">Comprar</a>
-    </article>
-  </div>
-</section>
-
-      <div class="search">
+      <div class="search header-search">
         <span class="search-icon" aria-hidden="true">⌕</span>
         <input
           id="siteSearch"
@@ -85,36 +53,31 @@
       <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuPanel">
         ☰
       </button>
-    </div>
 
-    <!-- MENÚ MÓVIL -->
-    <div class="menu-panel" id="menuPanel" aria-hidden="true">
-      <div class="menu-panel-head">
-        <strong>Menú</strong>
-        <button class="menu-close" id="menuClose" aria-label="Cerrar menú">✕</button>
-      </div>
+      <!-- MENÚ MÓVIL -->
+      <div class="menu-panel" id="menuPanel" aria-hidden="true">
+        <div class="menu-panel-head">
+          <strong>Menú</strong>
+          <button class="menu-close" id="menuClose" aria-label="Cerrar menú">✕</button>
+        </div>
 
-      <div class="menu-panel-body">
-        <a class="menu-link" href="#podcast">Podcast</a>
-        <a class="menu-link" href="#noticias">Noticias</a>
-        <a class="menu-link" href="#eventos">Eventos</a>
-        <a class="menu-link" href="#discover">Discover</a>
-        <a class="menu-link" href="#descubrir">Descubrir</a>
-        <a class="menu-link" href="#contacto">Contacto</a>
+        <div class="menu-panel-body">
+          <a class="menu-link" href="#podcast">Podcast</a>
+          <a class="menu-link" href="#noticias">Noticias</a>
+          <a class="menu-link" href="#eventos">Eventos</a>
+          <a class="menu-link" href="#discover">Discover</a>
+          <a class="menu-link" href="#descubrir">Descubrir</a>
+          <a class="menu-link" href="#contacto">Contacto</a>
+          <a class="menu-link nav-cta" href="#btr-shop">🛍 BTR Shop</a>
 
-        <a class="menu-link nav-cta"
-           href="https://vivetix.com/es/entradas-beyond-the-rappers-classic-shit-edicion-rmna?s=redes"
-           target="_blank" rel="noopener">
-          🎟 Entradas
-        </a>
-
-        <div class="menu-search">
-          <label class="menu-search-label" for="siteSearchMobile">Buscar</label>
-          <div class="menu-search-row">
-            <input id="siteSearchMobile" class="search-input" type="search" placeholder="Escribe y pulsa Enter…" />
-            <button class="search-btn" id="searchBtnMobile">Ir</button>
+          <div class="menu-search">
+            <label class="menu-search-label" for="siteSearchMobile">Buscar</label>
+            <div class="menu-search-row">
+              <input id="siteSearchMobile" class="search-input" type="search" placeholder="Escribe y pulsa Enter…" />
+              <button class="search-btn" id="searchBtnMobile">Ir</button>
+            </div>
+            <p class="tiny muted">Atajos: podcast, noticias, eventos, discover, contacto, tienda.</p>
           </div>
-          <p class="tiny muted">Atajos: podcast, noticias, eventos, discover, contacto.</p>
         </div>
       </div>
     </div>
@@ -186,8 +149,9 @@
         </p>
 
         <div class="hero-cta">
-          <a class="btn" href="#noticias">Ver noticias</a>
+          <a class="btn btn-primary" href="#noticias">Ver noticias</a>
           <a class="btn btn-ghost" href="#eventos">Eventos</a>
+          <a class="btn btn-ghost" href="#btr-shop">Tienda</a>
         </div>
       </div>
     </section>
@@ -204,26 +168,14 @@
         </div>
 
         <div class="podcast-grid">
-          <article class="artist-card">
-            <header class="artist-top">
-              <h3 class="artist-name">EP01 · PRÓXIMAMENTE</h3>
-              <div class="artist-meta">
-                <span class="badge">BTR Podcast</span>
-                <span class="badge badge--status">Soon</span>
-              </div>
-            </header>
-            <p class="artist-bio">Primer episodio en producción. Fecha y plataformas en breve.</p>
+          <article class="card">
+            <h3>EP01 · PRÓXIMAMENTE</h3>
+            <p class="muted">Primer episodio en producción. Fecha y plataformas en breve.</p>
           </article>
 
-          <article class="artist-card">
-            <header class="artist-top">
-              <h3 class="artist-name">EP02 · PRÓXIMAMENTE</h3>
-              <div class="artist-meta">
-                <span class="badge">BTR Podcast</span>
-                <span class="badge badge--status">Soon</span>
-              </div>
-            </header>
-            <p class="artist-bio">Segundo episodio en preparación. Invitadx y teaser pronto.</p>
+          <article class="card">
+            <h3>EP02 · PRÓXIMAMENTE</h3>
+            <p class="muted">Segundo episodio en preparación. Invitadx y teaser pronto.</p>
           </article>
         </div>
       </div>
@@ -296,13 +248,13 @@
       </div>
     </section>
 
-    <!-- EVENTOS + MERCH -->
+    <!-- EVENTOS -->
     <section id="eventos" class="section">
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">Eventos</h2>
           <div class="title-underline" aria-hidden="true"></div>
-          <p class="muted">Archivo de ediciones, carteles completos y merch oficial por evento.</p>
+          <p class="muted">Archivo de ediciones y carteles completos.</p>
         </div>
 
         <div class="events-store-grid">
@@ -324,7 +276,6 @@
                 <h3>Classic Shit · Las Palmas</h3>
                 <p class="muted">
                   Colección cápsula creada a partir del cartel oficial de la edición 5.
-                  Aquí puedes ver el cartel completo y el merch oficial de esta edición.
                 </p>
 
                 <div class="event-store-meta">
@@ -342,121 +293,11 @@
                     Ver cartel completo
                   </button>
 
-                  <a class="btn btn-primary"
-                     href="https://vivetix.com/es/entradas-beyond-the-rappers-classic-shit-edicion-rmna?s=redes"
-                     target="_blank" rel="noopener">
-                    Comprar entradas
+                  <a class="btn btn-primary" href="#btr-shop">
+                    Ver merch
                   </a>
                 </div>
               </div>
-            </div>
-
-            <div class="event-store-products">
-              <article class="shop-product-card">
-                <img src="assets/shop/ed5-camiseta.jpg" alt="Camiseta edición 5" class="shop-product-img" loading="lazy">
-
-                <div class="shop-product-body">
-                  <div class="shop-product-top">
-                    <span class="shop-type">CAMISETA</span>
-                    <span class="shop-price">30€</span>
-                  </div>
-
-                  <h4>BTR Classic Shit Tee</h4>
-                  <p class="shop-desc">Camiseta oficial basada en el cartel de la edición 5.</p>
-
-                  <div class="shop-info">
-                    <span>Stock: 18</span>
-                    <span>100% algodón</span>
-                    <span>Unisex</span>
-                  </div>
-
-                  <div class="shop-selects">
-                    <select class="shop-select" name="ed5-tee-size">
-                      <option selected disabled>Talla</option>
-                      <option>S</option>
-                      <option>M</option>
-                      <option>L</option>
-                      <option>XL</option>
-                    </select>
-
-                    <select class="shop-select" name="ed5-tee-color">
-                      <option selected disabled>Color</option>
-                      <option>Negro</option>
-                      <option>Blanco</option>
-                      <option>Gris</option>
-                    </select>
-                  </div>
-
-                  <div class="shop-actions">
-                    <a class="btn btn-primary shop-buy"
-                       href="https://TU-LINK-DE-COMPRA-ED5-CAMISETA.com"
-                       target="_blank" rel="noopener">
-                      Comprar
-                    </a>
-
-                    <button class="btn btn-ghost poster-trigger"
-                            type="button"
-                            data-poster-src="assets/ed5.jpg"
-                            data-poster-title="Beyond The Rappers · Edición 5"
-                            data-poster-meta="Classic Shit · 29 Mar · Las Palmas">
-                      Ver cartel
-                    </button>
-                  </div>
-                </div>
-              </article>
-
-              <article class="shop-product-card">
-                <img src="assets/shop/ed5-sudadera.jpg" alt="Sudadera edición 5" class="shop-product-img" loading="lazy">
-
-                <div class="shop-product-body">
-                  <div class="shop-product-top">
-                    <span class="shop-type">SUDADERA</span>
-                    <span class="shop-price">55€</span>
-                  </div>
-
-                  <h4>BTR Classic Shit Hoodie</h4>
-                  <p class="shop-desc">Sudadera premium inspirada en la identidad visual de la edición 5.</p>
-
-                  <div class="shop-info">
-                    <span>Stock: 10</span>
-                    <span>Heavy blend</span>
-                    <span>Premium fit</span>
-                  </div>
-
-                  <div class="shop-selects">
-                    <select class="shop-select" name="ed5-hoodie-size">
-                      <option selected disabled>Talla</option>
-                      <option>S</option>
-                      <option>M</option>
-                      <option>L</option>
-                      <option>XL</option>
-                    </select>
-
-                    <select class="shop-select" name="ed5-hoodie-color">
-                      <option selected disabled>Color</option>
-                      <option>Negro</option>
-                      <option>Gris</option>
-                      <option>Beige</option>
-                    </select>
-                  </div>
-
-                  <div class="shop-actions">
-                    <a class="btn btn-primary shop-buy"
-                       href="https://TU-LINK-DE-COMPRA-ED5-SUDADERA.com"
-                       target="_blank" rel="noopener">
-                      Comprar
-                    </a>
-
-                    <button class="btn btn-ghost poster-trigger"
-                            type="button"
-                            data-poster-src="assets/ed5.jpg"
-                            data-poster-title="Beyond The Rappers · Edición 5"
-                            data-poster-meta="Classic Shit · 29 Mar · Las Palmas">
-                      Ver cartel
-                    </button>
-                  </div>
-                </div>
-              </article>
             </div>
           </article>
 
@@ -477,7 +318,6 @@
                 <h3>Canarias en Vivo · Las Palmas</h3>
                 <p class="muted">
                   Merch oficial construido desde la gráfica original del cartel de la edición 4.
-                  El cartel puede abrirse completo para leer todos los detalles del evento.
                 </p>
 
                 <div class="event-store-meta">
@@ -494,105 +334,12 @@
                           data-poster-meta="Canarias en Vivo · 18 Dic · Las Palmas">
                     Ver cartel completo
                   </button>
+
+                  <a class="btn btn-primary" href="#btr-shop">
+                    Ver merch
+                  </a>
                 </div>
               </div>
-            </div>
-
-            <div class="event-store-products">
-              <article class="shop-product-card">
-                <img src="assets/shop/ed4-camiseta.jpg" alt="Camiseta edición 4" class="shop-product-img" loading="lazy">
-
-                <div class="shop-product-body">
-                  <div class="shop-product-top">
-                    <span class="shop-type">CAMISETA</span>
-                    <span class="shop-price">28€</span>
-                  </div>
-
-                  <h4>BTR Edition 4 Tee</h4>
-                  <p class="shop-desc">Camiseta cápsula inspirada en el cartel de la edición 4.</p>
-
-                  <div class="shop-info">
-                    <span>Stock: 14</span>
-                    <span>100% algodón</span>
-                    <span>Unisex</span>
-                  </div>
-
-                  <div class="shop-selects">
-                    <select class="shop-select" name="ed4-tee-size">
-                      <option selected disabled>Talla</option>
-                      <option>S</option>
-                      <option>M</option>
-                      <option>L</option>
-                      <option>XL</option>
-                    </select>
-
-                    <select class="shop-select" name="ed4-tee-color">
-                      <option selected disabled>Color</option>
-                      <option>Negro</option>
-                      <option>Blanco</option>
-                      <option>Gris</option>
-                    </select>
-                  </div>
-
-                  <div class="shop-actions">
-                    <a class="btn btn-primary shop-buy"
-                       href="https://TU-LINK-DE-COMPRA-ED4-CAMISETA.com"
-                       target="_blank" rel="noopener">
-                      Comprar
-                    </a>
-
-                    <button class="btn btn-ghost poster-trigger"
-                            type="button"
-                            data-poster-src="assets/ed4.jpg"
-                            data-poster-title="Beyond The Rappers · Edición 4"
-                            data-poster-meta="Canarias en Vivo · 18 Dic · Las Palmas">
-                      Ver cartel
-                    </button>
-                  </div>
-                </div>
-              </article>
-
-              <article class="shop-product-card shop-product-card--soldout">
-                <img src="assets/shop/ed4-sudadera.jpg" alt="Sudadera edición 4" class="shop-product-img" loading="lazy">
-
-                <div class="shop-product-body">
-                  <div class="shop-product-top">
-                    <span class="shop-type">SUDADERA</span>
-                    <span class="shop-price">50€</span>
-                  </div>
-
-                  <h4>BTR Edition 4 Hoodie</h4>
-                  <p class="shop-desc">Sudadera premium de la edición 4.</p>
-
-                  <div class="shop-info">
-                    <span>Stock: agotado</span>
-                    <span>Premium fit</span>
-                    <span>Edición limitada</span>
-                  </div>
-
-                  <div class="shop-selects">
-                    <select class="shop-select" disabled>
-                      <option>Agotado</option>
-                    </select>
-
-                    <select class="shop-select" disabled>
-                      <option>Sin color disponible</option>
-                    </select>
-                  </div>
-
-                  <div class="shop-actions">
-                    <button class="btn shop-disabled" type="button" disabled>Agotado</button>
-
-                    <button class="btn btn-ghost poster-trigger"
-                            type="button"
-                            data-poster-src="assets/ed4.jpg"
-                            data-poster-title="Beyond The Rappers · Edición 4"
-                            data-poster-meta="Canarias en Vivo · 18 Dic · Las Palmas">
-                      Ver cartel
-                    </button>
-                  </div>
-                </div>
-              </article>
             </div>
           </article>
 
@@ -676,9 +423,6 @@
             data-city="Las Palmas"
             data-type="Music"
             data-search="aka marroko las palmas voy ami">
-            <div class="card-glow" aria-hidden="true"></div>
-            <div class="scanline" aria-hidden="true"></div>
-
             <header class="artist-top">
               <div class="artist-avatar">
                 <img src="assets/ARTIST/akaMarroko.jpeg" loading="lazy" alt="AKA.MARROKO">
@@ -687,31 +431,20 @@
               <div class="artist-head">
                 <h3 class="artist-name">AKA.MARROKO</h3>
                 <div class="artist-meta">
-                  <span class="badge badge--city">Las Palmas</span>
-                  <span class="badge badge--status">Emerging</span>
-                  <span class="badge badge--type">Music</span>
+                  <span class="badge">Las Palmas</span>
+                  <span class="badge">Emerging</span>
+                  <span class="badge">Music</span>
                 </div>
               </div>
-
-              <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
             </header>
 
             <div class="artist-bio muted">VOY AMI</div>
 
             <div class="artist-actions">
-              <a class="icon-link" href="https://open.spotify.com/artist/2Kq8reL54qJucfSl7eWiV8?si=xpfAMLR_RMy-o3QXZZB5jg" target="_blank" rel="noopener">
-                <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
-              </a>
-              <a class="icon-link" href="https://youtube.com/@akamarroko?si=0hQWVTnWTqtqI9BE" target="_blank" rel="noopener">
-                <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
-              </a>
-              <a class="icon-link" href="https://www.instagram.com/aka.maaaaaaaaaarroko?igsh=MWpweDd4dXN4Y2Y1ZQ==" target="_blank" rel="noopener">
-                <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
-              </a>
-
-              <button class="icon-link icon-link--btn" type="button" data-open="embeds-mar">
-                <span class="icon-circle">▶️</span><span class="icon-text">Play</span>
-              </button>
+              <a class="icon-link" href="https://open.spotify.com/artist/2Kq8reL54qJucfSl7eWiV8?si=xpfAMLR_RMy-o3QXZZB5jg" target="_blank" rel="noopener">Spotify</a>
+              <a class="icon-link" href="https://youtube.com/@akamarroko?si=0hQWVTnWTqtqI9BE" target="_blank" rel="noopener">YouTube</a>
+              <a class="icon-link" href="https://www.instagram.com/aka.maaaaaaaaaarroko?igsh=MWpweDd4dXN4Y2Y1ZQ==" target="_blank" rel="noopener">Instagram</a>
+              <button class="icon-link icon-link--btn" type="button" data-open="embeds-mar">Play</button>
             </div>
 
             <div class="artist-embed hidden" id="embeds-mar">
@@ -728,9 +461,6 @@
             data-city="Las Palmas"
             data-type="Music"
             data-search="el asere conciencia hardcore jazzy">
-            <div class="card-glow" aria-hidden="true"></div>
-            <div class="scanline" aria-hidden="true"></div>
-
             <header class="artist-top">
               <div class="artist-avatar">
                 <img src="assets/ARTIST/ElAsere.jpg" loading="lazy" alt="El Asere">
@@ -739,31 +469,20 @@
               <div class="artist-head">
                 <h3 class="artist-name">EL ASERE</h3>
                 <div class="artist-meta">
-                  <span class="badge badge--city">Las Palmas</span>
-                  <span class="badge badge--status">Emerging</span>
-                  <span class="badge badge--type">Music</span>
+                  <span class="badge">Las Palmas</span>
+                  <span class="badge">Emerging</span>
+                  <span class="badge">Music</span>
                 </div>
               </div>
-
-              <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
             </header>
 
             <div class="artist-bio muted">Conciencia · Hardcore · Jazzy</div>
 
             <div class="artist-actions">
-              <a class="icon-link" href="https://open.spotify.com/artist/277kyAB17i5CgjdJtPPec6" target="_blank" rel="noopener">
-                <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
-              </a>
-              <a class="icon-link" href="https://youtube.com/@asereestaenlacasa?si=Qlv4NbeRU-RDHDoE" target="_blank" rel="noopener">
-                <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
-              </a>
-              <a class="icon-link" href="https://www.instagram.com/elasereofficial/" target="_blank" rel="noopener">
-                <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
-              </a>
-
-              <button class="icon-link icon-link--btn" type="button" data-open="embeds-asere">
-                <span class="icon-circle">▶️</span><span class="icon-text">Play</span>
-              </button>
+              <a class="icon-link" href="https://open.spotify.com/artist/277kyAB17i5CgjdJtPPec6" target="_blank" rel="noopener">Spotify</a>
+              <a class="icon-link" href="https://youtube.com/@asereestaenlacasa?si=Qlv4NbeRU-RDHDoE" target="_blank" rel="noopener">YouTube</a>
+              <a class="icon-link" href="https://www.instagram.com/elasereofficial/" target="_blank" rel="noopener">Instagram</a>
+              <button class="icon-link icon-link--btn" type="button" data-open="embeds-asere">Play</button>
             </div>
 
             <div class="artist-embed hidden" id="embeds-asere">
@@ -780,9 +499,6 @@
             data-city="Madrid"
             data-type="Music"
             data-search="big de litto madrid electronica hiphop">
-            <div class="card-glow" aria-hidden="true"></div>
-            <div class="scanline" aria-hidden="true"></div>
-
             <header class="artist-top">
               <div class="artist-avatar">
                 <img src="assets/ARTIST/BigDeLitto.jpeg" loading="lazy" alt="Big De Litto">
@@ -791,31 +507,20 @@
               <div class="artist-head">
                 <h3 class="artist-name">BIG DE LITTO</h3>
                 <div class="artist-meta">
-                  <span class="badge badge--city">Madrid</span>
-                  <span class="badge badge--status">Emerging</span>
-                  <span class="badge badge--type">Music</span>
+                  <span class="badge">Madrid</span>
+                  <span class="badge">Emerging</span>
+                  <span class="badge">Music</span>
                 </div>
               </div>
-
-              <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
             </header>
 
             <div class="artist-bio muted">Electrónica / HipHop</div>
 
             <div class="artist-actions">
-              <a class="icon-link" href="https://open.spotify.com/artist/1VMUauDPFXyBM4VTmQZREA?si=rgV-AznETQqENJLb4VZGXg" target="_blank" rel="noopener">
-                <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
-              </a>
-              <a class="icon-link" href="https://youtube.com/@bigdelitto?si=GIn7nhUlv2JajgPD" target="_blank" rel="noopener">
-                <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
-              </a>
-              <a class="icon-link" href="https://www.instagram.com/bigdelitto?igsh=MTNxMm4yN3VwMDZycg%3D%3D&utm_source=qr" target="_blank" rel="noopener">
-                <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
-              </a>
-
-              <button class="icon-link icon-link--btn" type="button" data-open="embeds-bdl">
-                <span class="icon-circle">▶️</span><span class="icon-text">Play</span>
-              </button>
+              <a class="icon-link" href="https://open.spotify.com/artist/1VMUauDPFXyBM4VTmQZREA?si=rgV-AznETQqENJLb4VZGXg" target="_blank" rel="noopener">Spotify</a>
+              <a class="icon-link" href="https://youtube.com/@bigdelitto?si=GIn7nhUlv2JajgPD" target="_blank" rel="noopener">YouTube</a>
+              <a class="icon-link" href="https://www.instagram.com/bigdelitto?igsh=MTNxMm4yN3VwMDZycg%3D%3D&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
+              <button class="icon-link icon-link--btn" type="button" data-open="embeds-bdl">Play</button>
             </div>
 
             <div class="artist-embed hidden" id="embeds-bdl">
@@ -832,9 +537,6 @@
             data-city="Madrid"
             data-type="Music"
             data-search="kalatrava madrid">
-            <div class="card-glow" aria-hidden="true"></div>
-            <div class="scanline" aria-hidden="true"></div>
-
             <header class="artist-top">
               <div class="artist-avatar">
                 <img src="assets/ARTIST/KALATRAVA.jpeg" loading="lazy" alt="Kalatrava">
@@ -843,31 +545,20 @@
               <div class="artist-head">
                 <h3 class="artist-name">KALATRAVA</h3>
                 <div class="artist-meta">
-                  <span class="badge badge--city">Madrid</span>
-                  <span class="badge badge--status">Emerging</span>
-                  <span class="badge badge--type">Music</span>
+                  <span class="badge">Madrid</span>
+                  <span class="badge">Emerging</span>
+                  <span class="badge">Music</span>
                 </div>
               </div>
-
-              <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
             </header>
 
             <div class="artist-bio muted">@kalatrav4</div>
 
             <div class="artist-actions">
-              <a class="icon-link" href="https://open.spotify.com/intl-es/artist/6AnfmwUAyPF2nAhfQfhnD8" target="_blank" rel="noopener">
-                <span class="icon-circle">S</span><span class="icon-text">Spotify</span>
-              </a>
-              <a class="icon-link" href="https://youtube.com/@kalatravaoficial?si=UfMKHCbGhwKN909k" target="_blank" rel="noopener">
-                <span class="icon-circle">Y</span><span class="icon-text">YouTube</span>
-              </a>
-              <a class="icon-link" href="https://www.instagram.com/kalatrav4?igsh=Z3h1cHd5dHhtb2Fz" target="_blank" rel="noopener">
-                <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
-              </a>
-
-              <button class="icon-link icon-link--btn" type="button" data-open="embeds-kala">
-                <span class="icon-circle">▶️</span><span class="icon-text">Play</span>
-              </button>
+              <a class="icon-link" href="https://open.spotify.com/intl-es/artist/6AnfmwUAyPF2nAhfQfhnD8" target="_blank" rel="noopener">Spotify</a>
+              <a class="icon-link" href="https://youtube.com/@kalatravaoficial?si=UfMKHCbGhwKN909k" target="_blank" rel="noopener">YouTube</a>
+              <a class="icon-link" href="https://www.instagram.com/kalatrav4?igsh=Z3h1cHd5dHhtb2Fz" target="_blank" rel="noopener">Instagram</a>
+              <button class="icon-link icon-link--btn" type="button" data-open="embeds-kala">Play</button>
             </div>
 
             <div class="artist-embed hidden" id="embeds-kala">
@@ -884,9 +575,6 @@
             data-city="Barcelona"
             data-type="Tattoo"
             data-search="cardona ink barcelona tattoo lettering freehand">
-            <div class="card-glow" aria-hidden="true"></div>
-            <div class="scanline" aria-hidden="true"></div>
-
             <header class="artist-top">
               <div class="artist-avatar">
                 <img src="assets/ARTIST/CardonaInk.jpeg" loading="lazy" alt="Cardona Ink">
@@ -895,25 +583,18 @@
               <div class="artist-head">
                 <h3 class="artist-name">CARDONA INK</h3>
                 <div class="artist-meta">
-                  <span class="badge badge--city">Barcelona</span>
-                  <span class="badge badge--status">Emerging</span>
-                  <span class="badge badge--type">Tattoo</span>
+                  <span class="badge">Barcelona</span>
+                  <span class="badge">Emerging</span>
+                  <span class="badge">Tattoo</span>
                 </div>
               </div>
-
-              <button class="icon-btn fav-btn" type="button" aria-label="Guardar">★</button>
             </header>
 
             <div class="artist-bio muted">Tatuaje lettering · Freehand</div>
 
             <div class="artist-actions">
-              <a class="icon-link" href="https://www.instagram.com/cardona_ink?igsh=MXkyaGNscmZ6dHdsbw%3D%3D&utm_source=qr" target="_blank" rel="noopener">
-                <span class="icon-circle">I</span><span class="icon-text">Instagram</span>
-              </a>
-
-              <span class="icon-link icon-link--static">
-                <span class="icon-circle">S</span><span class="icon-text">No Spotify</span>
-              </span>
+              <a class="icon-link" href="https://www.instagram.com/cardona_ink?igsh=MXkyaGNscmZ6dHdsbw%3D%3D&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
+              <span class="icon-link icon-link--static">No Spotify</span>
             </div>
           </article>
         </div>
@@ -921,24 +602,21 @@
     </section>
 
     <!-- MAPA -->
-   <!-- MAPA MUNDIAL INTERACTIVO D3 -->
-<section id="mapa" class="section alt">
-  <div class="container">
-    <div class="section-head">
-      <h2 class="section-title">Mapa Mundial</h2>
-      <div class="title-underline" aria-hidden="true"></div>
-      <p class="muted">Toca un punto para ver el perfil y escuchar en Spotify.</p>
-    </div>
+    <section id="mapa" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Mapa Mundial</h2>
+          <div class="title-underline" aria-hidden="true"></div>
+          <p class="muted">Toca un punto para ver el perfil y escuchar en Spotify.</p>
+        </div>
 
-    <div class="d3-map-wrap">
+        <div class="d3-map-wrap">
+          <div id="worldMap" class="d3-map"></div>
+          <div id="mapTooltip" class="map-tooltip-box" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
 
-      <div id="worldMap" class="d3-map"></div>
-
-      <div id="mapTooltip" 
-      class="map-tooltip-box" 
-      aria-hidden="true"></div>
-    </div>
-</section>
     <!-- DESCUBRIR -->
     <section id="descubrir" class="section alt">
       <div class="container">
@@ -963,6 +641,41 @@
               Envíanos lanzamientos, propuestas, prensa, colaboraciones o artistas.
               También puedes unirte al boletín.
             </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BTR SHOP -->
+    <section id="btr-shop" class="shop-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Merch</span>
+          <h2 class="section-title">BTR Shop</h2>
+          <div class="title-underline" aria-hidden="true"></div>
+          <p class="muted">Ropa y accesorios oficiales de Beyond The Rapper’s.</p>
+        </div>
+
+        <div id="shop-grid" class="shop-grid">
+          <article class="product-card">
+            <img src="assets/merch/camisetablanca4edicion.jpeg" alt="Camiseta BTR blanca edición 4" loading="lazy">
+            <h3>Camiseta BTR Blanca</h3>
+            <p class="price">25€</p>
+            <a href="#" target="_blank" rel="noopener">Comprar</a>
+          </article>
+
+          <article class="product-card">
+            <img src="assets/merch/sudaderanegra4edicion.jpeg" alt="Sudadera BTR negra edición 4" loading="lazy">
+            <h3>Sudadera BTR Negra</h3>
+            <p class="price">40€</p>
+            <a href="#" target="_blank" rel="noopener">Comprar</a>
+          </article>
+
+          <article class="product-card">
+            <img src="assets/merch/sudaderanegracamisablanca4edicion.jpeg" alt="Pack sudadera negra y camiseta blanca edición 4" loading="lazy">
+            <h3>Pack Colectivo BTR</h3>
+            <p class="price">20€</p>
+            <a href="#" target="_blank" rel="noopener">Comprar</a>
           </article>
         </div>
       </div>
@@ -1013,6 +726,7 @@
         ©️ 2026 Beyond The Rappers. All rights reserved.
       </div>
     </footer>
+
   </main>
 
   <!-- MODAL CARTEL -->
@@ -1051,7 +765,7 @@
   </div>
 
   <!-- MODAL SPOTIFY -->
-  <div id="spotifyModal" class="embed-modal">
+  <div id="spotifyModal" class="embed-modal" aria-hidden="true">
     <div class="embed-backdrop" data-close></div>
     <div class="embed-content">
       <button class="embed-close" data-close>✕</button>
@@ -1099,9 +813,9 @@
       </div>
     </div>
   </div>
-<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
-<script src="script.js?v=20"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+  <script src="script.js?v=100"></script>
 </body>
 </html>
