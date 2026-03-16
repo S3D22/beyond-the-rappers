@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Camiseta BTR Blanca",
+    "price": "25€",
+    "image": "assets/merch/camisetablanca4edicion.jpeg",
+    "link": "#",
+    "description": "Camiseta oficial Beyond The Rapper’s edición 4."
+  },
+  {
+    "name": "Sudadera BTR Negra",
+    "price": "40€",
+    "image": "assets/merch/sudaderanegra4edicion.jpeg",
+    "link": "#",
+    "description": "Sudadera oficial Beyond The Rapper’s edición 4."
+  },
+  {
+    "name": "Pack Colectivo BTR",
+    "price": "20€",
+    "image": "assets/merch/sudaderanegracamisablanca4edicion.jpeg",
+    "link": "#",
+    "description": "Pack visual de sudadera negra y camiseta blanca edición 4."
+  }
+]
