@@ -1346,3 +1346,23 @@ body.dark-mode .legend-dot--cluster{
     flex:1;
   }
 }
+.archive-grid{
+  display:grid;
+  gap:26px;
+}
+
+.archive-grid .event-store-card{
+  padding:22px;
+}
+
+.archive-grid .event-store-head{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:22px;
+}
+
+@media (max-width:1100px){
+  .archive-grid .event-store-head{
+    grid-template-columns:1fr;
+  }
+}
