@@ -16,6 +16,30 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 /* =========================
+   HELPERS
+========================= */
+function getSpotifyEmbedUrl(url) {
+  if (!url) return "";
+
+  const artistMatch = url.match(/spotify\.com\/(?:intl-[^/]+\/)?artist\/([a-zA-Z0-9]+)/i);
+  if (artistMatch) {
+    return `https://open.spotify.com/embed/artist/${artistMatch[1]}`;
+  }
+
+  const trackMatch = url.match(/spotify\.com\/(?:intl-[^/]+\/)?track\/([a-zA-Z0-9]+)/i);
+  if (trackMatch) {
+    return `https://open.spotify.com/embed/track/${trackMatch[1]}`;
+  }
+
+  const albumMatch = url.match(/spotify\.com\/(?:intl-[^/]+\/)?album\/([a-zA-Z0-9]+)/i);
+  if (albumMatch) {
+    return `https://open.spotify.com/embed/album/${albumMatch[1]}`;
+  }
+
+  return "";
+}
+
+/* =========================
    THEME / CONTRAST
 ========================= */
 function initThemeMode() {
@@ -60,7 +84,7 @@ function initMenu() {
   const menuPanel = document.getElementById("menuPanel");
   const menuLinks = document.querySelectorAll(".menu-link");
 
-  if (!menuBtn || !menuClose || !menuPanel) return;
+  if (!menuBtn || !menuPanel) return;
 
   function openMenu() {
     menuPanel.classList.add("open");
@@ -74,9 +98,16 @@ function initMenu() {
     menuBtn.setAttribute("aria-expanded", "false");
   }
 
-  menuBtn.addEventListener("click", openMenu);
-  menuClose.addEventListener("click", closeMenu);
-  menuLinks.forEach(link => link.addEventListener("click", closeMenu));
+  menuBtn.addEventListener("click", () => {
+    if (menuPanel.classList.contains("open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  menuClose?.addEventListener("click", closeMenu);
+  menuLinks.forEach((link) => link.addEventListener("click", closeMenu));
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeMenu();
@@ -104,11 +135,13 @@ function initSearch() {
     merch: "#btr-shop",
     mapa: "#mapa",
     newsletter: "#newsletter",
-    home: "#home"
+    home: "#home",
+    inicio: "#home"
   };
 
   function doSearch(inputEl) {
     if (!inputEl) return;
+
     const value = inputEl.value.trim().toLowerCase();
     if (!value) return;
 
@@ -120,7 +153,7 @@ function initSearch() {
     }
 
     const allSections = document.querySelectorAll("section[id]");
-    const found = Array.from(allSections).find(section =>
+    const found = Array.from(allSections).find((section) =>
       section.id.toLowerCase().includes(value)
     );
 
@@ -147,12 +180,14 @@ function initSearch() {
    LINKS INTERNOS
 ========================= */
 function initSmoothInternalLinks() {
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (e) => {
       const href = link.getAttribute("href");
       if (!href || href === "#") return;
+
       const target = document.querySelector(href);
       if (!target) return;
+
       e.preventDefault();
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
@@ -199,7 +234,7 @@ function initPosterModal() {
     );
   });
 
-  closers.forEach(c => c.addEventListener("click", closeModal));
+  closers.forEach((c) => c.addEventListener("click", closeModal));
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModal();
@@ -242,7 +277,7 @@ function initSpotifyModal() {
     document.body.style.overflow = "";
   }
 
-  closeEls.forEach(el => el.addEventListener("click", closeModal));
+  closeEls.forEach((el) => el.addEventListener("click", closeModal));
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModal();
@@ -258,7 +293,45 @@ async function loadArtists() {
 
   try {
     const response = await fetch("data/artists.json");
-    allArtists = await response.json();
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const artists = await response.json();
+
+    allArtists = artists.map((artist) => ({
+      ...artist,
+      description: artist.description || artist.bio || "",
+      bio: artist.bio || artist.description || "",
+      search:
+        artist.search ||
+        [
+          artist.name || "",
+          artist.city || "",
+          artist.description || "",
+          artist.bio || "",
+          artist.type || "",
+          artist.status || ""
+        ]
+          .join(" ")
+          .toLowerCase(),
+      spotifyEmbed: artist.spotifyEmbed || getSpotifyEmbedUrl(artist.spotify),
+      lat:
+        typeof artist.lat === "number"
+          ? artist.lat
+          : typeof artist.coords?.lat === "number"
+          ? artist.coords.lat
+          : null,
+      lng:
+        typeof artist.lng === "number"
+          ? artist.lng
+          : typeof artist.coords?.lng === "number"
+          ? artist.coords.lng
+          : null,
+      type: artist.type || "Artista",
+      status: artist.status || "Activo"
+    }));
+
     renderArtists(allArtists);
   } catch (error) {
     console.error("Error cargando artistas:", error);
@@ -270,53 +343,55 @@ function renderArtists(artists) {
   const grid = document.getElementById("discoverGrid");
   if (!grid) return;
 
-  grid.innerHTML = artists.map((artist) => {
-    const spotifyBtn = artist.spotify
-      ? `<a class="icon-link" href="${artist.spotify}" target="_blank" rel="noopener">Spotify</a>`
-      : `<span class="icon-link icon-link--static">No Spotify</span>`;
+  grid.innerHTML = artists
+    .map((artist) => {
+      const spotifyBtn = artist.spotify
+        ? `<a class="icon-link" href="${artist.spotify}" target="_blank" rel="noopener">Spotify</a>`
+        : `<span class="icon-link icon-link--static">No Spotify</span>`;
 
-    const youtubeBtn = artist.youtube
-      ? `<a class="icon-link" href="${artist.youtube}" target="_blank" rel="noopener">YouTube</a>`
-      : "";
+      const youtubeBtn = artist.youtube
+        ? `<a class="icon-link" href="${artist.youtube}" target="_blank" rel="noopener">YouTube</a>`
+        : "";
 
-    const instagramBtn = artist.instagram
-      ? `<a class="icon-link" href="${artist.instagram}" target="_blank" rel="noopener">Instagram</a>`
-      : "";
+      const instagramBtn = artist.instagram
+        ? `<a class="icon-link" href="${artist.instagram}" target="_blank" rel="noopener">Instagram</a>`
+        : "";
 
-    const playBtn = artist.spotifyEmbed
-      ? `<button class="icon-link" type="button" data-open-spotify="${artist.spotifyEmbed}">Play</button>`
-      : "";
+      const playBtn = artist.spotifyEmbed
+        ? `<button class="icon-link" type="button" data-open-spotify="${artist.spotifyEmbed}">Play</button>`
+        : "";
 
-    return `
-      <article class="artist-card"
-        data-city="${artist.city}"
-        data-type="${artist.type}"
-        data-search="${artist.search}">
-        <header class="artist-top">
-          <div class="artist-avatar">
-            <img src="${artist.image}" loading="lazy" alt="Foto de ${artist.name}">
-          </div>
-          <div class="artist-head">
-            <h3 class="artist-name">${artist.name}</h3>
-            <div class="artist-meta">
-              <span class="badge">${artist.city}</span>
-              <span class="badge">${artist.status}</span>
-              <span class="badge">${artist.type}</span>
+      return `
+        <article class="artist-card"
+          data-city="${artist.city || ""}"
+          data-type="${artist.type || ""}"
+          data-search="${artist.search || ""}">
+          <header class="artist-top">
+            <div class="artist-avatar">
+              <img src="${artist.image || ""}" loading="lazy" alt="Foto de ${artist.name || ""}">
             </div>
+            <div class="artist-head">
+              <h3 class="artist-name">${artist.name || ""}</h3>
+              <div class="artist-meta">
+                <span class="badge">${artist.city || ""}</span>
+                <span class="badge">${artist.status || ""}</span>
+                <span class="badge">${artist.type || ""}</span>
+              </div>
+            </div>
+          </header>
+
+          <div class="artist-bio muted">${artist.bio || ""}</div>
+
+          <div class="artist-actions">
+            ${spotifyBtn}
+            ${youtubeBtn}
+            ${instagramBtn}
+            ${playBtn}
           </div>
-        </header>
-
-        <div class="artist-bio muted">${artist.bio}</div>
-
-        <div class="artist-actions">
-          ${spotifyBtn}
-          ${youtubeBtn}
-          ${instagramBtn}
-          ${playBtn}
-        </div>
-      </article>
-    `;
-  }).join("");
+        </article>
+      `;
+    })
+    .join("");
 }
 
 /* =========================
@@ -335,7 +410,8 @@ function initDiscoverFilters() {
     const type = typeFilter.value;
 
     const filtered = allArtists.filter((artist) => {
-      const matchSearch = !q || artist.search.toLowerCase().includes(q);
+      const artistSearch = (artist.search || "").toLowerCase();
+      const matchSearch = !q || artistSearch.includes(q);
       const matchCity = city === "all" || artist.city === city;
       const matchType = type === "all" || artist.type === type;
       return matchSearch && matchCity && matchType;
@@ -358,9 +434,15 @@ async function loadProducts() {
 
   try {
     const response = await fetch("data/products.json");
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
     const products = await response.json();
 
-    grid.innerHTML = products.map(product => `
+    grid.innerHTML = products
+      .map(
+        (product) => `
       <article class="product-card">
         <img src="${product.image}" alt="${product.name}" loading="lazy">
         <h3>${product.name}</h3>
@@ -368,16 +450,15 @@ async function loadProducts() {
         <p class="price">${product.price}</p>
         <a href="${product.link}" target="_blank" rel="noopener">Comprar</a>
       </article>
-    `).join("");
+    `
+      )
+      .join("");
   } catch (error) {
     console.error("Error cargando productos:", error);
     grid.innerHTML = `<p class="muted">No se pudieron cargar los productos.</p>`;
   }
 }
 
-/* =========================
-   MAPA MUNDIAL AUTOMÁTICO
-========================= */
 /* =========================
    MAPA MUNDIAL PRO
 ========================= */
@@ -410,30 +491,25 @@ async function initWorldMap() {
 
   const defs = svg.append("defs");
 
-  const glow = defs
-    .append("filter")
-    .attr("id", "pointGlow");
+  const glow = defs.append("filter").attr("id", "pointGlow");
 
-  glow.append("feGaussianBlur")
-    .attr("stdDeviation", "3.5")
-    .attr("result", "coloredBlur");
+  glow.append("feGaussianBlur").attr("stdDeviation", "3.5").attr("result", "coloredBlur");
 
   const feMerge = glow.append("feMerge");
   feMerge.append("feMergeNode").attr("in", "coloredBlur");
   feMerge.append("feMergeNode").attr("in", "SourceGraphic");
 
-  const projection = d3.geoNaturalEarth1()
+  const projection = d3
+    .geoNaturalEarth1()
     .scale(width / 6.15)
     .translate([width / 2, height / 2]);
 
   const path = d3.geoPath(projection);
 
-  svg.append("rect")
-    .attr("width", width)
-    .attr("height", height)
-    .attr("fill", bgColor);
+  svg.append("rect").attr("width", width).attr("height", height).attr("fill", bgColor);
 
-  svg.append("ellipse")
+  svg
+    .append("ellipse")
     .attr("cx", width / 2)
     .attr("cy", height / 2)
     .attr("rx", width * 0.43)
@@ -447,22 +523,31 @@ async function initWorldMap() {
 
   let currentFilter = "all";
 
-  const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
-  const countries = topojson.feature(world, world.objects.countries);
+  try {
+    const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+    const countries = topojson.feature(world, world.objects.countries);
 
-  countriesGroup
-    .selectAll("path")
-    .data(countries.features)
-    .join("path")
-    .attr("class", "map-country")
-    .attr("d", path)
-    .attr("fill", countryColor)
-    .attr("stroke", countryStroke)
-    .attr("stroke-width", 0.7);
+    countriesGroup
+      .selectAll("path")
+      .data(countries.features)
+      .join("path")
+      .attr("class", "map-country")
+      .attr("d", path)
+      .attr("fill", countryColor)
+      .attr("stroke", countryStroke)
+      .attr("stroke-width", 0.7);
+  } catch (error) {
+    console.error("Error cargando mapa mundial:", error);
+    return;
+  }
 
-  const zoom = d3.zoom()
+  const zoom = d3
+    .zoom()
     .scaleExtent([1, 7])
-    .translateExtent([[0, 0], [width, height]])
+    .translateExtent([
+      [0, 0],
+      [width, height]
+    ])
     .on("zoom", (event) => {
       mainGroup.attr("transform", event.transform);
     });
@@ -505,13 +590,13 @@ async function initWorldMap() {
       if (!projected) return;
 
       const [x, y] = projected;
-
       let found = null;
 
       for (const cluster of clustered) {
         const dx = cluster.x - x;
         const dy = cluster.y - y;
         const distance = Math.sqrt(dx * dx + dy * dy);
+
         if (distance < threshold) {
           found = cluster;
           break;
@@ -589,7 +674,10 @@ async function initWorldMap() {
     } else {
       tooltip.innerHTML = `
         <div class="map-tooltip-title">${cluster.items.length} perfiles cercanos</div>
-        <div class="map-tooltip-meta">${cluster.items.slice(0, 4).map(a => a.name).join(", ")}${cluster.items.length > 4 ? "..." : ""}</div>
+        <div class="map-tooltip-meta">${cluster.items
+          .slice(0, 4)
+          .map((a) => a.name)
+          .join(", ")}${cluster.items.length > 4 ? "..." : ""}</div>
       `;
     }
 
@@ -625,8 +713,9 @@ async function initWorldMap() {
       .attr("class", "map-marker-wrap")
       .style("cursor", "pointer");
 
-    enter.merge(pointSelection)
-      .attr("transform", d => `translate(${d.x}, ${d.y})`)
+    enter
+      .merge(pointSelection)
+      .attr("transform", (d) => `translate(${d.x}, ${d.y})`)
       .each(function (d) {
         const group = d3.select(this);
         group.selectAll("*").remove();
@@ -650,7 +739,6 @@ async function initWorldMap() {
             .attr("r", 14)
             .attr("fill", pointColor(artist.type))
             .attr("opacity", 0.12);
-
         } else {
           group
             .append("circle")
@@ -685,6 +773,7 @@ async function initWorldMap() {
 
   renderMapPoints();
 }
+
 /* =========================
    MODAL MAPA
 ========================= */
@@ -704,9 +793,21 @@ function openMapModal(artist) {
   mapTags.textContent = [artist.city, artist.type, artist.status].filter(Boolean).join(" · ");
 
   const actions = [];
-  if (artist.spotify) actions.push(`<a class="btn btn-primary btn-sm" href="${artist.spotify}" target="_blank" rel="noopener">Spotify</a>`);
-  if (artist.youtube) actions.push(`<a class="btn btn-ghost btn-sm" href="${artist.youtube}" target="_blank" rel="noopener">YouTube</a>`);
-  if (artist.instagram) actions.push(`<a class="btn btn-ghost btn-sm" href="${artist.instagram}" target="_blank" rel="noopener">Instagram</a>`);
+  if (artist.spotify) {
+    actions.push(
+      `<a class="btn btn-primary btn-sm" href="${artist.spotify}" target="_blank" rel="noopener">Spotify</a>`
+    );
+  }
+  if (artist.youtube) {
+    actions.push(
+      `<a class="btn btn-ghost btn-sm" href="${artist.youtube}" target="_blank" rel="noopener">YouTube</a>`
+    );
+  }
+  if (artist.instagram) {
+    actions.push(
+      `<a class="btn btn-ghost btn-sm" href="${artist.instagram}" target="_blank" rel="noopener">Instagram</a>`
+    );
+  }
   mapActions.innerHTML = actions.join("");
 
   if (artist.spotifyEmbed) {
@@ -727,6 +828,16 @@ function openMapModal(artist) {
   document.body.style.overflow = "hidden";
 }
 
+function closeMapModal() {
+  const modal = document.getElementById("mapModal");
+  const mapEmbed = document.getElementById("mapEmbed");
+  if (!modal) return;
+
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+  if (mapEmbed) mapEmbed.innerHTML = "";
+  document.body.style.overflow = "";
+}
 
 document.addEventListener("click", (e) => {
   if (e.target.matches("[data-map-close]")) {
@@ -739,16 +850,6 @@ document.addEventListener("keydown", (e) => {
     closeMapModal();
   }
 });
-
-function closeMapModal() {
-  const modal = document.getElementById("mapModal");
-  const mapEmbed = document.getElementById("mapEmbed");
-  if (!modal) return;
-  modal.classList.remove("open");
-  modal.setAttribute("aria-hidden", "true");
-  if (mapEmbed) mapEmbed.innerHTML = "";
-  document.body.style.overflow = "";
-}
 
 /* =========================
    COOKIES
@@ -769,33 +870,42 @@ function initCookieConsent() {
   if (!saved) root.hidden = false;
 
   settingsBtn?.addEventListener("click", () => {
-    settings.hidden = !settings.hidden;
+    if (settings) settings.hidden = !settings.hidden;
   });
 
   acceptBtn?.addEventListener("click", () => {
-    localStorage.setItem("btr_cookie_prefs", JSON.stringify({
-      necessary: true,
-      analytics: true,
-      marketing: true
-    }));
+    localStorage.setItem(
+      "btr_cookie_prefs",
+      JSON.stringify({
+        necessary: true,
+        analytics: true,
+        marketing: true
+      })
+    );
     root.hidden = true;
   });
 
   rejectBtn?.addEventListener("click", () => {
-    localStorage.setItem("btr_cookie_prefs", JSON.stringify({
-      necessary: true,
-      analytics: false,
-      marketing: false
-    }));
+    localStorage.setItem(
+      "btr_cookie_prefs",
+      JSON.stringify({
+        necessary: true,
+        analytics: false,
+        marketing: false
+      })
+    );
     root.hidden = true;
   });
 
   saveBtn?.addEventListener("click", () => {
-    localStorage.setItem("btr_cookie_prefs", JSON.stringify({
-      necessary: true,
-      analytics: !!analytics?.checked,
-      marketing: !!marketing?.checked
-    }));
+    localStorage.setItem(
+      "btr_cookie_prefs",
+      JSON.stringify({
+        necessary: true,
+        analytics: !!analytics?.checked,
+        marketing: !!marketing?.checked
+      })
+    );
     root.hidden = true;
   });
 }
