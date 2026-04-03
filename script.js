@@ -425,39 +425,6 @@ function initDiscoverFilters() {
   typeFilter.addEventListener("change", applyFilters);
 }
 
-/* =========================
-   PRODUCTOS DESDE JSON
-========================= */
-async function loadProducts() {
-  const grid = document.getElementById("shop-grid");
-  if (!grid) return;
-
-  try {
-    const response = await fetch("data/products.json");
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-
-    const products = await response.json();
-
-    grid.innerHTML = products
-      .map(
-        (product) => `
-      <article class="product-card">
-        <img src="${product.image}" alt="${product.name}" loading="lazy">
-        <h3>${product.name}</h3>
-        <p class="muted">${product.description}</p>
-        <p class="price">${product.price}</p>
-        <a href="${product.link}" target="_blank" rel="noopener">Comprar</a>
-      </article>
-    `
-      )
-      .join("");
-  } catch (error) {
-    console.error("Error cargando productos:", error);
-    grid.innerHTML = `<p class="muted">No se pudieron cargar los productos.</p>`;
-  }
-}
 
 /* =========================
    MAPA MUNDIAL PRO
