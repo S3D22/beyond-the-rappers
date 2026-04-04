@@ -1,18 +1,29 @@
 let allArtists = [];
+let worldMapResizeTimeout = null;
 
 document.addEventListener("DOMContentLoaded", async () => {
-  initThemeMode();
-  initMenu();
-  initSearch();
-  initPosterModal();
-  initSpotifyModal();
-  initCookieConsent();
-  initSmoothInternalLinks();
+  try {
+    initThemeMode();
+    initMenu();
+    initSearch();
+    initPosterModal();
+    initSpotifyModal();
+    initCookieConsent();
+    initSmoothInternalLinks();
 
-  await loadArtists();
-  initDiscoverFilters();
-  await loadProducts();
-  await initWorldMap();
+    await loadArtists();
+    initDiscoverFilters();
+    await initWorldMap();
+
+    window.addEventListener("resize", () => {
+      clearTimeout(worldMapResizeTimeout);
+      worldMapResizeTimeout = setTimeout(() => {
+        initWorldMap();
+      }, 180);
+    });
+  } catch (error) {
+    console.error("Error inicializando la web:", error);
+  }
 });
 
 /* =========================
@@ -22,19 +33,13 @@ function getSpotifyEmbedUrl(url) {
   if (!url) return "";
 
   const artistMatch = url.match(/spotify\.com\/(?:intl-[^/]+\/)?artist\/([a-zA-Z0-9]+)/i);
-  if (artistMatch) {
-    return `https://open.spotify.com/embed/artist/${artistMatch[1]}`;
-  }
+  if (artistMatch) return `https://open.spotify.com/embed/artist/${artistMatch[1]}`;
 
   const trackMatch = url.match(/spotify\.com\/(?:intl-[^/]+\/)?track\/([a-zA-Z0-9]+)/i);
-  if (trackMatch) {
-    return `https://open.spotify.com/embed/track/${trackMatch[1]}`;
-  }
+  if (trackMatch) return `https://open.spotify.com/embed/track/${trackMatch[1]}`;
 
   const albumMatch = url.match(/spotify\.com\/(?:intl-[^/]+\/)?album\/([a-zA-Z0-9]+)/i);
-  if (albumMatch) {
-    return `https://open.spotify.com/embed/album/${albumMatch[1]}`;
-  }
+  if (albumMatch) return `https://open.spotify.com/embed/album/${albumMatch[1]}`;
 
   return "";
 }
@@ -50,13 +55,8 @@ function initThemeMode() {
   const savedTheme = localStorage.getItem("btr_theme_mode");
   const savedContrast = localStorage.getItem("btr_high_contrast");
 
-  if (savedTheme === "dark") {
-    body.classList.add("dark-mode");
-  }
-
-  if (savedContrast === "true") {
-    body.classList.add("high-contrast");
-  }
+  if (savedTheme === "dark") body.classList.add("dark-mode");
+  if (savedContrast === "true") body.classList.add("high-contrast");
 
   themeToggle?.addEventListener("click", () => {
     body.classList.toggle("dark-mode");
@@ -64,6 +64,7 @@ function initThemeMode() {
       "btr_theme_mode",
       body.classList.contains("dark-mode") ? "dark" : "light"
     );
+    initWorldMap();
   });
 
   contrastToggle?.addEventListener("click", () => {
@@ -130,13 +131,12 @@ function initSearch() {
     discover: "#discover",
     descubrir: "#descubrir",
     contacto: "#contacto",
-    tienda: "#btr-shop",
-    shop: "#btr-shop",
-    merch: "#btr-shop",
     mapa: "#mapa",
-    newsletter: "#newsletter",
     home: "#home",
-    inicio: "#home"
+    inicio: "#home",
+    tienda: "https://shop.beyondtherappers.com",
+    shop: "https://shop.beyondtherappers.com",
+    merch: "https://shop.beyondtherappers.com"
   };
 
   function doSearch(inputEl) {
@@ -147,9 +147,16 @@ function initSearch() {
 
     const target = routes[value];
     if (target) {
+      if (target.startsWith("http")) {
+        window.open(target, "_blank", "noopener");
+        return;
+      }
+
       const el = document.querySelector(target);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
     }
 
     const allSections = document.querySelectorAll("section[id]");
@@ -425,7 +432,6 @@ function initDiscoverFilters() {
   typeFilter.addEventListener("change", applyFilters);
 }
 
-
 /* =========================
    MAPA MUNDIAL PRO
 ========================= */
@@ -435,7 +441,22 @@ async function initWorldMap() {
   const resetBtn = document.getElementById("mapResetBtn");
   const filterButtons = document.querySelectorAll("[data-map-filter]");
 
-  if (!mapEl || typeof d3 === "undefined" || typeof topojson === "undefined") return;
+  if (!mapEl) {
+    console.error("No existe #worldMap en el HTML");
+    return;
+  }
+
+  if (typeof d3 === "undefined") {
+    console.error("D3 no está cargado");
+    mapEl.innerHTML = `<p class="muted">Error: D3 no cargó.</p>`;
+    return;
+  }
+
+  if (typeof topojson === "undefined") {
+    console.error("TopoJSON no está cargado");
+    mapEl.innerHTML = `<p class="muted">Error: TopoJSON no cargó.</p>`;
+    return;
+  }
 
   mapEl.innerHTML = "";
   mapEl.style.position = "relative";
@@ -450,7 +471,7 @@ async function initWorldMap() {
   const countryStroke = isDark ? "#5b6b80" : "#aab8c8";
 
   const svg = d3
-    .select("#worldMap")
+    .select(mapEl)
     .append("svg")
     .attr("viewBox", `0 0 ${width} ${height}`)
     .attr("role", "img")
@@ -459,8 +480,9 @@ async function initWorldMap() {
   const defs = svg.append("defs");
 
   const glow = defs.append("filter").attr("id", "pointGlow");
-
-  glow.append("feGaussianBlur").attr("stdDeviation", "3.5").attr("result", "coloredBlur");
+  glow.append("feGaussianBlur")
+    .attr("stdDeviation", "3.5")
+    .attr("result", "coloredBlur");
 
   const feMerge = glow.append("feMerge");
   feMerge.append("feMergeNode").attr("in", "coloredBlur");
@@ -473,10 +495,12 @@ async function initWorldMap() {
 
   const path = d3.geoPath(projection);
 
-  svg.append("rect").attr("width", width).attr("height", height).attr("fill", bgColor);
+  svg.append("rect")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("fill", bgColor);
 
-  svg
-    .append("ellipse")
+  svg.append("ellipse")
     .attr("cx", width / 2)
     .attr("cy", height / 2)
     .attr("rx", width * 0.43)
@@ -489,32 +513,32 @@ async function initWorldMap() {
   const pointsGroup = mainGroup.append("g").attr("class", "map-points-group");
 
   let currentFilter = "all";
+  let world;
 
   try {
-    const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
-    const countries = topojson.feature(world, world.objects.countries);
-
-    countriesGroup
-      .selectAll("path")
-      .data(countries.features)
-      .join("path")
-      .attr("class", "map-country")
-      .attr("d", path)
-      .attr("fill", countryColor)
-      .attr("stroke", countryStroke)
-      .attr("stroke-width", 0.7);
+    world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
   } catch (error) {
     console.error("Error cargando mapa mundial:", error);
+    mapEl.innerHTML = `<p class="muted">No se pudo cargar el mapa mundial.</p>`;
     return;
   }
+
+  const countries = topojson.feature(world, world.objects.countries);
+
+  countriesGroup
+    .selectAll("path")
+    .data(countries.features)
+    .join("path")
+    .attr("class", "map-country")
+    .attr("d", path)
+    .attr("fill", countryColor)
+    .attr("stroke", countryStroke)
+    .attr("stroke-width", 0.7);
 
   const zoom = d3
     .zoom()
     .scaleExtent([1, 7])
-    .translateExtent([
-      [0, 0],
-      [width, height]
-    ])
+    .translateExtent([[0, 0], [width, height]])
     .on("zoom", (event) => {
       mainGroup.attr("transform", event.transform);
     });
@@ -680,8 +704,7 @@ async function initWorldMap() {
       .attr("class", "map-marker-wrap")
       .style("cursor", "pointer");
 
-    enter
-      .merge(pointSelection)
+    enter.merge(pointSelection)
       .attr("transform", (d) => `translate(${d.x}, ${d.y})`)
       .each(function (d) {
         const group = d3.select(this);
@@ -690,8 +713,7 @@ async function initWorldMap() {
         if (d.items.length === 1) {
           const artist = d.items[0];
 
-          group
-            .append("circle")
+          group.append("circle")
             .attr("class", "map-point")
             .attr("r", 7)
             .attr("fill", pointColor(artist.type))
@@ -700,15 +722,13 @@ async function initWorldMap() {
             .attr("filter", "url(#pointGlow)")
             .attr("opacity", 0.96);
 
-          group
-            .append("circle")
+          group.append("circle")
             .attr("class", "map-point")
             .attr("r", 14)
             .attr("fill", pointColor(artist.type))
             .attr("opacity", 0.12);
         } else {
-          group
-            .append("circle")
+          group.append("circle")
             .attr("class", "map-cluster")
             .attr("r", 14 + Math.min(d.items.length, 8))
             .attr("fill", "#111827")
@@ -716,8 +736,7 @@ async function initWorldMap() {
             .attr("stroke-width", 2.5)
             .attr("opacity", 0.92);
 
-          group
-            .append("text")
+          group.append("text")
             .attr("class", "map-cluster-label")
             .attr("text-anchor", "middle")
             .attr("dy", "0.35em")
