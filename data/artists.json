@@ -89,5 +89,37 @@
     "spotifyEmbed": "",
     "lat": 41.3874,
     "lng": 2.1686
+  },
+  {
+    "name": "OCTARA-Alejandra Ospina",
+    "city": "Las Palmas",
+    "type": "Tattoo",
+    "status": "Emerging",
+    "search": "alejandra ospina octara art beyond skin colombia las palmas tatuadora diseñadora",
+    "image": "assets/ARTIST/AlejandraOspina.jpeg",
+    "bio": "Tatuadora · Diseñadora",
+    "description": "art beyond skin",
+    "spotify": "",
+    "youtube": "",
+    "instagram": "https://www.instagram.com/alejandra_ospiina?igsh=MXdjczNrYmd1dGJvZg%3D%3D&utm_source=qr",
+    "spotifyEmbed": "",
+    "lat": 28.1235,
+    "lng": -15.4363
+  },
+  {
+    "name": "Diego Yesca",
+    "city": "Lima",
+    "type": "Music",
+    "status": "Emerging",
+    "search": "diego yesca lima black street mc de boombap",
+    "image": "assets/ARTIST/DiegoYesca.jpeg",
+    "bio": "MC de boombap",
+    "description": "Lima black street",
+    "spotify": "https://open.spotify.com/artist/55g4w3nVo514c0pqgFXNCJ?si=KzdV956JTgSbzbFCsrI3uQ",
+    "youtube": "https://youtube.com/@d.yescalbs?si=-1sRqmTDcAaylNyu",
+    "instagram": "https://www.instagram.com/d.yesca?igsh=ZXR4cm00eHJyOXgy",
+    "spotifyEmbed": "https://open.spotify.com/embed/artist/55g4w3nVo514c0pqgFXNCJ",
+    "lat": -12.0464,
+    "lng": -77.0428
   }
 ]
