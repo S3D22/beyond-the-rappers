@@ -122,4 +122,21 @@
     "lat": -12.0464,
     "lng": -77.0428
   }
+
+{
+  "name": "ABADONPROJECT",
+  "city": "Barcelona",
+  "type": "Tattoo",
+  "status": "Emerging",
+  "search": "abadonproject barcelona colombia tattoo neotribal chicano tatuador",
+  "image": "assets/ARTIST/abadonproject.jpeg",
+  "bio": "Neotribal · Chicano",
+  "description": "Neotribal · Chicano",
+  "instagram": "https://www.instagram.com/abadonproject/",
+  "spotify": "",
+  "youtube": "",
+  "spotifyEmbed": "",
+  "lat": 41.3874,
+  "lng": 2.1686
+}
 ]
