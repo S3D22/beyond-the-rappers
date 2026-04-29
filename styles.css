@@ -1546,3 +1546,119 @@ body.dark-mode .legend-dot--cluster{
     grid-template-columns: 1fr;
   }
 }
+/* =========================
+EVENTOS - CARRUSEL PRO
+========================= */
+
+.events-carousel-wrap {
+position: relative;
+}
+
+.events-carousel {
+display: flex;
+gap: 28px;
+overflow-x: auto;
+scroll-snap-type: x mandatory;
+scroll-behavior: smooth;
+padding: 20px 10px 40px;
+}
+
+.events-carousel::-webkit-scrollbar {
+height: 8px;
+}
+
+.events-carousel::-webkit-scrollbar-thumb {
+background: rgba(15, 98, 254, .55);
+border-radius: 999px;
+}
+
+.event-slide {
+min-width: 360px;
+scroll-snap-align: start;
+border: 1px solid rgba(0,0,0,.14);
+border-radius: 28px;
+padding: 18px;
+background: rgba(255,255,255,.72);
+backdrop-filter: blur(12px);
+transition: transform 0.3s ease, opacity 0.3s ease;
+opacity: 0.72;
+transform: scale(0.94);
+}
+
+.event-slide:first-child {
+min-width: 420px;
+opacity: 1;
+transform: scale(1);
+}
+
+.event-slide:hover {
+transform: scale(1.03);
+opacity: 1;
+}
+
+.event-slide .event-store-poster img,
+.event-slide img {
+width: 100%;
+aspect-ratio: 4 / 5;
+object-fit: cover;
+border-radius: 22px;
+box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.event-slide-info {
+padding-top: 16px;
+}
+
+.carousel-btn {
+position: absolute;
+top: 42%;
+z-index: 5;
+width: 46px;
+height: 46px;
+border-radius: 999px;
+border: 1px solid rgba(0,0,0,.16);
+background: #fff;
+font-size: 34px;
+cursor: pointer;
+box-shadow: 0 12px 30px rgba(0,0,0,.18);
+}
+
+.carousel-btn-left {
+left: -12px;
+}
+
+.carousel-btn-right {
+right: -12px;
+}
+
+.events-carousel-wrap::before,
+.events-carousel-wrap::after {
+content: "";
+position: absolute;
+top: 0;
+width: 80px;
+height: 100%;
+z-index: 4;
+pointer-events: none;
+}
+
+.events-carousel-wrap::before {
+left: 0;
+background: linear-gradient(to right, #fff, transparent);
+}
+
+.events-carousel-wrap::after {
+right: 0;
+background: linear-gradient(to left, #fff, transparent);
+}
+
+@media (max-width: 700px) {
+.event-slide,
+.event-slide:first-child {
+min-width: 82vw;
+}
+
+.carousel-btn {
+display: none;
+}
+}
