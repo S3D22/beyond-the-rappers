@@ -44,6 +44,15 @@ function getSpotifyEmbedUrl(url) {
   return "";
 }
 
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
 /* =========================
    THEME / CONTRAST
 ========================= */
@@ -308,6 +317,8 @@ async function loadArtists() {
 
     allArtists = artists.map((artist) => ({
       ...artist,
+      nationality: artist.nationality || "",
+      section: artist.section || artist.type || "Music",
       description: artist.description || artist.bio || "",
       bio: artist.bio || artist.description || "",
       search:
@@ -315,6 +326,8 @@ async function loadArtists() {
         [
           artist.name || "",
           artist.city || "",
+          artist.nationality || "",
+          artist.section || "",
           artist.description || "",
           artist.bio || "",
           artist.type || "",
@@ -350,44 +363,90 @@ function renderArtists(artists) {
   const grid = document.getElementById("discoverGrid");
   if (!grid) return;
 
-  grid.innerHTML = artists
-    .map((artist) => {
-      const spotifyBtn = artist.spotify
-        ? `<a class="icon-link" href="${artist.spotify}" target="_blank" rel="noopener">Spotify</a>`
-        : `<span class="icon-link icon-link--static">No Spotify</span>`;
+  const sections = [
+    { key: "Music", title: "Cantantes / MCs" },
+    { key: "Tattoo", title: "Tatuadores" },
+    { key: "Visual", title: "Fotógrafos / Filmmakers" }
+  ];
 
-      const youtubeBtn = artist.youtube
-        ? `<a class="icon-link" href="${artist.youtube}" target="_blank" rel="noopener">YouTube</a>`
-        : "";
+  function renderCard(artist) {
+    const name = escapeHtml(artist.name || "");
+    const city = escapeHtml(artist.city || "");
+    const nationality = escapeHtml(artist.nationality || "");
+    const status = escapeHtml(artist.status || "");
+    const type = escapeHtml(artist.type || "");
+    const bio = escapeHtml(artist.bio || "");
+    const image = escapeHtml(artist.image || "");
+    const spotify = escapeHtml(artist.spotify || "");
+    const youtube = escapeHtml(artist.youtube || "");
+    const instagram = escapeHtml(artist.instagram || "");
+    const spotifyEmbed = escapeHtml(artist.spotifyEmbed || "");
 
-      const instagramBtn = artist.instagram
-        ? `<a class="icon-link" href="${artist.instagram}" target="_blank" rel="noopener">Instagram</a>`
-        : "";
+    const spotifyBtn = artist.spotify
+      ? `<a class="icon-link" href="${spotify}" target="_blank" rel="noopener">Spotify</a>`
+      : `<span class="icon-link icon-link--static">No Spotify</span>`;
 
-      const playBtn = artist.spotifyEmbed
-        ? `<button class="icon-link" type="button" data-open-spotify="${artist.spotifyEmbed}">Play</button>`
-        : "";
+    const youtubeBtn = artist.youtube
+      ? `<a class="icon-link" href="${youtube}" target="_blank" rel="noopener">YouTube</a>`
+      : "";
 
-      return `
-        <article class="artist-card"
-          data-city="${artist.city || ""}"
-          data-type="${artist.type || ""}"
-          data-search="${artist.search || ""}">
+    const instagramBtn = artist.instagram
+      ? `<a class="icon-link" href="${instagram}" target="_blank" rel="noopener">Instagram</a>`
+      : "";
+
+    const playBtn = artist.spotifyEmbed
+      ? `<button class="icon-link" type="button" data-open-spotify="${spotifyEmbed}">Play</button>`
+      : "";
+
+    return `
+      <article class="artist-card"
+        data-city="${city}"
+        data-type="${type}"
+        data-search="${escapeHtml(artist.search || "")}"
+        style="position:relative; overflow:hidden; isolation:isolate;">
+        
+        <div
+          class="artist-card-bg"
+          style="
+            position:absolute;
+            inset:0;
+            background-image:url('${image}');
+            background-size:cover;
+            background-position:center;
+            opacity:0.14;
+            filter:blur(0px);
+            transform:scale(1.05);
+            z-index:0;
+            pointer-events:none;
+          "></div>
+
+        <div
+          class="artist-card-overlay"
+          style="
+            position:absolute;
+            inset:0;
+            background:linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.88) 48%, rgba(255,255,255,0.95) 100%);
+            z-index:0;
+            pointer-events:none;
+          "></div>
+
+        <div style="position:relative; z-index:1;">
           <header class="artist-top">
             <div class="artist-avatar">
-              <img src="${artist.image || ""}" loading="lazy" alt="Foto de ${artist.name || ""}">
+              <img src="${image}" loading="lazy" alt="Foto de ${name}">
             </div>
             <div class="artist-head">
-              <h3 class="artist-name">${artist.name || ""}</h3>
+              <h3 class="artist-name">${name}</h3>
               <div class="artist-meta">
-                <span class="badge">${artist.city || ""}</span>
-                <span class="badge">${artist.status || ""}</span>
-                <span class="badge">${artist.type || ""}</span>
+                <span class="badge">${city}</span>
+                <span class="badge">${nationality}</span>
+                <span class="badge">${status}</span>
+                <span class="badge">${type}</span>
               </div>
             </div>
           </header>
 
-          <div class="artist-bio muted">${artist.bio || ""}</div>
+          <div class="artist-bio muted">${bio}</div>
 
           <div class="artist-actions">
             ${spotifyBtn}
@@ -395,10 +454,39 @@ function renderArtists(artists) {
             ${instagramBtn}
             ${playBtn}
           </div>
-        </article>
+        </div>
+      </article>
+    `;
+  }
+
+  const html = sections
+    .map((section) => {
+      const items = artists.filter((artist) => artist.section === section.key);
+      if (!items.length) return "";
+
+      return `
+        <section class="discover-section-block" style="margin-bottom:48px;">
+          <div class="discover-section-head" style="margin-bottom:18px;">
+            <h3 class="discover-section-title" style="margin:0; font-size:1.35rem; text-transform:uppercase; letter-spacing:0.04em;">
+              ${section.title}
+            </h3>
+          </div>
+
+          <div
+            class="discover-grid-inner"
+            style="
+              display:grid;
+              grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+              gap:24px;
+            ">
+            ${items.map(renderCard).join("")}
+          </div>
+        </section>
       `;
     })
     .join("");
+
+  grid.innerHTML = html || `<p class="muted">No se encontraron artistas.</p>`;
 }
 
 /* =========================
@@ -420,7 +508,7 @@ function initDiscoverFilters() {
       const artistSearch = (artist.search || "").toLowerCase();
       const matchSearch = !q || artistSearch.includes(q);
       const matchCity = city === "all" || artist.city === city;
-      const matchType = type === "all" || artist.type === type;
+      const matchType = type === "all" || artist.type === type || artist.section === type;
       return matchSearch && matchCity && matchType;
     });
 
@@ -569,7 +657,7 @@ async function initWorldMap() {
     );
 
     if (currentFilter === "all") return base;
-    return base.filter((a) => a.type === currentFilter);
+    return base.filter((a) => a.type === currentFilter || a.section === currentFilter);
   }
 
   function buildClusters(artists) {
@@ -610,8 +698,10 @@ async function initWorldMap() {
     return clustered;
   }
 
-  function pointColor(type) {
-    return type === "Tattoo" ? "#b45309" : "#0f62fe";
+  function pointColor(type, section) {
+    if (type === "Tattoo" || section === "Tattoo") return "#b45309";
+    if (type === "Filmmaker" || type === "Photo" || section === "Visual") return "#7c3aed";
+    return "#0f62fe";
   }
 
   function openArtistOrCluster(cluster) {
@@ -643,7 +733,7 @@ async function initWorldMap() {
       actions.innerHTML = cluster.items
         .map((a) => {
           const link = a.instagram || a.spotify || a.youtube || "#";
-          return `<a class="btn btn-ghost btn-sm" href="${link}" target="_blank" rel="noopener">${a.name}</a>`;
+          return `<a class="btn btn-ghost btn-sm" href="${escapeHtml(link)}" target="_blank" rel="noopener">${escapeHtml(a.name)}</a>`;
         })
         .join("");
     }
@@ -659,15 +749,15 @@ async function initWorldMap() {
     if (cluster.items.length === 1) {
       const a = cluster.items[0];
       tooltip.innerHTML = `
-        <div class="map-tooltip-title">${a.name}</div>
-        <div class="map-tooltip-meta">${a.city} · ${a.type}</div>
+        <div class="map-tooltip-title">${escapeHtml(a.name)}</div>
+        <div class="map-tooltip-meta">${escapeHtml(a.city)} · ${escapeHtml(a.type)}</div>
       `;
     } else {
       tooltip.innerHTML = `
         <div class="map-tooltip-title">${cluster.items.length} perfiles cercanos</div>
         <div class="map-tooltip-meta">${cluster.items
           .slice(0, 4)
-          .map((a) => a.name)
+          .map((a) => escapeHtml(a.name))
           .join(", ")}${cluster.items.length > 4 ? "..." : ""}</div>
       `;
     }
@@ -704,7 +794,8 @@ async function initWorldMap() {
       .attr("class", "map-marker-wrap")
       .style("cursor", "pointer");
 
-    enter.merge(pointSelection)
+    enter
+      .merge(pointSelection)
       .attr("transform", (d) => `translate(${d.x}, ${d.y})`)
       .each(function (d) {
         const group = d3.select(this);
@@ -716,7 +807,7 @@ async function initWorldMap() {
           group.append("circle")
             .attr("class", "map-point")
             .attr("r", 7)
-            .attr("fill", pointColor(artist.type))
+            .attr("fill", pointColor(artist.type, artist.section))
             .attr("stroke", "#ffffff")
             .attr("stroke-width", 2.5)
             .attr("filter", "url(#pointGlow)")
@@ -725,7 +816,7 @@ async function initWorldMap() {
           group.append("circle")
             .attr("class", "map-point")
             .attr("r", 14)
-            .attr("fill", pointColor(artist.type))
+            .attr("fill", pointColor(artist.type, artist.section))
             .attr("opacity", 0.12);
         } else {
           group.append("circle")
@@ -776,22 +867,27 @@ function openMapModal(artist) {
   mapImg.src = artist.image || "";
   mapImg.alt = artist.name || "";
   mapName.textContent = artist.name || "";
-  mapTags.textContent = [artist.city, artist.type, artist.status].filter(Boolean).join(" · ");
+  mapTags.textContent = [
+    artist.city,
+    artist.nationality,
+    artist.type,
+    artist.status
+  ].filter(Boolean).join(" · ");
 
   const actions = [];
   if (artist.spotify) {
     actions.push(
-      `<a class="btn btn-primary btn-sm" href="${artist.spotify}" target="_blank" rel="noopener">Spotify</a>`
+      `<a class="btn btn-primary btn-sm" href="${escapeHtml(artist.spotify)}" target="_blank" rel="noopener">Spotify</a>`
     );
   }
   if (artist.youtube) {
     actions.push(
-      `<a class="btn btn-ghost btn-sm" href="${artist.youtube}" target="_blank" rel="noopener">YouTube</a>`
+      `<a class="btn btn-ghost btn-sm" href="${escapeHtml(artist.youtube)}" target="_blank" rel="noopener">YouTube</a>`
     );
   }
   if (artist.instagram) {
     actions.push(
-      `<a class="btn btn-ghost btn-sm" href="${artist.instagram}" target="_blank" rel="noopener">Instagram</a>`
+      `<a class="btn btn-ghost btn-sm" href="${escapeHtml(artist.instagram)}" target="_blank" rel="noopener">Instagram</a>`
     );
   }
   mapActions.innerHTML = actions.join("");
@@ -799,13 +895,13 @@ function openMapModal(artist) {
   if (artist.spotifyEmbed) {
     mapEmbed.innerHTML = `
       <iframe
-        src="${artist.spotifyEmbed}"
+        src="${escapeHtml(artist.spotifyEmbed)}"
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"></iframe>
     `;
   } else {
     mapEmbed.innerHTML = artist.bio
-      ? `<p class="muted">${artist.bio}</p>`
+      ? `<p class="muted">${escapeHtml(artist.bio)}</p>`
       : `<p class="muted">Este perfil no tiene embed de Spotify.</p>`;
   }
 
@@ -895,3 +991,75 @@ function initCookieConsent() {
     root.hidden = true;
   });
 }
+/* =========================
+   EVENTO JUNIO / VENTA DE ENTRADAS
+========================= */
+const BTR_EVENT_DATE = new Date("2026-06-20T20:00:00");
+const BTR_TICKET_URL = "https://vivetix.com/es/entradas-beyond-the-rappers-oopk?s=link";
+
+function initBtrTicketLanding() {
+  const btn = document.getElementById("ticketBtn");
+  const note = document.getElementById("ticketNote");
+  const pill = document.getElementById("ticketStatusPill");
+  const mini = document.getElementById("ticketMiniStatus");
+
+  if (btn) {
+    const status = btn.dataset.status || "presale";
+
+    if (status === "coming") {
+      btn.textContent = "🔒 Próximamente";
+      btn.removeAttribute("href");
+      if (note) note.innerHTML = 'Entradas limitadas. Link oficial para compartir: <strong>beyondtherappers.com/#evento-junio</strong>';
+      if (pill) pill.textContent = "PREVENTA PRÓXIMAMENTE";
+      if (mini) mini.textContent = "Próximamente";
+    }
+
+    if (status === "presale") {
+      btn.textContent = "🎟 Comprar entradas";
+      btn.href = BTR_TICKET_URL;
+      btn.target = "_blank";
+      btn.rel = "noopener";
+      if (note) note.innerHTML = 'Preventa activa. Aforo limitado. Link oficial: <strong>beyondtherappers.com/#evento-junio</strong>';
+      if (pill) pill.textContent = "PREVENTA ACTIVA";
+      if (mini) mini.textContent = "Preventa";
+    }
+
+    if (status === "soldout") {
+      btn.textContent = "❌ Sold Out";
+      btn.removeAttribute("href");
+      if (note) note.textContent = "Entradas agotadas. Sigue atento a próximas ediciones.";
+      if (pill) pill.textContent = "SOLD OUT";
+      if (mini) mini.textContent = "Sold Out";
+    }
+  }
+
+  const days = document.getElementById("ticketDays");
+  const hours = document.getElementById("ticketHours");
+  const minutes = document.getElementById("ticketMinutes");
+  const seconds = document.getElementById("ticketSeconds");
+
+  if (!days || !hours || !minutes || !seconds) return;
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = BTR_EVENT_DATE.getTime() - now;
+
+    if (distance <= 0) {
+      days.textContent = "00";
+      hours.textContent = "00";
+      minutes.textContent = "00";
+      seconds.textContent = "00";
+      return;
+    }
+
+    days.textContent = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, "0");
+    hours.textContent = String(Math.floor((distance / (1000 * 60 * 60)) % 24)).padStart(2, "0");
+    minutes.textContent = String(Math.floor((distance / (1000 * 60)) % 60)).padStart(2, "0");
+    seconds.textContent = String(Math.floor((distance / 1000) % 60)).padStart(2, "0");
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+}
+
+document.addEventListener("DOMContentLoaded", initBtrTicketLanding);
