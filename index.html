@@ -751,80 +751,54 @@
 
 
 
-    <section id="noticias" class="section alt">
+ <section id="noticias" class="section alt">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Noticias</h2>
+      <div class="title-underline" aria-hidden="true"></div>
+      <p class="muted">Lanzamientos, novedades y actualidad de la escena.</p>
+    </div>
 
-      <div class="container">
-
-        <div class="section-head">
-
-          <h2 class="section-title">Noticias</h2>
-
-          <div class="title-underline" aria-hidden="true"></div>
-
-          <p class="muted">Actualizaciones, lanzamientos y avisos.</p>
-
+    <article class="news-release-card">
+      <div class="news-release-media">
+        <div class="video-item">
+          <span class="live-badge">▶️ PLAY</span>
+          <video src="assets/teaser-asere.mp4" autoplay muted loop playsinline></video>
         </div>
 
-
-
-        <div class="news-grid">
-
-          <div class="panel">
-
-            <div class="panel-head">
-
-              <h3 class="panel-title">Lanzamientos</h3>
-
-              <span class="pill">Highlights</span>
-
-            </div>
-
-
-
-            <div class="panel-body">
-
-              <div class="list">
-
-                <div class="item">
-
-                  <strong>Single · 29 Mar</strong>
-
-                  <p class="muted">Artista · “Tema” · enlace Spotify/YouTube + texto corto.</p>
-
-                </div>
-
-
-
-                <div class="item">
-
-                  <strong>EP · Próx.</strong>
-
-                  <p class="muted">Artista · “Proyecto” · highlights + links.</p>
-
-                </div>
-
-
-
-                <div class="item">
-
-                  <strong>Actualización</strong>
-
-                  <p class="muted">Convocatorias, anuncios o próximos drops.</p>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
+        <div class="video-item">
+          <span class="live-badge">▶️ PLAY</span>
+          <video src="assets/teaser-marroko.mp4" autoplay muted loop playsinline></video>
         </div>
-
       </div>
 
-    </section>
+      <div class="news-release-content">
+        <span class="shop-kicker">NUEVO LANZAMIENTO</span>
+        <h3>El Asere ft. Aka.Marroko · Amazing</h3>
 
+        <p class="muted">
+          Single publicado el 24 de abril de 2026. El Asere y AKA.MARROKO unen fuerzas en “Amazing”,
+          un tema con energía callejera, identidad canaria y sonido directo para la escena.
+        </p>
+
+        <div class="event-store-meta">
+          <span class="shop-pill">Single</span>
+          <span class="shop-pill">24 Abril 2026</span>
+          <span class="shop-pill">YouTube</span>
+        </div>
+
+        <div class="event-store-links">
+          <a class="btn btn-primary"
+             href="https://youtu.be/opoG_JO09wk?is=6Q8M00l7Jmsq8OE6"
+             target="_blank"
+             rel="noopener">
+            Ver lanzamiento
+          </a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
 
 <section id="eventos" class="section">
 <div class="container">
@@ -862,7 +836,7 @@ Comprar entradas
 <img src="assets/ed5.jpg">
 <div class="event-slide-info">
 <span class="shop-kicker">EDICIÓN 5</span>
-<h3>Classic Shit</h3>
+<h3>Classic Shit Edition · Las Palmas</h3>
 </div>
 </article>
 
@@ -870,7 +844,7 @@ Comprar entradas
 <img src="assets/ed4.jpg">
 <div class="event-slide-info">
 <span class="shop-kicker">EDICIÓN 4</span>
-<h3>Canarias en Vivo</h3>
+<h3>Encuentro Edition · Las Palmas</h3>
 </div>
 </article>
 
@@ -1374,12 +1348,19 @@ Comprar entradas
 
   </div>
 
+  </main>
+
+  <div id="videoModal" class="video-modal">
+  <span class="video-close">&times;</span>
+  <video id="videoPlayer" controls></video>
+</div>
 
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
 
   <script src="script.js?v=503"></script>
+
 
 </body>
 
