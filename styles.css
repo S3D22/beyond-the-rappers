@@ -1848,10 +1848,15 @@ display: none;
 
 .event-recap-video video {
   width: 100%;
-  max-width: 150px;   /* 👈 limita el tamaño */
+  max-width: 350px;   /* 👈 limita el tamaño */
   margin: 20px auto;
   display: block;
   border-radius: 16px;
+
+}
+.event-recap-video video {
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
 }
   }
 }

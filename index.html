@@ -199,10 +199,50 @@
 
     .event-recap-video video {
       width: 100%;
+      max-width: 360px;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
       display: block;
       border-radius: 18px;
       background: #000;
-      margin-top: 16px;
+      margin: 20px auto 0;
+      cursor: pointer;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+
+    .video-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,.88);
+      padding: 20px;
+    }
+
+    .video-modal.active {
+      display: flex;
+    }
+
+    .video-modal video {
+      width: min(92vw, 420px);
+      max-height: 88vh;
+      border-radius: 20px;
+      background: #000;
+      box-shadow: 0 30px 90px rgba(0,0,0,.6);
+    }
+
+    .video-close {
+      position: fixed;
+      top: 18px;
+      right: 24px;
+      z-index: 10000;
+      color: #fff;
+      font-size: 42px;
+      line-height: 1;
+      cursor: pointer;
+      font-weight: 300;
     }
 
     @media (max-width: 900px) {
@@ -483,9 +523,9 @@
           <h3>Edición 5 · Classic Shit Edition</h3>
           <p class="muted">Revive algunos momentos de la quinta edición de Beyond The Rappers.</p>
 
-          <video controls preload="metadata" poster="assets/ed5.jpg">
+          <video class="recap-video-trigger" controls preload="metadata" poster="assets/ed5.jpg" data-video-src="assets/edicion5-recap.mp4">
             <source src="assets/edicion5-recap.mp4" type="video/mp4" />
-            Tu navegador no puede reproducir este vídeo.
+            
           </video>
         </article>
       </div>
@@ -713,5 +753,35 @@
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
   <script src="script.js?v=508"></script>
+
+  <script>
+  const recapBtrVideoTrigger = document.querySelector('.recap-video-trigger');
+  const recapBtrVideoModal = document.getElementById('videoModal');
+  const recapBtrVideoPlayer = document.getElementById('videoPlayer');
+  const recapBtrVideoClose = document.querySelector('.video-close');
+
+  if (recapBtrVideoTrigger && recapBtrVideoModal && recapBtrVideoPlayer && recapBtrVideoClose) {
+    recapBtrVideoTrigger.addEventListener('click', function () {
+      const src = this.dataset.videoSrc;
+      recapBtrVideoPlayer.src = src;
+      recapBtrVideoModal.classList.add('active');
+      recapBtrVideoPlayer.play();
+    });
+
+    recapBtrVideoClose.addEventListener('click', function () {
+      recapBtrVideoPlayer.pause();
+      recapBtrVideoPlayer.src = '';
+      recapBtrVideoModal.classList.remove('active');
+    });
+
+    recapBtrVideoModal.addEventListener('click', function (event) {
+      if (event.target === recapBtrVideoModal) {
+        recapBtrVideoPlayer.pause();
+        recapBtrVideoPlayer.src = '';
+        recapBtrVideoModal.classList.remove('active');
+      }
+    });
+  }
+</script>
 </body>
 </html>
