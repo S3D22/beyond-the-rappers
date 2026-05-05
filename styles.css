@@ -1841,5 +1841,17 @@ display: none;
   }
   to {
     opacity: 1;
+
+    .event-recap-video {
+  text-align: center;
+}
+
+.event-recap-video video {
+  width: 100%;
+  max-width: 150px;   /* 👈 limita el tamaño */
+  margin: 20px auto;
+  display: block;
+  border-radius: 16px;
+}
   }
 }
