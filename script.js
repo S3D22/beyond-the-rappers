@@ -308,7 +308,7 @@ async function loadArtists() {
   if (!grid) return;
 
   try {
-    const response = await fetch("data/artists.json");
+    const response = await fetch("./artists.json");
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
