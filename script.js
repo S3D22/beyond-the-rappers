@@ -363,11 +363,12 @@ function renderArtists(artists) {
   const grid = document.getElementById("discoverGrid");
   if (!grid) return;
 
-  const sections = [
-    { key: "Music", title: "Cantantes / MCs" },
-    { key: "Tattoo", title: "Tatuadores" },
-    { key: "Visual", title: "Fotógrafos / Filmmakers" }
-  ];
+const sections = [
+  { key: "Music", title: "Cantantes / MCs" },
+  { key: "Tattoo", title: "Tatuadores" },
+  { key: "B-boy", title: "B-boys / Breaking" },
+  { key: "Visual", title: "Fotógrafos / Filmmakers" }
+];
 
   function renderCard(artist) {
     const name = escapeHtml(artist.name || "");
