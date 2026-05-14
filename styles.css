@@ -1869,3 +1869,11 @@ display: none;
   display: block;
   margin: 20px auto 0;
 }
+.video-item iframe {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border: 0;
+  border-radius: 18px;
+  background: #000;
+  display: block;
+}
