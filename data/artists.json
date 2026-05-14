@@ -1,3 +1,4 @@
+```json
 [
   {
     "name": "Bodde",
@@ -155,5 +156,43 @@
     "spotifyEmbed": "",
     "lat": 41.3874,
     "lng": 2.1686
+  },
+  {
+    "name": "Bruno Fado Ribeiro",
+    "city": "Paris",
+    "nationality": "",
+    "section": "Music",
+    "type": "Music",
+    "status": "Emerging",
+    "search": "bruno fado ribeiro paris b-boy dj writer host hip hop not only hip hop",
+    "image": "assets/ARTIST/BrunoFadoRibeiro.jpeg",
+    "bio": "B-boy · DJ · Writer · Host",
+    "description": "Not Only Hip Hop",
+    "spotify": "",
+    "youtube": "https://youtube.com/@notonlyhiphop?si=qP1BU2i8ajJvBV8L",
+    "instagram": "https://www.instagram.com/bboyfado",
+    "instagram2": "https://www.instagram.com/notonlyhiphop",
+    "website": "https://www.notonlyhiphop.com/",
+    "spotifyEmbed": "",
+    "lat": 48.8566,
+    "lng": 2.3522
+  },
+  {
+    "name": "Chidi Nagare",
+    "city": "Las Palmas de Gran Canaria",
+    "nationality": "",
+    "section": "Music",
+    "type": "Music",
+
+    "search": "chidi nagare las palmas de gran canaria rapero productor hip hop",
+    "image": "assets/ARTIST/ChidiNagare.jpeg",
+    "bio": "Rapero · Productor de hip hop",
+    "description": "Rapero y productor de hip hop",
+    "spotify": "https://open.spotify.com/artist/0DLlzg53YqfNOw0RstUdkB?si=BAxzViXASV2Pw_8_pNQ7PA",
+    "youtube": "https://youtube.com/@envezdelenguaunakatana23?si=YMEKTV4mpVg6jLJS",
+    "instagram": "https://www.instagram.com/envezdelenguaunakatana?igsh=YzRxMW95eTd4ZnVy",
+    "spotifyEmbed": "https://open.spotify.com/embed/artist/0DLlzg53YqfNOw0RstUdkB",
+    "lat": 28.1235,
+    "lng": -15.4363
   }
 ]
