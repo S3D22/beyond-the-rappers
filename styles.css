@@ -1860,3 +1860,12 @@ display: none;
 }
   }
 }
+.recap-youtube {
+  width: 100%;
+  max-width: 720px;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 18px;
+  display: block;
+  margin: 20px auto 0;
+}
